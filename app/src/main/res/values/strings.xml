@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">FastDelivery</string>
+
+    <!-- login/register -->
+    <string name="hint_edtusername">Nhập tên đăng nhập</string>
+    <string name="hint_edtpassword">Nhập mật khẩu</string>
+    <string name="tv_forgotpass">Quên mật khẩu?</string>
+    <string name="tv_username">Tên đăng nhập</string>
+    <string name="tv_password">Mật khẩu</string>
+    <string name="name_btnlogin">Đăng nhập</string>
+    <string name="tv_singup">Đăng ký</string>
+
+    <!-- account-->
+    <string name="mess_logOut">Bạn có thực sự muốn đăng xuất?</string>
+    <string name="action_account">Tài khoản</string>
+    <string name="action_order">Đơn hàng</string>
+    <string name="action_finance">Tài chính</string>
+    <string name="action_area">Khu vực </string>
+    <!-- admin-->
+    <string name="ad_nav1_mainHome">Trang chính</string>
+    <string name="ad_nav2_mainProfile">Thông tin cá nhân</string>
+    <string name="ad_nav3_mainAccount">Đổi mật khẩu</string>
+    <string name="ad_nav4_mainLogout">Đăng xuất</string>
+    <string name="tv_help">Trợ giúp</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="pf_name">Họ và tên</string>
+    <string name="header_username">Tên đăng nhập</string>
+
+    <!-- title -->
+    <string name="tv_app_nem">Giao hàng nhanh</string>
+    <string name="tv_mass_list">Bảng giá khối lượng (kg)</string>
+    <string name="tv_distance_list">Bảng giá khoảng cách (km)</string>
+    <string name="tv_start_distance">Từ khoảng cách</string>
+    <string name="tv_end_distance">Đến khoảng cách</string>
+    <string name="tv_start_mass">Từ</string>
+    <string name="tv_end_mass">Đến</string>
+    <string name="tv_price_delivery">Cước phí</string>
+    <string name="tv_item_mass">0</string>
+    <string name="tv_dialog_mass">Nhập giá tiền bạn muốn thay đổi</string>
+    <string name="tv_dialog_mass2">Giá tiền</string>
+    <string name="tv_dialog_mass3">VND</string>
+    <string name="tv_dialogOk">XÁC NHẬN</string>
+    <string name="tv_dialogCancel">HỦY</string>
+    <string name="tv_staff_search">Tìm kiếm theo mã nhân viên</string>
+    <string name="tv_id">Mã</string>
+    <string name="RemoveStaffFail">Bạn không thể xóa nhân viên này</string>
+    <string name="AllRemoveStaff">Bạn có chắc chắn muốn xóa nhân viên này?</string>
+    <string name="RemoveStaffSuccess">Xóa thành công</string>
+    <string name="tv_staffId">Mã nhân viên</string>
+    <string name="tv_staffCmnd">CMND</string>
+    <string name="hint_staffCmnd">Nhập CMND</string>
+    <string name="pf_birth">Ngày sinh</string>
+    <string name="pf_gender">Giới tính</string>
+    <string name="pf_phone">Số điện thoại</string>
+    <string name="pf_hintPhone">Nhập số điện thoại</string>
+    <string name="pf_hintName">Nhập họ và tên</string>
+    <string name="pf_hintBirth">Chọn ngày sinh</string>
+    <string name="tv_email">Email</string>
+    <string name="hint_email">Nhập Email</string>
+    <string name="pf_address">Địa chỉ</string>
+    <string name="pf_hintAddress">Nhập địa chỉ</string>
+    <string name="tv_role_Staff">Quyền</string>
+    <string name="pf_male">Nam</string>
+    <string name="pf_female">Nữ</string>
+    <string name="tv_save">Cập nhật</string>
+    <string name="tv_save2">Thêm</string>
+    <string name="tv_warehouse">Kho</string>
+    <string name="tv_rgt_staffSuccess">Thêm nhân viên thành công</string>
+    <string name="mes_assignment_success">Đã phân kho thành công</string>
+
+
+    <!--toolbar-->
+    <string name="tv_chooseStaff_mng">Quản lý nhân viên</string>
+    <string name="tv_staff_mng">Quản lý nhân viên kho</string>
+    <string name="tv_shipper_mng">Quản lý nhân viên giao hàng</string>
+
+    <!--message -->
+    <string name="login_empty">Tên đăng nhập và mật khẩu không được bỏ trống</string>
+    <string name="wrong_account">Tên đăng nhập hoặc mật khẩu không đúng</string>
+    <string name="title_activity_price">PriceActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="update_success">Cập nhật thành công</string>
+    <string name="error_empty">Vui lòng không bỏ trống các thông tin</string>
+    <string name="PhoneIllegal">Số điện thoại không hợp lệ</string>
+    <string name="EmailIllegal">Email không hợp lệ</string>
+    <string name="CmndIllegal">CMND không hợp lệ</string>
+    <string name="PhoneExist">Số điện thoại này đã được sử dụng</string>
+    <string name="EmailExist">Email này đã được sử dụng</string>
+    <string name="CmndExist">CMND này đã được sử dụng</string>
+    <string name="staffId_old">Ngày sinh không hợp lệ cần đủ 18 tuổi</string>
+    <string name="UserIllegal">Tên đăng nhập tối thiểu tám ký tự, ít nhất một chữ cái và một số</string>
+    <string name="AccountExist">Tên đăng nhập đã tồn tại</string>
+    <string name="PassIllegal">Mât khẩu tối thiểu tám ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường và một số</string>
+
+    <!-- title temp-->
+    <string name="tv_id_pc">Mã bưu kiện</string>
+    <string name="tv_status_pc">Trạng thái</string>
+    <string name="tv_name_pc">Nguyễn Văn A</string>
+    <string name="tv_phone_pc">09123048394</string>
+    <string name="tv_date_pc">02-11-2022 08:00:00</string>
+    <string name="btn_action_pc">Xác nhận</string>
+    <string name="btn_route_pc">Xem lộ trình</string>
+    <string name="tv_ddmmyyy">dd/MM/yyyy</string>
+    <string name="tv_status">Trạng thái bưu kiện</string>
+    <string name="title_adress">Quận/huyện</string>
+    <string name="title_address2">Phường/xã</string>
+    <string name="title_address3">Địa chỉ</string>
+    <string name="to">Người nhận</string>
+    <string name="from">Người gửi</string>
+    <string name="information">Thông tin hàng hóa</string>
+    <string name="mass">Khối lượng:</string>
+    <string name="size">Kích thước:</string>
+    <string name="price">Tiền hàng:</string>
+    <string name="price_ship">Phí giao:</string>
+    <string name="note">Ghi chú:</string>
+    <string name="trans">Hình thức vận chuyễn:</string>
+    <string name="payment_method">Phương thức thanh toán:</string>
+    <string name="payment_stutas">Tình trạng thanh toán:</string>
+</resources>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".screens.admin.priceList.PriceActivity">
+
+    <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/ad_toolbarPrice"
+            style="@style/style_toolbar"
+            app:title="Bảng giá tính phí vận chuyễn"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/style_textview_login3"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/tv_mass_list"
+            android:textSize="@dimen/_15sdp"
+            android:background="@color/color3"
+            android:textColor="@color/dark_green"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:layout_gravity="center"
+                android:text="@string/tv_start_mass"
+                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_70sdp"
+                android:layout_marginEnd="@dimen/_60sdp"
+                android:text="@string/tv_end_mass"
+                android:textColor="@color/dark_green"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:text="@string/tv_price_delivery"
+                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_mass"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_185sdp"/>
+
+<!--        <View-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="@dimen/_1sdp"-->
+<!--            android:layout_marginTop="@dimen/_8sdp"-->
+<!--            android:background="@color/white" />-->
+
+        <TextView
+            style="@style/style_textview_login3"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="@string/tv_distance_list"
+            android:textSize="@dimen/_15sdp"
+            android:background="@color/color3"
+            android:textColor="@color/dark_green"/>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_5sdp"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <TextView-->
+<!--                style="@style/style_textview_login2"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="@string/tv_start_mass"-->
+<!--                android:textSize="@dimen/_12sdp" />-->
+
+<!--            <TextView-->
+<!--                style="@style/style_textview_login2"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="@dimen/_60sdp"-->
+<!--                android:layout_marginEnd="@dimen/_60sdp"-->
+<!--                android:text="@string/tv_end_mass"-->
+<!--                android:textSize="@dimen/_12sdp" />-->
+
+<!--            <TextView-->
+<!--                style="@style/style_textview_login2"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginEnd="@dimen/_40sdp"-->
+<!--                android:text="@string/tv_price_delivery"-->
+<!--                android:textSize="@dimen/_12sdp" />-->
+
+<!--        </LinearLayout>-->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_distance"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_185sdp" />
+
+    </LinearLayout>
+</LinearLayout>

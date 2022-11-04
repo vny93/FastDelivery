@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_order2"
+        android:icon="@drawable/ic_baseline_view_in_ar_24"
+        android:title="@string/action_order" />
+
+    <item
+        android:id="@+id/action_money2"
+        android:icon="@drawable/ic_baseline_monetization_on_24"
+        android:title="@string/action_finance" />
+
+    <item
+        android:id="@+id/action_area"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:title="@string/action_area" />
+
+    <item
+        android:id="@+id/action_account2"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/action_account" />
+
+</menu>

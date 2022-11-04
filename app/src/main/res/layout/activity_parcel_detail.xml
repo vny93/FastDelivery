@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/lnl_custom_staff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_parcel_detail"
+                style="@style/style_toolbar"
+                app:title="Chi tiết bưu kiện"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                style="@style/style_cardview_itemProductType2"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_2sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="@string/from"
+                        android:textColor="@color/dark_green"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_baseline_person_24" />
+
+                                <TextView
+                                    android:id="@+id/tvad_name_dtpc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/tv_name_pc"
+                                    android:textColor="@color/dark_green"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_baseline_local_phone_24"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_phone_dtpc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/tv_phone_pc"
+                                    android:textColor="@color/dark_green"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginBottom="@dimen/_20sdp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_baseline_location_on_24"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_adress_dtpc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/title_address3"
+                                    android:textColor="@color/dark_green"
+                                    android:textSize="@dimen/_13sdp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/style_cardview_itemProductType2"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_2sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="@string/to"
+                        android:textColor="@color/dark_green"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_baseline_person_24" />
+
+                                <TextView
+                                    android:id="@+id/tvad_name_dtpc2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/tv_name_pc"
+                                    android:textColor="@color/dark_green"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_baseline_local_phone_24"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_phone_dtpc2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/tv_phone_pc"
+                                    android:textColor="@color/dark_green"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginBottom="@dimen/_20sdp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_baseline_location_on_24"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_adress_dtpc2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="@string/title_address3"
+                                    android:textColor="@color/dark_green"
+                                    android:textSize="@dimen/_13sdp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/style_cardview_itemProductType2"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_15sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="@string/information"
+                        android:textColor="@color/dark_green"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/mass"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_mass_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/mass" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/size"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_size_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/size" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/note"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_note_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/note" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/trans"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_trans_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/trans" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/price"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_price_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/price" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/price_ship"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvad_priceShip_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/price_ship" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/payment_method"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/payment_method_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/payment_method"
+                                    android:textSize="@dimen/_13sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/style_textTitle"
+                                    android:text="@string/payment_stutas"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/paymant_status_dtpc"
+                                    style="@style/style_textTitle"
+                                    android:text="@string/payment_stutas" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

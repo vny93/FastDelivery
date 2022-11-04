@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main4"
+    tools:context=".screens.account.FragmentAccount">
+
+
+    <LinearLayout
+        android:id="@+id/lnl_Account"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ImvAvatar"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:src="@drawable/ic_baseline_account_circle_24" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvHeaderName"
+                    style="@style/style_textview"
+                    android:text="@string/pf_name"
+                    android:textSize="@dimen/_17sdp" />
+
+                <TextView
+                    android:id="@+id/tvHeaderUser"
+                    style="@style/style_textview2"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/black" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/imv_calendar"
+                style="@style/style_imv_icon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:background="@drawable/ic_baseline_person_outline_24" />
+
+            <TextView
+                style="@style/style_textview_login3"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="2.4"
+                android:text="@string/ad_nav2_mainProfile"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:id="@+id/imv_infor"
+                style="@style/style_imv_icon2"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/ic_baseline_arrow_right_24" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                style="@style/style_imv_icon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:background="@drawable/ic_outline_lock_24" />
+
+            <TextView
+                style="@style/style_textview_login3"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="2.4"
+                android:text="@string/ad_nav3_mainAccount"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:id="@+id/imv_changePass"
+                style="@style/style_imv_icon2"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/ic_baseline_arrow_right_24" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                style="@style/style_imv_icon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:background="@drawable/ic_baseline_help_outline_24" />
+
+            <TextView
+                style="@style/style_textview_login3"
+                android:layout_margin="@dimen/_12sdp"
+                android:layout_weight="2.4"
+                android:text="@string/tv_help"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:id="@+id/imv_help"
+                style="@style/style_imv_icon2"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/ic_baseline_arrow_right_24" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_logOut"
+            style="@style/style_btnlogin"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_70sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:text="@string/ad_nav4_mainLogout"
+            android:textSize="@dimen/_13sdp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

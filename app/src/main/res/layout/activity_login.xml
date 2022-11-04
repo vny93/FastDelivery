@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main4"
+    android:fillViewport="true"
+    tools:context=".screens.login.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/scrollView_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginTop="@dimen/_minus10sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/circle_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_minus40sdp" />
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="@dimen/_60sdp"-->
+        <!--            android:layout_height="@dimen/_60sdp"-->
+        <!--            android:layout_marginStart="@dimen/_220sdp"-->
+        <!--            android:layout_marginTop="@dimen/_10sdp"-->
+        <!--            android:src="@drawable/login2"/>-->
+
+        <androidx.cardview.widget.CardView
+            style="@style/style_cardview_userlogin2"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:backgroundTint="@color/white">
+
+            <ImageView
+                style="@style/style_imv_icon"
+                android:background="@drawable/ic_baseline_account_circle_24" />
+
+            <EditText
+                android:id="@+id/edtUsername"
+                style="@style/style_edt_login2"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:background="@color/white"
+                android:hint="@string/hint_edtusername"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_13sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            style="@style/style_cardview_userlogin2"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:backgroundTint="@color/white">
+
+            <ImageView
+                style="@style/style_imv_icon"
+                android:background="@drawable/ic_baseline_lock_24" />
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/hide_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPassword"
+                    style="@style/style_edt_login2"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:background="@color/white"
+                    android:hint="@string/hint_edtpassword"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/_13sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/forgot_password"
+            style="@style/style_textview_forgotpw"
+            android:layout_marginStart="@dimen/_185sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/tv_forgotpass"
+            android:textColor="@color/dark_green" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_minus20sdp"
+            android:orientation="horizontal">
+
+<!--            <ImageView-->
+<!--                android:layout_width="@dimen/_40sdp"-->
+<!--                android:layout_height="@dimen/_40sdp"-->
+<!--                android:layout_marginTop="@dimen/_40sdp"-->
+<!--                android:layout_marginStart="@dimen/_35sdp"-->
+<!--                android:src="@drawable/login2" />-->
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginStart="@dimen/_35sdp"
+                android:src="@drawable/login1" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/style_btnlogin"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_minus8sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:text="@string/name_btnlogin"
+            android:textSize="@dimen/_13sdp" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            style="@style/style_btnlogin"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:text="@string/tv_singup"
+            android:textSize="@dimen/_13sdp" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
