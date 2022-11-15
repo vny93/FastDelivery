@@ -2,6 +2,7 @@ package vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment
 
 import android.R
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.location.Geocoder
 import android.location.Location
@@ -10,12 +11,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import demo.kotlin.model.dijkstra.Edge
 import demo.kotlin.model.dijkstra.Vert
 import vn.vunganyen.fastdelivery.data.adapter.AdapterAdminParcelMng
+import vn.vunganyen.fastdelivery.data.adapter.AdapterParcelWh
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
@@ -25,11 +29,15 @@ import vn.vunganyen.fastdelivery.data.model.role.ListRoleRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhReq
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.WayReq
 import vn.vunganyen.fastdelivery.databinding.ActivityAssignmentMngBinding
+import vn.vunganyen.fastdelivery.databinding.DialogSettingWarehouseBinding
 import vn.vunganyen.fastdelivery.screens.login.LoginActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -45,6 +53,11 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     var listDistrict = ArrayList<DistrictRes>()
     var listDistrictName = ArrayList<String>()
     var listWardstName = ArrayList<String>()
+    lateinit var dialog2: Dialog
+    lateinit var bindingDialog : DialogSettingWarehouseBinding
+    var adapterWH : AdapterParcelWh = AdapterParcelWh()
+    var parcel_way = ""
+    var checkCount = 0
 
     var idParcel = 0
     lateinit var adressStore : String
@@ -52,9 +65,9 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     var arrLocationWH : ArrayList<Location> = ArrayList<Location>()
     val storeLocation = Location("Store")
     val customerLocation = Location("Customer")
-    lateinit var arrVertWH : ArrayList<Vert> //= ArrayList<Vert>()
-    lateinit var vertStore : Vert//= Vert("Store")
-    lateinit var vertCustomer : Vert //= Vert("Customer")
+    lateinit var arrVertWH : ArrayList<Vert>
+    lateinit var vertStore : Vert
+    lateinit var vertCustomer : Vert
     companion object{
         lateinit var geocoder : Geocoder
         var listWarehouse : List<WarehouseRes> = ArrayList<WarehouseRes>()
@@ -69,6 +82,9 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         setContentView(binding.root)
         assignmentPst = AssignmentPst(this)
         geocoder = Geocoder(this)
+        dialog2 = Dialog(this@AssignmentMngActivity)
+        bindingDialog = DialogSettingWarehouseBinding.inflate(layoutInflater)
+        dialog2.setContentView(bindingDialog.root)
 
         //phân bưu kiện về kho có đường đi ngắn nhất
         assignmentWarehouse()
@@ -76,7 +92,9 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         setEvent()
         setToolbar()
         callInvokeDijkstra()
-
+        callInvokeSetting()
+        callInvokeCheckBoxTrue()
+        callInvokeCheckBoxFalse()
     }
 
     fun setData(){
@@ -93,10 +111,19 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     fun setEvent(){
         binding.spinnerDistrict.setOnItemClickListener(({adapterView, view, i , l ->
             adress = adapterView.getItemAtPosition(i).toString()
-            for(list in listDistrict){
-                if(list.name.equals(adapterView.getItemAtPosition(i).toString())){
-                    println("code:"+list.code)
-                    assignmentPst.getWards(list.code)
+            if(adress.equals("Tất cả")){
+                adress = ""
+                val mlist = mutableListOf("")
+                mlist.clear()
+                setAdapterWards(mlist)
+                binding.spinnerWards.setText("")
+            }
+            else{
+                for(list in listDistrict){
+                    if(list.name.equals(adapterView.getItemAtPosition(i).toString())){
+                        println("code:"+list.code)
+                        assignmentPst.getWards(list.code)
+                    }
                 }
             }
             println("adress: "+adress)
@@ -113,10 +140,21 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
 
         binding.spinnerStatus.setOnItemClickListener(({adapterView, view, i , l ->
             status = adapterView.getItemAtPosition(i).toString()
+            if(status.equals("Tất cả")){
+                status = ""
+            }
             println("status: "+status)
             var req = AdGetParcelReq(adress,status)
             assignmentPst.filterParcel(req)
         }))
+
+        binding.refresh.setOnClickListener{
+            var req = AdGetParcelReq("","")
+            assignmentPst.filterParcel(req)
+            binding.spinnerDistrict.setText("",false)
+            binding.spinnerStatus.setText("",false)
+            binding.spinnerWards.setText("",false)
+        }
 
     }
 
@@ -175,13 +213,13 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     }
 
     fun setNeighbour(){
-        vertStore = Vert("Store")
-        vertCustomer = Vert("Customer")
+        vertStore = Vert("Cửa hàng")
+        vertCustomer = Vert("Khách hàng")
         for(i in 0..listWarehouse.size-1){
             vertStore.addNeighbour(Edge(distanceStore[i],vertStore,arrVertWH.get(i)))
-            println("Store --- "+arrVertWH.get(i).getName()+": "+distanceStore[i])
+            println("Cửa hàng --- "+arrVertWH.get(i).getName()+": "+distanceStore[i])
             arrVertWH.get(i).addNeighbour(Edge(distanceCustomer[i],arrVertWH.get(i),vertCustomer))
-            println(arrVertWH.get(i).getName()+" --- "+"Customer: "+distanceCustomer[i])
+            println(arrVertWH.get(i).getName()+" --- "+"Khách hàng: "+distanceCustomer[i])
             for(j in 0..listWarehouse.size-1){
                 if( i != j ){
                     arrVertWH.get(i).addNeighbour(Edge(arrDistanceWH[i][j],arrVertWH.get(i),arrVertWH.get(j)))
@@ -194,22 +232,27 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         System.out.println("Khoảng cách tối thiểu từ Store đến custumer: " + String.format("%.2f",vertCustomer.getDist()))
         System.out.println("Đường đi ngắn nhất từ store đến customer: " + assignmentPst.getShortestP(vertCustomer,vertStore))
         var str = assignmentPst.getShortestP(vertCustomer,vertStore).toString()
-        str = str.substring(vertStore.getName().length+2,str.length-vertCustomer.getName().length-3).trim()
-        val arrWord = str.split(", ")
-        var stt = 0  //tạo biến đếm để cho kho đầu tiên nhìn thấy
-        //     var way = "Bưu kiện "+idParcel+" sẽ đi từ :"
-        for (word in arrWord) {
-            println("Word: "+word)
-            for(x in listWarehouse){
-                if(word.equals(x.tenkho)){
-                //    way = way + x.tenkho
-                    println("mã kho: "+x.makho)
-                    //call api lưu vào đường đi
-                    var req = WayReq(idParcel,x.makho,stt)
-                    assignmentPst.addWay(req, arrWord.size-1) //truyền vào size của các kho đi qua
+        var mess = "Bưu kiện "+idParcel+" có lộ trình như sau:\n"+
+                str.substring(1,str.length-1).replace(", "," -> ").trim()+"\nBạn có chấp nhận?"
+
+        dialog.showStartDialog4(mess, this)
+        dialog.clickOk = { ->
+            str = str.substring(vertStore.getName().length+2,str.length-vertCustomer.getName().length-3).trim()
+            val arrWord = str.split(", ")
+            var stt = 0  //tạo biến đếm để cho kho đầu tiên nhìn thấy
+            for (word in arrWord) {
+                println("Word: "+word)
+                for(x in listWarehouse){
+                    if(word.equals(x.tenkho)){
+                        //    way = way + x.tenkho
+                        println("mã kho: "+x.makho)
+                        //call api lưu vào đường đi
+                        var req = WayReq(idParcel,x.makho,stt)
+                        assignmentPst.addWay(req, arrWord.size-1) //truyền vào size của các kho đi qua
+                    }
                 }
+                stt++
             }
-            stt++
         }
     }
     
@@ -224,6 +267,92 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         }
     }
 
+    fun callInvokeSetting(){
+        adapter.clickSetting = {
+            data -> assignmentPst.getParcelWh(GetParcelWhReq("Đang lưu kho"))
+            idParcel = data.mabk
+        }
+    }
+
+    fun callInvokeCheckBoxTrue(){
+        adapterWH.clickCheckboxTrue = {
+            data, count ->
+            checkCount = checkCount + count
+            println("checkCount: "+checkCount.toString())
+            parcel_way = parcel_way + data.tenkho + " -> "
+            bindingDialog.tvParcelWay.setText("Cửa hàng -> "+parcel_way+"Khách hàng")
+        }
+    }
+
+    fun callInvokeCheckBoxFalse(){
+        adapterWH.clickCheckboxFalse = {
+                data, count ->
+            checkCount = checkCount + count
+            println("checkCount: "+checkCount.toString())
+            parcel_way = parcel_way.replace(data.tenkho+" -> ","")
+            bindingDialog.tvParcelWay.setText("Cửa hàng -> "+parcel_way+"Khách hàng")
+        }
+    }
+
+    fun showDialogSetting(gravity : Int, list : List<GetParcelWhRes>){
+        val window = dialog2.window ?: return
+        window.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+//        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val windowAttributes = window.attributes
+        windowAttributes.gravity = gravity
+        window.attributes = windowAttributes
+
+        if (Gravity.CENTER == gravity) {
+            dialog2.setCancelable(false)
+        } else {
+            dialog2.setCancelable(false)
+        }
+
+        adapterWH.setData(list)
+        bindingDialog.rcvListParcelWh.adapter = adapterWH
+        bindingDialog.rcvListParcelWh.layoutManager =  LinearLayoutManager(this,
+            LinearLayoutManager.VERTICAL,false)
+
+        bindingDialog.btnAccept.setOnClickListener{
+            println("checkCount: "+checkCount.toString())
+            if(checkCount == 0){
+                dialog.showStartDialog3(getString(vn.vunganyen.fastdelivery.R.string.mes_warehouse_empty),this)
+            }else{
+                var str = bindingDialog.tvParcelWay.text.toString()
+                str = str.substring(11,str.length-13).trim()
+                println(str)
+                val arrWord = str.split(" -> ")
+                var stt = 0  //tạo biến đếm để cho kho đầu tiên nhìn thấy
+                for (word in arrWord) {
+                    for(x in listWarehouse){
+                        if(word.equals(x.tenkho)){
+                            //call api lưu vào đường đi
+                            var req = WayReq(idParcel,x.makho,stt)
+                            assignmentPst.addWay(req, arrWord.size-1) //truyền vào size của các kho đi qua
+                        }
+                    }
+                    stt++
+                }
+                parcel_way = ""
+                bindingDialog.tvParcelWay.setText("")
+                checkCount = 0
+                dialog2.dismiss()
+            }
+        }
+
+        bindingDialog.btnCancel.setOnClickListener{
+            parcel_way = ""
+            bindingDialog.tvParcelWay.setText("")
+            checkCount = 0
+            dialog2.dismiss()
+        }
+
+        dialog2.show()
+    }
+
     override fun getShopDetail(res: GetShopDetailRes) {
         adressStore = res.diachi
         initArrLocation(geocoder)
@@ -235,11 +364,16 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         assignmentPst.filterParcel(req)
     }
 
+    override fun getParcelWh(list: List<GetParcelWhRes>) {
+        showDialogSetting(Gravity.CENTER, list)
+    }
+
     override fun getListWarehouse() {
         //    initArrLocation(geocoder)
     }
 
     override fun getListStatus(list: List<ListStatusRes>) {
+        listStatus.add("Tất cả")
         for(i in 0..list.size-1){
             listStatus.add(list.get(i).tentrangthai)
         }
@@ -254,6 +388,7 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
 
     override fun getListDistrict(list: List<DistrictRes>) {
         listDistrict = list as ArrayList<DistrictRes>
+        listDistrictName.add("Tất cả")
         for(i in 0..list.size-1){
             listDistrictName.add(list.get(i).name)
         }
@@ -264,9 +399,11 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         var adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,list)
         binding.spinnerDistrict.setAdapter(adapter)
         binding.spinnerDistrict.setHint("Tất cả")
+        binding.spinnerWards.setHint("Tất cả")
     }
 
     override fun getListWards(list: List<WardsRes>) {
+        listWardstName.add("Tất cả")
         for(i in 0..list.size-1){
             listWardstName.add(list.get(i).name)
         }

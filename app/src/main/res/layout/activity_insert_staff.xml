@@ -10,7 +10,7 @@
         android:id="@+id/lnl_custom_staff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green2"
+        android:background="@color/color4"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
@@ -237,6 +237,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_birth_staff"
                 style="@style/style_cardview_userlogin2"
+                android:backgroundTint="@color/white"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_5sdp">
 
@@ -251,6 +252,7 @@
                         android:id="@+id/edt_birth_staff"
                         style="@style/style_edt_login2"
                         android:layout_marginStart="@dimen/_5sdp"
+                        android:background="@color/white"
                         android:enabled="false"
                         android:hint="@string/pf_hintBirth" />
 

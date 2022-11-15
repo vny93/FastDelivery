@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
         var STAFF = 2
         var SHIPPER = 3
         var STORE = 4
-        var API_RPOFILE = "car"
+        var API_RPOFILE = "scooter"//"car" //"scooter"
         var API_LOCALE = "vn"
         var API_CALC_POINTS = false
         var API_KEY = "03b225ae-3ff7-40d9-86ee-901bc4347172"

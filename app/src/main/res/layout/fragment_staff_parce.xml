@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg3"
+    android:orientation="vertical"
+    tools:context=".screens.admin.parcelMng.assignment.AssignmentMngActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:text="@string/title_adress"/>
+
+        <TextView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:text="@string/title_address2"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:padding="@dimen/_2sdp"
+                android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spinner_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/boder_rectangle2"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="@dimen/_170sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:padding="@dimen/_2sdp"
+                android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spinner_wards"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/boder_rectangle2"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_warehouse"
+        style="@style/style_textview_forgotpw"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_minus15sdp"
+        android:layout_marginEnd="@dimen/_50sdp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/dark_green"
+        android:text="@string/tv_status" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_2sdp"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinner_status"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/boder_rectangle2"
+                android:enabled="false"
+                android:gravity="center"
+                android:inputType="none"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/refresh"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_275sdp"
+        android:layout_marginTop="@dimen/_minus25sdp"
+        android:background="@drawable/ic_baseline_refresh_24"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_listParcel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_350sdp"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+</LinearLayout>

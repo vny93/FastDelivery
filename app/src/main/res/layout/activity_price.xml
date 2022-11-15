@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray"
+        android:background="@drawable/mainbg3"
         android:orientation="vertical">
 
         <TextView
@@ -82,7 +82,7 @@
         <TextView
             style="@style/style_textview_login3"
             android:gravity="center"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/tv_distance_list"
             android:textSize="@dimen/_15sdp"
             android:background="@color/color3"

@@ -9,6 +9,7 @@ import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.databinding.ActivityHomeStaffBinding
 import vn.vunganyen.fastdelivery.screens.account.FragmentAccount
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import vn.vunganyen.fastdelivery.screens.staff.parcelMng.StaffParceFgm
 
 
 class HomeStaffActivity : AppCompatActivity(), HomeStaffItf {
@@ -24,7 +25,7 @@ class HomeStaffActivity : AppCompatActivity(), HomeStaffItf {
         homeStaffPst = HomeStaffPst(this)
         checkShaharedPre()
         setEventBottomNav()
-      //  replaceFragment(FragmentShop())
+        replaceFragment(StaffParceFgm())
         setEvent()
     }
 
@@ -38,9 +39,7 @@ class HomeStaffActivity : AppCompatActivity(), HomeStaffItf {
     }
 
     fun setEvent(){
-        binding.btnClick.setOnClickListener{
-            homeStaffPst.callAPIGraphhopperRes()
-        }
+
 
     }
 
@@ -49,7 +48,7 @@ class HomeStaffActivity : AppCompatActivity(), HomeStaffItf {
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_order -> {
-                  //  replaceFragment(FragmentShop())
+                    replaceFragment(StaffParceFgm())
                     Toast.makeText(this, "Home Item reselected", Toast.LENGTH_SHORT).show()
                     true
                 }

@@ -15,6 +15,8 @@ import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.ActivityHomeAdminBinding
 import vn.vunganyen.fastdelivery.databinding.HeaderNaviBinding
+import vn.vunganyen.fastdelivery.screens.myAccount.AdminMyAccountActivity
+import vn.vunganyen.fastdelivery.screens.admin.myProfile.AdminMyProfileActivity
 import vn.vunganyen.fastdelivery.screens.login.LoginActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import vn.vunganyen.petshop.screens.admin.main.HomeAdminItf
@@ -69,14 +71,13 @@ class HomeAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
         if (id == R.id.nax_1) {
-          //  var intent = Intent(this, InputDataActivity::class.java)
-          //  startActivity(intent)
+            replaceFragment(HomeAdminFgm())
         } else if (id == R.id.nax_2) {
-          //  var intent = Intent(this, OrderMngActivity::class.java)
-          //  startActivity(intent)
+            var intent = Intent(this, AdminMyProfileActivity::class.java)
+            startActivity(intent)
         } else if (id == R.id.nax_3) {
-           //   var intent = Intent(this, StatisticsActivity::class.java)
-           //   startActivity(intent)
+              var intent = Intent(this, AdminMyAccountActivity::class.java)
+              startActivity(intent)
         } else if (id == R.id.nax_4) {
             dialog.showStartDialog4(getString(R.string.mess_logOut), this)
             dialog.clickOk = { ->
@@ -114,7 +115,7 @@ class HomeAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     override fun onResume() {
         super.onResume()
-    //    headerBinding.tvadHeaderName.text = SplashScreenActivity.profileAdmin.result.hoten
+        headerBinding.tvadHeaderName.text = SplashActivity.profile.result.hoten
     }
 
 

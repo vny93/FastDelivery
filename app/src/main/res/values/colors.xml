@@ -13,5 +13,10 @@
     <color name="bg1">#AAB6F4</color>
     <color name="color2">#FAEDF2</color>
     <color name="color3">#FBF6C4</color>
-    <color name="color4">#CBF7FD</color>
+    <color name="color4">#DFF6EF</color>
+    <color name="color5">#FDE8C8</color>
+    <color name="color6">#CCF3F3</color>
+    <color name="color7">#DDE2FA</color>
+    <color name="dark_blue">#07567A</color>
+
 </resources>

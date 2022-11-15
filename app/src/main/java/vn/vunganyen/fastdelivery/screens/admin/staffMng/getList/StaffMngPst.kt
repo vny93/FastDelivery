@@ -7,6 +7,7 @@ import vn.vunganyen.fastdelivery.data.api.ApiStaffService
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
 import vn.vunganyen.fastdelivery.data.model.staff.CheckWordRes
 import vn.vunganyen.fastdelivery.data.model.staff.CheckWorkReq
+import vn.vunganyen.fastdelivery.data.model.staff.ListStaffRes
 import vn.vunganyen.fastdelivery.data.model.staff.MainListStaffRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 
@@ -21,6 +22,7 @@ class StaffMngPst {
         ApiStaffService.Api.api.getFullStaff(SplashActivity.token).enqueue(object : Callback<MainListStaffRes>{
             override fun onResponse(call: Call<MainListStaffRes>, response: Response<MainListStaffRes>) {
                 if(response.isSuccessful){
+                    StaffMngActivity.listStaff = response.body()!!.result as ArrayList<ListStaffRes>
                     staffMngItf.getFullStaff(response.body()!!.result)
                 }
             }
@@ -60,4 +62,15 @@ class StaffMngPst {
             }
         })
     }
+
+    fun getFilter(s : String){
+        StaffMngActivity.listFilter = ArrayList<ListStaffRes>()
+        for(list in StaffMngActivity.listStaff){
+            if(list.manv.toUpperCase().contains(s.toUpperCase())){
+                StaffMngActivity.listFilter.add(list)
+            }
+        }
+        staffMngItf.getFullStaff(StaffMngActivity.listFilter)
+    }
+
 }

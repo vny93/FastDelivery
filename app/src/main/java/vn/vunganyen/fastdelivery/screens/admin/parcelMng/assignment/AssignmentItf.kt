@@ -5,6 +5,7 @@ import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhRes
 
 interface AssignmentItf {
     fun getListStatus(list: List<ListStatusRes>)
@@ -14,4 +15,5 @@ interface AssignmentItf {
     fun getListWards(list: List<WardsRes>)
     fun getShopDetail(res : GetShopDetailRes)
     fun addWaySuccess()
+    fun getParcelWh(list : List<GetParcelWhRes>)
 }

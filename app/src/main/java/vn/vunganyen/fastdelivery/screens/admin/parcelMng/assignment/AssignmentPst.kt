@@ -16,6 +16,8 @@ import vn.vunganyen.fastdelivery.data.model.parcel.MainAdGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.MainGetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.status.MainListStatusRes
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhReq
+import vn.vunganyen.fastdelivery.data.model.warehouse.MainGetParcelWhRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.MainWarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.WayReq
 import vn.vunganyen.fastdelivery.data.model.way.WayRes
@@ -121,6 +123,21 @@ class AssignmentPst {
             }
 
             override fun onFailure(call: Call<MainGetShopDetailRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getParcelWh(req : GetParcelWhReq){
+        ApiWarehouseService.Api.api.getParcelWh(SplashActivity.token,req).enqueue(object : Callback<MainGetParcelWhRes>{
+            override fun onResponse(call: Call<MainGetParcelWhRes>, response: Response<MainGetParcelWhRes>) {
+                if(response.isSuccessful){
+                    assignmentItf.getParcelWh(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainGetParcelWhRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

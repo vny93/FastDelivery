@@ -1,4 +1,4 @@
-package vn.vunganyen.fastdelivery.data.adapter.support
+package vn.vunganyen.fastdelivery.data.adapter
 
 import android.app.Service
 import android.content.Context

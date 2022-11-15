@@ -1,9 +1,14 @@
 package vn.vunganyen.fastdelivery.screens.admin.staffMng.getList
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.adapter.AdapterStaffMng
@@ -18,6 +23,10 @@ class StaffMngActivity : AppCompatActivity(), StaffMngItf {
     lateinit var staffMngPst: StaffMngPst
     var adapterStaffMng : AdapterStaffMng = AdapterStaffMng()
     var alertDialog: StartAlertDialog = StartAlertDialog()
+    companion object{
+        var listStaff = ArrayList<ListStaffRes>()
+        lateinit var listFilter : ArrayList<ListStaffRes>
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStaffMngBinding.inflate(layoutInflater)
@@ -37,6 +46,36 @@ class StaffMngActivity : AppCompatActivity(), StaffMngItf {
             var intent = Intent(this, InsertStaffActivity::class.java)
             startActivity(intent)
         }
+
+        binding.edtSearchStaff.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun afterTextChanged(p0: Editable?) {
+                var str = binding.edtSearchStaff.text.toString()
+                staffMngPst.getFilter(str)
+            }
+        })
+
+        binding.viewStaffMng.setOnClickListener{
+            binding.edtSearchStaff.clearFocus()
+            binding.viewStaffMng.hideKeyboard()
+        }
+        binding.rcvListStaff.setOnClickListener{
+            binding.edtSearchStaff.clearFocus()
+            binding.rcvListStaff.hideKeyboard()
+        }
+    }
+
+    fun View.hideKeyboard(): Boolean {
+        try {
+            val inputMethodManager =
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        } catch (ignored: RuntimeException) {
+        }
+        return false
     }
 
     fun invokeDeleteStaff(){
@@ -78,5 +117,10 @@ class StaffMngActivity : AppCompatActivity(), StaffMngItf {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         finish()
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        staffMngPst.getFullStaff()
     }
 }

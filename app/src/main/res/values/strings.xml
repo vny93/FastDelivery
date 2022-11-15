@@ -26,6 +26,9 @@
     <string name="close">Close</string>
     <string name="pf_name">Họ và tên</string>
     <string name="header_username">Tên đăng nhập</string>
+    <string name="pf_wh_name">Tên kho</string>
+    <string name="pf_shop_name">Tên cửa hàng</string>
+    <string name="pf_name_status">Tên trạng thái</string>
 
     <!-- title -->
     <string name="tv_app_nem">Giao hàng nhanh</string>
@@ -43,6 +46,8 @@
     <string name="tv_dialogOk">XÁC NHẬN</string>
     <string name="tv_dialogCancel">HỦY</string>
     <string name="tv_staff_search">Tìm kiếm theo mã nhân viên</string>
+    <string name="tv_shop_search">Tìm kiếm theo mã cửa hàng</string>
+    <string name="tv_warehouse_search">Tìm kiếm theo mã kho</string>
     <string name="tv_id">Mã</string>
     <string name="RemoveStaffFail">Bạn không thể xóa nhân viên này</string>
     <string name="AllRemoveStaff">Bạn có chắc chắn muốn xóa nhân viên này?</string>
@@ -64,16 +69,40 @@
     <string name="pf_male">Nam</string>
     <string name="pf_female">Nữ</string>
     <string name="tv_save">Cập nhật</string>
+    <string name="AddProfileSucces">Cập nhật hồ sơ thành công</string>
     <string name="tv_save2">Thêm</string>
+    <string name="tv_save3">Lưu</string>
     <string name="tv_warehouse">Kho</string>
     <string name="tv_rgt_staffSuccess">Thêm nhân viên thành công</string>
     <string name="mes_assignment_success">Đã phân kho thành công</string>
-
+    <string name="mes_way_parcel">Bưu kiện %1$s có lộ trình như sau:</string>
+    <string name="tv_checkbox_warehouse">Tên kho</string>
+    <string name="tv_number_parcel">Số lượng bưu kiện đang lưu kho</string>
+    <string name="tv_parcel_way">Lộ trình của bưu kiện là:</string>
+    <string name="mes_warehouse_empty">Vui lòng chọn kho</string>
+    <string name="tv_radio_shipper">Tên shipper</string>
+    <string name="tv_number_parcel_sp">Số lượng bưu kiện đang giao lấy</string>
+    <string name="mess_cancel_parcel">Bạn có thực sự muốn từ chối lấy đơn hàng này?</string>
+    <string name="mess_delete_area">Bạn có thực sự xóa khu vực làm việc này?</string>
+    <string name="mess_register_area">Đăng ký khu vực thành công</string>
+    <string name="mess_register_area_error">Khu vực này đã được đăng ký trước đó</string>
+    <string name="mess_register_area_empty">Vui lòng chọn khu vực muốn đăng ký</string>
+    <string name="title_changePw">Đổi mật khẩu</string>
+    <string name="tv_currentPass">Mật khẩu cũ</string>
+    <string name="tv_newPass">Mật khẩu mới</string>
+    <string name="tv_confirmPass">Xác nhận mật khẩu mới</string>
+    <string name="RemoveWHFail">Bạn không thể xóa kho hàng này</string>
+    <string name="AllRemoveWH">Bạn có chắc chắn muốn xóa kho hàng này?</string>
+    <string name="tv_rgt_WHSuccess">Thêm kho thành công</string>
+    <string name="UpdateSucces">Cập nhật thành công</string>
+    <string name="tv_dialog_status">Chọn trạng thái bạn muốn cập nhật</string>
 
     <!--toolbar-->
     <string name="tv_chooseStaff_mng">Quản lý nhân viên</string>
     <string name="tv_staff_mng">Quản lý nhân viên kho</string>
     <string name="tv_shipper_mng">Quản lý nhân viên giao hàng</string>
+    <string name="tv_shop_mng">Quản lý cửa hàng</string>
+    <string name="tv_warehouse_mng">Quản lý kho</string>
 
     <!--message -->
     <string name="login_empty">Tên đăng nhập và mật khẩu không được bỏ trống</string>
@@ -89,6 +118,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="update_success">Cập nhật thành công</string>
     <string name="error_empty">Vui lòng không bỏ trống các thông tin</string>
+    <string name="error_empty_status">Vui lòng chọn trạng thái cần cập nhật</string>
+    <string name="error_empty_shipper">Vui lòng chọn nhân viên giao hàng</string>
     <string name="PhoneIllegal">Số điện thoại không hợp lệ</string>
     <string name="EmailIllegal">Email không hợp lệ</string>
     <string name="CmndIllegal">CMND không hợp lệ</string>
@@ -99,6 +130,11 @@
     <string name="UserIllegal">Tên đăng nhập tối thiểu tám ký tự, ít nhất một chữ cái và một số</string>
     <string name="AccountExist">Tên đăng nhập đã tồn tại</string>
     <string name="PassIllegal">Mât khẩu tối thiểu tám ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường và một số</string>
+    <string name="account_empty">Vui lòng không bỏ trống</string>
+    <string name="account_errorConfirmPw">Xác nhận mật khẩu mới không đúng</string>
+    <string name="account_errorCurrentPw">Mật khẩu cũ không đúng</string>
+    <string name="account_changePwFail">Thay đổi mật khẩu thất bại</string>
+    <string name="account_changePwSuccess">Thay đổi mật khẩu thành công</string>
 
     <!-- title temp-->
     <string name="tv_id_pc">Mã bưu kiện</string>
@@ -108,6 +144,11 @@
     <string name="tv_date_pc">02-11-2022 08:00:00</string>
     <string name="btn_action_pc">Xác nhận</string>
     <string name="btn_route_pc">Xem lộ trình</string>
+    <string name="btn_action2_pc">Đã lấy hàng</string>
+    <string name="btn_update_status_pc">Cập nhật trạng thái</string>
+    <string name="btn_cancel_pc">Từ chối lấy hàng</string>
+    <string name="btn_way_pc">Xem đường đi</string>
+    <string name="btn_cancel">Hủy</string>
     <string name="tv_ddmmyyy">dd/MM/yyyy</string>
     <string name="tv_status">Trạng thái bưu kiện</string>
     <string name="title_adress">Quận/huyện</string>
@@ -124,4 +165,8 @@
     <string name="trans">Hình thức vận chuyễn:</string>
     <string name="payment_method">Phương thức thanh toán:</string>
     <string name="payment_stutas">Tình trạng thanh toán:</string>
+    <string name="title_area">Khu vực</string>
+    <string name="title_list_area">Danh sách khu vực đã đăng ký</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

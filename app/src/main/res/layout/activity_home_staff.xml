@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/mainbg3"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
@@ -11,19 +11,13 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_nav"/>
 
-    <Button
-        android:id="@+id/btnClick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/purple_200"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/custom_button2"
-        app:itemBackground="@drawable/custom_button2"
+        android:background="@drawable/custom_button5"
+        app:itemBackground="@drawable/custom_button5"
         app:itemIconTint="@color/custom_color_bottom_nav"
         app:itemTextColor="@color/custom_color_bottom_nav"
         app:menu="@menu/menu_bottom_nav" />

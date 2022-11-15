@@ -8,10 +8,10 @@ import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 
 interface ApiDistrictService {
 
-    @GET("p/79")
+    @GET("p/79?depth=2")
     fun getDistrict1():Call<MainGetDistrictRes>
 
-    @GET("d/{code}")
+    @GET("d/{code}?depth=2")
     fun getDistrict2(@Path("code") code : Long):Call<DistrictRes>
 
 

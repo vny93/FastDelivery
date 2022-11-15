@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg3">
+
+    <LinearLayout
+        android:id="@+id/view_shop_mng"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_listShop"
+                style="@style/style_toolbar"
+                app:title="@string/tv_shop_mng"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.cardview.widget.CardView
+            style="@style/style_cardview_search"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_50sdp">
+
+            <ImageView
+                style="@style/style_imv_icon"
+                android:background="@drawable/ic_baseline_search_24" />
+
+            <EditText
+                android:id="@+id/edt_searchShop"
+                style="@style/style_edt_search"
+                android:hint="@string/tv_shop_search"
+                android:padding="@dimen/_10sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_listShop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

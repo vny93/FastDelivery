@@ -10,7 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import vn.vunganyen.fastdelivery.R
-import vn.vunganyen.fastdelivery.data.adapter.support.AdapterPhoto
+import vn.vunganyen.fastdelivery.data.adapter.AdapterPhoto
 import vn.vunganyen.fastdelivery.data.model.classSupport.Photo
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.ActivityLoginBinding

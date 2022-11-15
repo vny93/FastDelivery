@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/green2"
+            android:background="@color/color7"
             android:orientation="horizontal">
 
 
@@ -72,11 +72,29 @@
 
                     <TextView
                         android:id="@+id/tvad_name_pc"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/_120sdp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="@string/tv_name_pc"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:gravity="center"
+                        android:src="@drawable/ic_baseline_phone_24"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvad_phone_pc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="@string/tv_phone_pc"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
 
@@ -93,17 +111,17 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:gravity="center"
-                        android:src="@drawable/ic_baseline_phone_24"
+                        android:src="@drawable/ic_baseline_delivery_dining_24"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvad_phone_pc"
+                        android:id="@+id/tvad_deleveri_pc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="@string/tv_phone_pc"
+                        android:text="Hình thức vận chuyễn"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
 
@@ -147,20 +165,22 @@
 
                     <Button
                         android:id="@+id/btnad_action_pc"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/_125sdp"
                         android:layout_height="@dimen/_30sdp"
-                        android:background="@drawable/boder_rectangle3"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_button4"
                         android:text="@string/btn_action_pc" />
 
-<!--                    <Button-->
-<!--                        android:id="@+id/btnad_detail_pc"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_marginStart="@dimen/_5sdp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:text="@string/btn_route_pc"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="@dimen/_11sdp" />-->
+                    <Button
+                        android:id="@+id/btn_setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="@string/btn_route_pc"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_button4"
+                        android:textSize="@dimen/_11sdp" />
 
                 </LinearLayout>
 

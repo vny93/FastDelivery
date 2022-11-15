@@ -1,4 +1,4 @@
-package vn.vunganyen.fastdelivery.screens.admin.parcelMng.detailParcel
+package vn.vunganyen.fastdelivery.screens.staff.parcelDetail
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -8,18 +8,19 @@ import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.MainGetShopDetailRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 
-class ParelDetailPts {
-    var parcelDetailItf : ParcelDetailItf
+class StaffParcelDetailPst {
+    var staffParcelDetailItf : StaffParcelDetailItf
 
-    constructor(parcelDetailItf: ParcelDetailItf) {
-        this.parcelDetailItf = parcelDetailItf
+    constructor(staffParcelDetailItf: StaffParcelDetailItf) {
+        this.staffParcelDetailItf = staffParcelDetailItf
     }
 
     fun getShopDetail(req : GetShopDetailReq){
-        ApiShopService.Api.api.getShopDetail(SplashActivity.token,req).enqueue(object : Callback<MainGetShopDetailRes>{
+        ApiShopService.Api.api.getShopDetail(SplashActivity.token,req).enqueue(object :
+            Callback<MainGetShopDetailRes> {
             override fun onResponse(call: Call<MainGetShopDetailRes>, response: Response<MainGetShopDetailRes>) {
                 if(response.isSuccessful){
-                    parcelDetailItf.getShopDetail(response.body()!!.result)
+                    staffParcelDetailItf.getShopDetail(response.body()!!.result)
                 }
             }
 

@@ -24,6 +24,9 @@ interface ApiAuthService {
     @PUT("v2/auth/update/password")
     fun changePassword(@Header("Authorization") BearerToken: String, @Body req: ChangePwReq): Call<UpdateRes>
 
+    @POST("v2/auth/check")
+    fun checkAuth(@Header("Authorization") BearerToken: String, @Body req: ChangePwReq): Call<CheckWordRes>
+
     @PUT("v2/auth/update/status")
     fun updateStatusAuth(@Header("Authorization") BearerToken: String, @Body req: UpdateStatusAuthReq): Call<UpdateRes>
 

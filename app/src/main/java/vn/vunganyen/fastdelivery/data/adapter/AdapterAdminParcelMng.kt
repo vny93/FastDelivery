@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
-import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelRes
 import vn.vunganyen.fastdelivery.databinding.ItemAdminParcelBinding
-import vn.vunganyen.fastdelivery.screens.admin.parcelMng.detailParcel.ParcelDetailActivity
+import vn.vunganyen.fastdelivery.screens.admin.parcelMng.detailParcelMng.ParcelDetailActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,6 +18,7 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
     private var listData: List<AdGetParcelRes> = ArrayList()
     var c = Calendar.getInstance()
     var clickDijkstra: ((data : AdGetParcelRes)->Unit)?=null
+    var clickSetting: ((data : AdGetParcelRes)->Unit)?=null
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<AdGetParcelRes>) {
         this.listData = list
@@ -38,6 +36,7 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
             binding.tvadStatusPc.setText(data.tentrangthai)
             binding.tvadNamePc.setText(data.hotennguoinhan)
             binding.tvadPhonePc.setText(data.sdtnguoinhan)
+            binding.tvadDeleveriPc.setText(data.htvanchuyen)
             var mdate: Date = SplashActivity.formatdate2.parse(data.ngaygui)
             c.time = mdate
             c.add(Calendar.DATE, 1) // number of days to add
@@ -45,9 +44,11 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
             binding.tvadDatePc.setText(strDate2)
 
             if (data.phankho == 0) {
-                binding.btnadActionPc.setText("Phân kho")
+                binding.btnadActionPc.setText("Tự động Phân kho")
+                binding.btnSetting.setText("Phân kho")
             } else {
                 binding.btnadActionPc.visibility = View.GONE
+                binding.btnSetting.visibility = View.GONE
             }
         }
     }
@@ -74,5 +75,8 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
             clickDijkstra?.invoke(data)
         }
 
+        holder.binding.btnSetting.setOnClickListener{
+            clickSetting?.invoke(data)
+        }
     }
 }

@@ -45,13 +45,16 @@ interface ApiStaffService {
     fun checkStaffExist(@Header("Authorization") BearerToken: String, @Body req: CheckWorkReq): Call<MainCheckStaffRes>
 
     @POST("v2/staff/checkPhone")
-    fun checkPhone(@Header("Authorization") BearerToken: String, @Body req: CheckPhoneReq): Call<CheckWordRes>
+    fun checkPhone(@Header("Authorization") BearerToken: String, @Body req: CheckPhoneReq): Call<CheckProfileRes>
 
     @POST("v2/staff/checkEmail")
-    fun checkEmail(@Header("Authorization") BearerToken: String, @Body req: CheckEmailReq): Call<CheckWordRes>
+    fun checkEmail(@Header("Authorization") BearerToken: String, @Body req: CheckEmailReq): Call<CheckProfileRes>
 
     @POST("v2/staff/checkCmnd")
-    fun checkCmnd(@Header("Authorization") BearerToken: String, @Body req: CheckCmndReq): Call<CheckWordRes>
+    fun checkCmnd(@Header("Authorization") BearerToken: String, @Body req: CheckCmndReq): Call<CheckProfileRes>
+
+    @POST("v2/staff/get/shipper/area")
+    fun getShipperArea(@Header("Authorization") BearerToken: String, @Body req: ShipperAreaReq): Call<MainShipperAreaRes>
 
     object Api {
         val api: ApiStaffService by lazy { RetrofitSetting().retrofit.create(ApiStaffService::class.java) }

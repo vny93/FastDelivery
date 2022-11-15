@@ -1,10 +1,9 @@
-package vn.vunganyen.fastdelivery.screens.admin.parcelMng.detailParcel
+package vn.vunganyen.fastdelivery.screens.admin.parcelMng.detailParcelMng
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
-import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
 import vn.vunganyen.fastdelivery.databinding.ActivityParcelDetailBinding

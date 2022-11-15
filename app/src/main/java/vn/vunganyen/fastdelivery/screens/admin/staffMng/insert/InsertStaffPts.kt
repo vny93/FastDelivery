@@ -136,54 +136,54 @@ class InsertStaffPts {
     }
 
     fun checkCmndExist(req : ProfileRes){
-        ApiStaffService.Api.api.checkCmnd(SplashActivity.token, CheckCmndReq(req.cmnd)).enqueue(object : Callback<CheckWordRes>{
-            override fun onResponse(call: Call<CheckWordRes>, response: Response<CheckWordRes>) {
+        ApiStaffService.Api.api.checkCmnd(SplashActivity.token, CheckCmndReq(req.cmnd)).enqueue(object : Callback<CheckProfileRes>{
+            override fun onResponse(call: Call<CheckProfileRes>, response: Response<CheckProfileRes>) {
                 if(response.isSuccessful){
                     var check = response.body()!!.result
-                    if(check == true){
-                        insertStaffItf.CmndExist()
+                    if(check.equals("false")){
+                        checkPhoneExist(req)
                     }
-                    else checkPhoneExist(req)
+                    else insertStaffItf.CmndExist()
                 }
             }
 
-            override fun onFailure(call: Call<CheckWordRes>, t: Throwable) {
+            override fun onFailure(call: Call<CheckProfileRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })
     }
 
     fun checkPhoneExist(req : ProfileRes){
-        ApiStaffService.Api.api.checkPhone(SplashActivity.token, CheckPhoneReq(req.sdt)).enqueue(object : Callback<CheckWordRes>{
-            override fun onResponse(call: Call<CheckWordRes>, response: Response<CheckWordRes>) {
+        ApiStaffService.Api.api.checkPhone(SplashActivity.token, CheckPhoneReq(req.sdt)).enqueue(object : Callback<CheckProfileRes>{
+            override fun onResponse(call: Call<CheckProfileRes>, response: Response<CheckProfileRes>) {
                 if(response.isSuccessful){
                     var check = response.body()!!.result
-                    if(check == true){
-                        insertStaffItf.PhoneExist()
+                    if(check.equals("false")){
+                        checkEmailExist(req)
                     }
-                    else checkEmailExist(req)
+                    else insertStaffItf.PhoneExist()
                 }
             }
 
-            override fun onFailure(call: Call<CheckWordRes>, t: Throwable) {
+            override fun onFailure(call: Call<CheckProfileRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })
     }
 
     fun checkEmailExist(req : ProfileRes){
-        ApiStaffService.Api.api.checkEmail(SplashActivity.token, CheckEmailReq(req.email)).enqueue(object : Callback<CheckWordRes>{
-            override fun onResponse(call: Call<CheckWordRes>, response: Response<CheckWordRes>) {
+        ApiStaffService.Api.api.checkEmail(SplashActivity.token, CheckEmailReq(req.email)).enqueue(object : Callback<CheckProfileRes>{
+            override fun onResponse(call: Call<CheckProfileRes>, response: Response<CheckProfileRes>) {
                 if(response.isSuccessful){
                     var check = response.body()!!.result
-                    if(check == true){
-                        insertStaffItf.EmailExist()
+                    if(check.equals("false")){
+                        insertStaffItf.CheckSuccess()
                     }
-                    else insertStaffItf.CheckSuccess()
+                    else insertStaffItf.EmailExist()
                 }
             }
 
-            override fun onFailure(call: Call<CheckWordRes>, t: Throwable) {
+            override fun onFailure(call: Call<CheckProfileRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.databinding.ActivityHomeShipperBinding
 import vn.vunganyen.fastdelivery.screens.account.FragmentAccount
+import vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng.ShipperParcelFgm
+import vn.vunganyen.fastdelivery.screens.shipper.registerArea.RegisterAreaFgm
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 
 
@@ -23,7 +25,7 @@ class HomeShipperActivity : AppCompatActivity(), HomeShipperItf {
         homeShipperPst = HomeShipperPst(this)
         checkShaharedPre()
         setEventBottomNav()
-     //   replaceFragment(FragmentShop())
+        replaceFragment(ShipperParcelFgm())
     }
 
     fun checkShaharedPre(){
@@ -40,8 +42,7 @@ class HomeShipperActivity : AppCompatActivity(), HomeShipperItf {
         binding.bottomNav2.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_order2 -> {
-                  //  replaceFragment(FragmentShop())
-                    Toast.makeText(this, "Home Item reselected", Toast.LENGTH_SHORT).show()
+                    replaceFragment(ShipperParcelFgm())
                     true
                 }
                 R.id.action_money2 -> {
@@ -50,13 +51,11 @@ class HomeShipperActivity : AppCompatActivity(), HomeShipperItf {
                     true
                 }
                 R.id.action_area -> {
-                //    replaceFragment(FragmentCart())
-                    Toast.makeText(this, "Cart Item reselected", Toast.LENGTH_SHORT).show()
+                    replaceFragment(RegisterAreaFgm())
                     true
                 }
                 R.id.action_account2 -> {
                     replaceFragment(FragmentAccount())
-                    Toast.makeText(this, "Account Item reselected", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false

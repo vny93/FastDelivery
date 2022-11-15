@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import vn.vunganyen.fastdelivery.databinding.FgmHomeAdminBinding
 import vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment.AssignmentMngActivity
 import vn.vunganyen.fastdelivery.screens.admin.priceList.PriceActivity
+import vn.vunganyen.fastdelivery.screens.admin.shopMng.getList.ShopMngActivity
 import vn.vunganyen.fastdelivery.screens.admin.staffMng.getList.StaffMngActivity
+import vn.vunganyen.fastdelivery.screens.admin.warehouseMng.getList.WarehouseMngActivity
 
 
 class HomeAdminFgm : Fragment() {
@@ -31,10 +33,12 @@ class HomeAdminFgm : Fragment() {
             startActivity(intent)
         }
         binding.imvWarehouseMng.setOnClickListener{
-
+            var intent = Intent(context, WarehouseMngActivity::class.java)
+            startActivity(intent)
         }
         binding.imvStoreMng.setOnClickListener{
-
+            var intent = Intent(context, ShopMngActivity::class.java)
+            startActivity(intent)
         }
         binding.imvParcelMng.setOnClickListener{
             var intent = Intent(context, AssignmentMngActivity::class.java)

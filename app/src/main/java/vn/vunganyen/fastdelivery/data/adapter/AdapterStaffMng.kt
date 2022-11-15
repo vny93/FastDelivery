@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso
 import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.model.staff.ListStaffRes
 import vn.vunganyen.fastdelivery.databinding.ItemStaffMngBinding
+import vn.vunganyen.fastdelivery.screens.admin.staffMng.update.UpdateStaffActivity
 
 
 class AdapterStaffMng : RecyclerView.Adapter<AdapterStaffMng.MainViewHolder>() {
@@ -53,9 +54,9 @@ class AdapterStaffMng : RecyclerView.Adapter<AdapterStaffMng.MainViewHolder>() {
         val data = listData[position]
         holder.bindItem(data)
         holder.itemView.setOnClickListener{
-         //   var intent = Intent(holder.itemView.context, BrandDetailMngActivity::class.java)
-         //  intent.putExtra("data",data)
-          //  holder.itemView.context.startActivity(intent)
+            var intent = Intent(holder.itemView.context, UpdateStaffActivity::class.java)
+           intent.putExtra("data",data)
+            holder.itemView.context.startActivity(intent)
         }
         holder.binding.imvRemoveStaff.setOnClickListener{
             clickRemoveStaff?.invoke(data.manv)

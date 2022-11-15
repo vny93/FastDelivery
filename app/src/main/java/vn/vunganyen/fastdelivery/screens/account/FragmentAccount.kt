@@ -10,7 +10,9 @@ import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.FragmentAccountBinding
 import vn.vunganyen.fastdelivery.screens.login.LoginActivity
+import vn.vunganyen.fastdelivery.screens.myAccount.AdminMyAccountActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import vn.vunganyen.fastdelivery.screens.staff.myProfile.ProfileStSpActivity
 
 
 class FragmentAccount : Fragment() {
@@ -47,14 +49,14 @@ class FragmentAccount : Fragment() {
             }
         }
         binding.imvInfor.setOnClickListener {
-//            var intent = Intent(context, OrderClientActivity::class.java)
-//            startActivity(intent)
+            var intent = Intent(context, ProfileStSpActivity::class.java)
+            startActivity(intent)
         }
 
 
         binding.imvChangePass.setOnClickListener {
-//            var intent = Intent(context, ChangePassActivity::class.java)
-//            startActivity(intent)
+            var intent = Intent(context, AdminMyAccountActivity::class.java)
+            startActivity(intent)
 
         }
 
