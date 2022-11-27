@@ -1,6 +1,5 @@
 package vn.vunganyen.fastdelivery.screens.admin.warehouseMng.insert
 
-import android.R
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
-import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelReq
 import vn.vunganyen.fastdelivery.data.model.warehouse.InsertWHReq
 import vn.vunganyen.fastdelivery.databinding.ActivityInsertWarehouseBinding
 

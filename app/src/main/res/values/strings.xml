@@ -9,6 +9,7 @@
     <string name="tv_password">Mật khẩu</string>
     <string name="name_btnlogin">Đăng nhập</string>
     <string name="tv_singup">Đăng ký</string>
+    <string name="tv_comeback"><u>Đăng nhập</u></string>
 
     <!-- account-->
     <string name="mess_logOut">Bạn có thực sự muốn đăng xuất?</string>
@@ -96,6 +97,8 @@
     <string name="tv_rgt_WHSuccess">Thêm kho thành công</string>
     <string name="UpdateSucces">Cập nhật thành công</string>
     <string name="tv_dialog_status">Chọn trạng thái bạn muốn cập nhật</string>
+    <string name="tv_home_role_st">NHÂN VIÊN KHO:</string>
+    <string name="tv_home_role_sp">NHÂN VIÊN GIAO HÀNG:</string>
 
     <!--toolbar-->
     <string name="tv_chooseStaff_mng">Quản lý nhân viên</string>
@@ -135,6 +138,8 @@
     <string name="account_errorCurrentPw">Mật khẩu cũ không đúng</string>
     <string name="account_changePwFail">Thay đổi mật khẩu thất bại</string>
     <string name="account_changePwSuccess">Thay đổi mật khẩu thành công</string>
+    <string name="Account_not_exist">Tài khoản này không tồn tại</string>
+    <string name="send_mail_success">Mật khẩu mới đã được gửi về mail</string>
 
     <!-- title temp-->
     <string name="tv_id_pc">Mã bưu kiện</string>
@@ -149,13 +154,28 @@
     <string name="btn_cancel_pc">Từ chối lấy hàng</string>
     <string name="btn_way_pc">Xem đường đi</string>
     <string name="btn_cancel">Hủy</string>
+    <string name="btn_find">Tìm kiếm</string>
     <string name="tv_ddmmyyy">dd/MM/yyyy</string>
     <string name="tv_status">Trạng thái bưu kiện</string>
     <string name="title_adress">Quận/huyện</string>
     <string name="title_address2">Phường/xã</string>
     <string name="title_address3">Địa chỉ</string>
     <string name="to">Người nhận</string>
+    <string name="list_product">Danh sách các sản phẩm của bưu kiện</string>
+    <string name="deltai_status">Chi tiết trạng thái bưu kiện</string>
+    <string name="tv_price">Price</string>
+    <string name="tv_amount">Amount</string>
+    <string name="tv_productName">Product Name</string>
     <string name="from">Người gửi</string>
+    <string name="dateTo">Đến ngày</string>
+    <string name="dateFrom">Từ ngày</string>
+    <string name="filter">Lọc</string>
+    <string name="sum_price">0đ</string>
+    <string name="block">-</string>
+    <string name="tv_sum_statistics">Tổng doanh thu:</string>
+    <string name="statistics_month">Tháng/Năm</string>
+    <string name="tv_statistics">Doanh thu</string>
+    <string name="tv_seen_statistics">Xem thống kê số liệu</string>
     <string name="information">Thông tin hàng hóa</string>
     <string name="mass">Khối lượng:</string>
     <string name="size">Kích thước:</string>
@@ -167,6 +187,36 @@
     <string name="payment_stutas">Tình trạng thanh toán:</string>
     <string name="title_area">Khu vực</string>
     <string name="title_list_area">Danh sách khu vực đã đăng ký</string>
+    <string name="tv_stt_1">Số bưu kiện nhận từ cửa hàng:</string>
+    <string name="tv_stt_2">Số bưu kiện giao thành công:</string>
+    <string name="tv_stt_3">Số bưu kiện giao thất bại:</string>
+    <string name="tv_stt_4">Số bưu kiện hoàn trả:</string>
+    <string name="error_empty2">Vui lòng chọn thời gian</string>
+    <string name="errorDate3">Chọn thời gian không hợp lệ</string>
+    <string name="tv_number">Số lượng</string>
+    <string name="find_account">Tìm tài khoản của bạn</string>
+    <string name="find_account2">Vui lòng nhập tên đăng nhập để tìm kiếm tài khoản của bạn.</string>
+    <string name="find_account3">Vui lòng nhập email để nhận được mật khẩu mới.</string>
+    <string name="find_account4">Nhận mật khẩu mới</string>
+    <string name="salary_date">Ngày nhận:</string>
+    <string name="salary_sum">Tiền lương:</string>
+    <string name="title_time">Tháng - Năm</string>
+
+    <string-array name="month">
+        <item>Tháng 1</item>
+        <item>Thang 2</item>
+        <item>Tháng 3</item>
+        <item>Tháng 4</item>
+        <item>Tháng 5</item>
+        <item>Tháng 6</item>
+        <item>Tháng 7</item>
+        <item>Tháng 8</item>
+        <item>Tháng 9</item>
+        <item>Tháng 10</item>
+        <item>Tháng 11</item>
+        <item>Tháng 12</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

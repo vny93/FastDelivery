@@ -2,7 +2,7 @@ package vn.vunganyen.fastdelivery.data.model.parcel
 
 import java.io.Serializable
 
-data class StGetParcelRes(
+data class StaffGetParcelRes(
     val mabk : Int,
     val hotennguoinhan : String,
     val sdtnguoinhan: String,
@@ -17,6 +17,7 @@ data class StGetParcelRes(
     val ghichu : String,
     val ngaygui : String,
     val mach : String,
+    var idcheck : Int,
     val thoigian : String,
     val tentrangthai : String,
     val manv : String,

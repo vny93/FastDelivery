@@ -52,6 +52,8 @@ class SplashActivity : AppCompatActivity() {
         val formatMonthYear = SimpleDateFormat("M-yyyy")
         val formatMonth = SimpleDateFormat("MM")
         val formatYear = SimpleDateFormat("yyyy")
+        val formatMonth2 =  SimpleDateFormat("MMMM",Locale.ENGLISH)
+        val formatMonth3 =  SimpleDateFormat("M")
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

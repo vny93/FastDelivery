@@ -1,7 +1,6 @@
 package vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -14,18 +13,16 @@ import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusReq
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelReq
-import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelReq
-import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelRes
-import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaRes
+import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.UpdatePaymentStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
+import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
-import vn.vunganyen.fastdelivery.databinding.DialogChooseShipperBinding
+import vn.vunganyen.fastdelivery.data.model.way.UpdateWayReq
 import vn.vunganyen.fastdelivery.databinding.DialogUpdateStatusPcBinding
 import vn.vunganyen.fastdelivery.databinding.FragmentShipperParcelFgmBinding
-import vn.vunganyen.fastdelivery.databinding.FragmentStaffParceBinding
-import vn.vunganyen.fastdelivery.screens.login.LoginActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 
 
@@ -47,6 +44,7 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
     lateinit var bindingDialog : DialogUpdateStatusPcBinding
     var list = ArrayList<String>()
     var updateNameStatus = ""
+    var idWarehouse = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShipperParcelFgmBinding.inflate(layoutInflater)
         shipperParcelPst = ShipperParcelPst(this)
@@ -55,6 +53,7 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         dialog2 = context?.let { Dialog(it) }!!
         bindingDialog = DialogUpdateStatusPcBinding.inflate(layoutInflater)
         dialog2.setContentView(bindingDialog.root)
+        binding.tvHomeName.setText(SplashActivity.profile.result.hoten)
 
         getData()
         setEvent()
@@ -92,9 +91,19 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
 //        }
 //    }
 
+    fun callInvokeGetShop(){
+        adapter.clickGetShop = {
+                data ->
+            list.clear()
+            list.add("Lấy hàng thành công")
+            list.add("Từ chối lấy hàng")
+            showDialogShipper(Gravity.CENTER,list,data)
+        }
+    }
+
     fun callInvokkeDelivering(){
         adapter.clickDelivering = {
-                data ->
+                data -> //với trường hợp giao nhanh trong 2h
             list.clear()
             list.add("Đang giao hàng")
             showDialogShipper(Gravity.CENTER,list,data)
@@ -102,12 +111,12 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         }
     }
 
-    fun callInvokeGetShop(){
-        adapter.clickGetShop = {
-            data ->
+    fun callInvokeOutWarehouse(){
+        adapter.clickOutWarehouse = {
+                data -> //với trường hợp đang xuất kho phân công đi giao hàng
             list.clear()
-            list.add("Lấy hàng thành công")
-            list.add("Từ chối lấy hàng")
+            list.add("Đang giao hàng")
+            list.add("Từ chối giao hàng")
             showDialogShipper(Gravity.CENTER,list,data)
         }
     }
@@ -122,21 +131,12 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
                 showDialogShipper(Gravity.CENTER,list,data)
             }
             else{
-                shipperParcelPst.checkWayExist(CheckWayExistReq(data.mabk),data)
+                shipperParcelPst.checkWayExist(CheckWayExistReq(data.mabk,0),data)
             }
 
         }
     }
 
-    fun callInvokeOutWarehouse(){
-        adapter.clickOutWarehouse = {
-            data ->
-            list.clear()
-            list.add("Đang giao hàng")
-            list.add("Từ chối giao hàng")
-            showDialogShipper(Gravity.CENTER,list,data)
-        }
-    }
 
     fun setEvent(){
         binding.spinnerDistrict.setOnItemClickListener(({ adapterView, view, i, l ->
@@ -191,7 +191,7 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         }
     }
 
-    fun showDialogShipper(gravity : Int, list : List<String>, data : StGetParcelRes){
+    fun showDialogShipper(gravity : Int, list : List<String>, data : SpGetParcelRes){
         val window = dialog2.window ?: return
         window.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
@@ -217,6 +217,27 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
                 context?.let { it1 ->
                     dialog.showStartDialog3(getString(R.string.error_empty_status), it1
                     )
+                }
+            }
+            else if(updateNameStatus.equals("Đã chuyển kho")){
+                //vô đây call API update cho bảng đường đi
+                var req = UpdateWayReq(1,data.mabk,idWarehouse)
+                shipperParcelPst.updateWay(req,data)
+                dialog2.dismiss()
+            }
+            else if(updateNameStatus.equals("Giao hàng thành công")){
+                if(data.ptthanhtoan.equals("COD")){ //nếu paypal thì k cần cập nhật "Đã thanh toán"
+                    //update cái bưu kiện thành "Đã thanh toán"
+                    println("COD -> Đã thanh toán")
+                    var req = UpdatePaymentStatusReq("Đã thanh toán",data.mabk)
+                    shipperParcelPst.updatePaymentStatus(req,data)
+                    dialog2.dismiss()
+                }
+                else{
+                    shipperParcelPst.getIdStatus(GetIdStatusReq(updateNameStatus),data)
+                    updateNameStatus = ""
+                    bindingDialog.dialogSpinnerStatus.setText("",false)
+                    dialog2.dismiss()
                 }
             }
             else{
@@ -281,7 +302,7 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
     }
 
 
-    override fun getListParcel(list: List<StGetParcelRes>) {
+    override fun getListParcel(list: List<SpGetParcelRes>) {
         adapter.setData(list)
         binding.rcvListParcel.adapter = adapter
         binding.rcvListParcel.layoutManager = LinearLayoutManager(
@@ -290,7 +311,7 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         )
     }
 
-    override fun getIdStatus(res: GetIdStatusRes, req2: StGetParcelRes) {
+    override fun getIdStatus(res: GetIdStatusRes, req2: SpGetParcelRes) {
         println("mã trạng thái: " + res.matrangthai)
         shipperParcelPst.addDetailStatus(
             DetailStatusReq(req2.mabk, res.matrangthai, idStaff, idShipper)
@@ -302,17 +323,32 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         shipperParcelPst.filterParcel(req)
     }
 
-    override fun checkWayExist(res: Boolean, data: StGetParcelRes) {
+    override fun wayExist(res: WarehouseRes, data: SpGetParcelRes) {
         list.clear()
-        if(res == true){
-            list.add("Đã chuyễn kho")
-        }
-        else{
-            list.add("Giao hàng thành công")
-            list.add("Giao hàng thất bại")
-            list.add("Khách hàng hủy")
-        }
+        list.add("Đã chuyển kho")
+        idWarehouse = res.makho
         showDialogShipper(Gravity.CENTER,list,data)
+    }
+
+    override fun wayNotExist(data: SpGetParcelRes) {
+        list.clear()
+        list.add("Giao hàng thành công")
+        list.add("Giao hàng thất bại")
+        list.add("Khách hàng hủy")
+        showDialogShipper(Gravity.CENTER,list,data)
+    }
+
+    override fun updateWay(data: SpGetParcelRes) {
+        shipperParcelPst.getIdStatus(GetIdStatusReq(updateNameStatus),data)
+        updateNameStatus = ""
+        bindingDialog.dialogSpinnerStatus.setText("",false)
+        shipperParcelPst.checkWayExist(CheckWayExistReq(data.mabk,1),data)
+    }
+
+    override fun updatePaymentStatus(data: SpGetParcelRes) {
+        shipperParcelPst.getIdStatus(GetIdStatusReq(updateNameStatus),data)
+        updateNameStatus = ""
+        bindingDialog.dialogSpinnerStatus.setText("",false)
     }
 
 }

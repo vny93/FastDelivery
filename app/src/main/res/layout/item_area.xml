@@ -8,9 +8,9 @@
 
     <androidx.cardview.widget.CardView
         style="@style/style_cardview_itemProductType"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_2sdp">
 
         <LinearLayout
@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/imv_avt_staff"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:gravity="center"
                 android:textSize="@dimen/_14sdp"
                 android:background="@drawable/ic_baseline_location_on_24"
@@ -46,7 +46,6 @@
                 android:id="@+id/imv_remove_area"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center"
                 android:textSize="@dimen/_12sdp"
                 android:src="@drawable/ic_baseline_delete_forever_24"

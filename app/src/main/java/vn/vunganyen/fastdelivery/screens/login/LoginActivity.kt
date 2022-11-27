@@ -15,6 +15,7 @@ import vn.vunganyen.fastdelivery.data.model.classSupport.Photo
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.ActivityLoginBinding
 import vn.vunganyen.fastdelivery.screens.admin.home.HomeAdminActivity
+import vn.vunganyen.fastdelivery.screens.forgotPassword.ForgotPasswordActivity
 import vn.vunganyen.fastdelivery.screens.shipper.home.HomeShipperActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import vn.vunganyen.fastdelivery.screens.staff.home.HomeStaffActivity
@@ -51,7 +52,8 @@ class LoginActivity : AppCompatActivity(), LoginItf {
         }
 
         binding.forgotPassword.setOnClickListener{
-
+            var intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
 
         binding.scrollViewLogin.setOnClickListener{

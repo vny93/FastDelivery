@@ -10,6 +10,7 @@ import vn.vunganyen.fastdelivery.databinding.ActivityHomeStaffBinding
 import vn.vunganyen.fastdelivery.screens.account.FragmentAccount
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import vn.vunganyen.fastdelivery.screens.staff.parcelMng.StaffParceFgm
+import vn.vunganyen.fastdelivery.screens.staff.salary.StaffSalaryFgm
 
 
 class HomeStaffActivity : AppCompatActivity(), HomeStaffItf {
@@ -49,19 +50,14 @@ class HomeStaffActivity : AppCompatActivity(), HomeStaffItf {
             when (item.itemId) {
                 R.id.action_order -> {
                     replaceFragment(StaffParceFgm())
-                    Toast.makeText(this, "Home Item reselected", Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this, "Home Item reselected", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.action_money -> {
-                 //   replaceFragment(FragmentExplore())
-                    Toast.makeText(this, "Search Item reselected", Toast.LENGTH_SHORT).show()
+                    replaceFragment(StaffSalaryFgm())
+                 //   Toast.makeText(this, "Search Item reselected", Toast.LENGTH_SHORT).show()
                     true
                 }
-              //  R.id.action_cart -> {
-                  //  replaceFragment(FragmentCart())
-              //      Toast.makeText(this, "Cart Item reselected", Toast.LENGTH_SHORT).show()
-              //      true
-             //   }
                 R.id.action_account -> {
                     replaceFragment(FragmentAccount())
                     Toast.makeText(this, "Account Item reselected", Toast.LENGTH_SHORT).show()

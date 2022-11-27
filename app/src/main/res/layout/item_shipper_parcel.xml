@@ -60,7 +60,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -104,7 +103,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -132,7 +130,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -169,8 +166,8 @@
                         android:id="@+id/btnsp_action_pc"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_30sdp"
-                        android:textColor="@color/white"
-                        android:background="@drawable/custom_button4"
+                        android:textColor="@color/black"
+                        android:background="@drawable/custom_button6"
                         android:text="@string/btn_update_status_pc" />
 
                     <Button
@@ -180,8 +177,8 @@
                         android:layout_marginStart="@dimen/_5sdp"
                         android:gravity="center"
                         android:text="@string/btn_way_pc"
-                        android:background="@drawable/custom_button4"
-                        android:textColor="@color/white"
+                        android:background="@drawable/custom_button6"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_11sdp" />
 
                 </LinearLayout>

@@ -165,21 +165,21 @@
 
                     <Button
                         android:id="@+id/btnad_action_pc"
-                        android:layout_width="@dimen/_125sdp"
+                        android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_30sdp"
-                        android:textColor="@color/white"
-                        android:background="@drawable/custom_button4"
+                        android:textColor="@color/black"
+                        android:background="@drawable/custom_button6"
                         android:text="@string/btn_action_pc" />
 
                     <Button
                         android:id="@+id/btn_setting"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
                         android:gravity="center"
                         android:text="@string/btn_route_pc"
-                        android:textColor="@color/white"
-                        android:background="@drawable/custom_button4"
+                        android:textColor="@color/black"
+                        android:background="@drawable/custom_button6"
                         android:textSize="@dimen/_11sdp" />
 
                 </LinearLayout>

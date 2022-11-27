@@ -3,7 +3,10 @@ package vn.vunganyen.fastdelivery.screens.staff.parcelDetail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import vn.vunganyen.fastdelivery.data.api.ApiDetailParcelService
 import vn.vunganyen.fastdelivery.data.api.ApiShopService
+import vn.vunganyen.fastdelivery.data.model.detailParcel.GetDetailParcelReq
+import vn.vunganyen.fastdelivery.data.model.detailParcel.MainGetDetailParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.MainGetShopDetailRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -25,6 +28,21 @@ class StaffParcelDetailPst {
             }
 
             override fun onFailure(call: Call<MainGetShopDetailRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getDateilParcel(req : GetDetailParcelReq){
+        ApiDetailParcelService.Api.api.get_detail_parcel(SplashActivity.token,req).enqueue(object : Callback<MainGetDetailParcelRes>{
+            override fun onResponse(call: Call<MainGetDetailParcelRes>, response: Response<MainGetDetailParcelRes>) {
+                if(response.isSuccessful){
+                    staffParcelDetailItf.getDetailParcel(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainGetDetailParcelRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

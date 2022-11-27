@@ -11,6 +11,7 @@ import vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment.AssignmentMn
 import vn.vunganyen.fastdelivery.screens.admin.priceList.PriceActivity
 import vn.vunganyen.fastdelivery.screens.admin.shopMng.getList.ShopMngActivity
 import vn.vunganyen.fastdelivery.screens.admin.staffMng.getList.StaffMngActivity
+import vn.vunganyen.fastdelivery.screens.admin.statistics.turnover.TurnoverActivity
 import vn.vunganyen.fastdelivery.screens.admin.warehouseMng.getList.WarehouseMngActivity
 
 
@@ -49,7 +50,8 @@ class HomeAdminFgm : Fragment() {
             startActivity(intent)
         }
         binding.imvStatistics.setOnClickListener{
-
+            var intent = Intent(context, TurnoverActivity::class.java)
+            startActivity(intent)
         }
     }
 

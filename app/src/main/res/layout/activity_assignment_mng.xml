@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_minus5sdp"
         android:orientation="horizontal">
 
         <TextView
@@ -29,7 +30,7 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:textSize="@dimen/_13sdp"
             android:enabled="false"
-            android:textStyle="bold"
+            android:textStyle="italic"
             android:textColor="@color/dark_green"
             android:text="@string/title_adress"/>
 
@@ -39,7 +40,7 @@
             android:layout_marginStart="@dimen/_40sdp"
             android:textSize="@dimen/_13sdp"
             android:enabled="false"
-            android:textStyle="bold"
+            android:textStyle="italic"
             android:textColor="@color/dark_green"
             android:text="@string/title_address2"/>
 
@@ -101,11 +102,10 @@
         android:id="@+id/tv_warehouse"
         style="@style/style_textview_forgotpw"
         android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_minus15sdp"
         android:layout_marginEnd="@dimen/_50sdp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:textStyle="italic"
         android:textColor="@color/dark_green"
         android:text="@string/tv_status" />
 

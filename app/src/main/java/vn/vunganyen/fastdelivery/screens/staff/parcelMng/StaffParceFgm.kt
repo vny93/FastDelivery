@@ -7,17 +7,16 @@ import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.vunganyen.fastdelivery.R
-import vn.vunganyen.fastdelivery.data.adapter.AdapterAdminParcelMng
 import vn.vunganyen.fastdelivery.data.adapter.AdapterShipperArea
 import vn.vunganyen.fastdelivery.data.adapter.AdapterStaffParcelMng
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
+import vn.vunganyen.fastdelivery.data.model.detailStatus.CountRes
 import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusReq
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
-import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelReq
-import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelReq
-import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.StaffGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaReq
@@ -25,12 +24,10 @@ import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaRes
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
-import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhRes
-import vn.vunganyen.fastdelivery.data.model.way.WayReq
+import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
+import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
 import vn.vunganyen.fastdelivery.databinding.DialogChooseShipperBinding
-import vn.vunganyen.fastdelivery.databinding.DialogSettingWarehouseBinding
 import vn.vunganyen.fastdelivery.databinding.FragmentStaffParceBinding
-import vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment.AssignmentMngActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 
 
@@ -45,7 +42,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     var status = ""
     var adress = ""
     var wards = ""
-    lateinit var dataParcel : StGetParcelRes
+    lateinit var dataParcel : StaffGetParcelRes
     var listStatus = ArrayList<String>()
     var listDistrict = ArrayList<DistrictRes>()
     var listDistrictName = ArrayList<String>()
@@ -58,6 +55,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         staffParcelPst = StaffParcelPst(this)
 
         idWarehouse = SplashActivity.profile.result.makho
+        binding.tvHomeName.setText(SplashActivity.profile.result.hoten)
         getData()
         setEvent()
         callInvokeConfirm()
@@ -81,7 +79,22 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
 
     fun callInvokeConfirm() {
         adapter.clickConfirm = { data ->
-            staffParcelPst.getIdStatus(GetIdStatusReq("Đã xác nhận"), data)
+            if(data.tentrangthai.equals("Chờ xác nhận")){
+                staffParcelPst.getIdStatus(GetIdStatusReq("Đã xác nhận"), data)
+            }
+            else if(data.tentrangthai.equals("Giao hàng thành công")){
+                println("xác nhận giao thành công")
+                staffParcelPst.getIdStatus(GetIdStatusReq("Hoàn tất"), data)
+            }
+            else if(data.tentrangthai.equals("Giao hàng thất bại")){
+                //check số lần trước nếu quá 3 lần -> hoàn trả luôn
+                println("xác nhận giao thất bại")
+                staffParcelPst.countDeliveredFail(data)
+            }
+            else if(data.tentrangthai.equals("Khách hàng hủy")){
+                println("xác nhận hoàn trả")
+                staffParcelPst.getIdStatus(GetIdStatusReq("Hoàn trả"), data)
+            }
 
         }
     }
@@ -109,23 +122,45 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     fun callInvokeGetCustomer() {
         adapter.clickGetCustomer = { data ->
             dataParcel = data
-            m_status = "Đang xuất kho"
-            var str = data.diachinguoinhan.trim()
-            val arrWord = str.split(", ")
-            var count = 0
-            var adress = ""
-            for (word in arrWord) {
-                println(word)
-                if(count == 2){
-                    adress = word
-                }
-                count++
-            }
-            var status = "Đang giao hàng"
-            println(adress)
-            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        //    m_status = "Đang xuất kho"
+
+            //check coi table đường đi còn kh, nếu còn phải lấy địa chỉ kho đó để tìm ra shipper gần kho đó
+            //ngược lại thì lấy địa chỉ người nhận
+            staffParcelPst.checkWayExist(CheckWayExistReq(data.mabk,0),data)
+//            var str = data.diachinguoinhan.trim()
+//            val arrWord = str.split(", ")
+//            var count = 0
+//            var adress = ""
+//            for (word in arrWord) {
+//                println(word)
+//                if(count == 2){
+//                    adress = word
+//                }
+//                count++
+//            }
+//            var status = "Đang giao hàng"
+//            println(adress)
+//            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
         }
     }
+
+//    fun callInvokeConfirmSuccess(){
+//        adapter.clickConfirmSucess = { data ->
+//            //xác nhận -> cập nhật trạng thái hoàn tất
+//        }
+//    }
+//
+//    fun callInvokeConfrimFail(){
+//        adapter.clickConfirmFail = { data ->
+//            //xác nhận -> cập nhật trang thái lưu kho, nếu quá 3 lần thất bại thì tự thành hoàn trả
+//        }
+//    }
+//
+//    fun callInvokeReturn(){
+//        adapter.clickReturn = { data ->
+//            //xác nhận -> thì tự cập nhật thành hoàn trà
+//        }
+//    }
 
 
     fun setEvent() {
@@ -258,7 +293,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         setAdapterWards(listWardstName)
     }
 
-    override fun getIdStatus(res: GetIdStatusRes, req2: StGetParcelRes) {
+    override fun getIdStatus(res: GetIdStatusRes, req2: StaffGetParcelRes) {
         println("mã trạng thái: " + res.matrangthai)
         staffParcelPst.addDetailStatus(
             DetailStatusReq(req2.mabk, res.matrangthai, SplashActivity.profile.result.manv, idShipper)
@@ -272,7 +307,41 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     }
 
     override fun getShopDetail(res: GetShopDetailRes) {
-        var str = res.diachi.trim()
+        var adress = getStrAdress(res.diachi)
+        var status = "Đang lấy hàng"
+        println(adress)
+        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+    }
+
+    override fun wayExist(res: WarehouseRes, data: StaffGetParcelRes) {
+        //truyền địa chỉ kho vào nếu còn phải đi qua kho tiếp theo
+        var adress = getStrAdress(res.diachi)
+        m_status = "Đang xuất kho"
+        var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
+        println(adress)
+        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+    }
+
+    override fun wayNotExist(data: StaffGetParcelRes) {
+        //truyền địa chỉ người nhận vào nếu hết kho và giao luôn cho khách hàng
+        var adress = getStrAdress(data.diachinguoinhan)
+        m_status = "Đang xuất kho"
+        var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
+        println(adress)
+        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+    }
+
+    override fun count(res: CountRes,data : StaffGetParcelRes) {
+        if(res.count <= 2){
+            staffParcelPst.getIdStatus(GetIdStatusReq("Đang lưu kho"), data)
+        }
+        else{
+            staffParcelPst.getIdStatus(GetIdStatusReq("Hoàn trả"), data)
+        }
+    }
+
+    fun getStrAdress(mstr : String): String{
+        var str = mstr.trim()
         val arrWord = str.split(", ")
         var count = 0
         var adress = ""
@@ -283,9 +352,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             }
             count++
         }
-        var status = "Đang lấy hàng"
-        println(adress)
-        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        return adress
     }
 
     override fun getShipperArea(list: List<ShipperAreaRes>) {
@@ -299,7 +366,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     }
 
 
-    override fun getListParcel(list: List<StGetParcelRes>) {
+    override fun getListParcel(list: List<StaffGetParcelRes>) {
         adapter.setData(list)
         binding.rcvListParcel.adapter = adapter
         binding.rcvListParcel.layoutManager = LinearLayoutManager(

@@ -30,7 +30,7 @@ android {
         targetSdk 32
         versionCode VERSION_CODE
         versionName VERSION_NAME
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -123,5 +123,9 @@ dependencies {
 
     //badge
     implementation 'com.nex3z:notification-badge:1.0.4'
+
+    //chart
+    implementation ("androidx.multidex:multidex:2.0.1")
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
 }

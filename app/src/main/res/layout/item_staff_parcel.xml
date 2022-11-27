@@ -157,8 +157,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_55sdp"
+                    android:layout_marginStart="@dimen/_55sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="horizontal">
 
@@ -166,8 +166,8 @@
                         android:id="@+id/btnst_action_pc"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:textColor="@color/white"
-                        android:background="@drawable/custom_button4"
+                        android:textColor="@color/black"
+                        android:background="@drawable/custom_button6"
                         android:text="@string/btn_action_pc" />
 
 <!--                    <Button-->

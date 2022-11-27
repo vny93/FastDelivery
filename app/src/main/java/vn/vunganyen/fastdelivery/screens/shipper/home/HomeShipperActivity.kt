@@ -10,6 +10,7 @@ import vn.vunganyen.fastdelivery.databinding.ActivityHomeShipperBinding
 import vn.vunganyen.fastdelivery.screens.account.FragmentAccount
 import vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng.ShipperParcelFgm
 import vn.vunganyen.fastdelivery.screens.shipper.registerArea.RegisterAreaFgm
+import vn.vunganyen.fastdelivery.screens.shipper.salary.ShipperSalaryFgm
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 
 
@@ -46,8 +47,7 @@ class HomeShipperActivity : AppCompatActivity(), HomeShipperItf {
                     true
                 }
                 R.id.action_money2 -> {
-                 //   replaceFragment(FragmentExplore())
-                    Toast.makeText(this, "Search Item reselected", Toast.LENGTH_SHORT).show()
+                    replaceFragment(ShipperSalaryFgm())
                     true
                 }
                 R.id.action_area -> {

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".screens.admin.parcelMng.assignment.AssignmentMngActivity">
+
+    <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_admin_parcel"
+            style="@style/style_toolbar"
+            app:titleTextColor="@color/white"
+            app:title="Thống kê số liệu" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_minus5sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_dateFrom"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:text="@string/dateFrom"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/block"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_dateTo"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@string/dateTo"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_stt_1"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+        <TextView
+            android:id="@+id/tv_stt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:text="@string/tv_number"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_stt_2"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+        <TextView
+            android:id="@+id/tv_stt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_33sdp"
+            android:text="@string/tv_number"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_stt_3"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+        <TextView
+            android:id="@+id/tv_stt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_53sdp"
+            android:text="@string/tv_number"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_stt_4"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+        <TextView
+            android:id="@+id/tv_stt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_77sdp"
+            android:text="@string/tv_number"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_13sdp"/>
+
+    </LinearLayout>
+
+    <com.anychart.AnyChartView
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"/>
+
+
+
+</LinearLayout>
