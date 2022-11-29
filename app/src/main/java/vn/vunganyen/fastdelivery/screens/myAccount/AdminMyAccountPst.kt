@@ -5,6 +5,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import vn.vunganyen.fastdelivery.data.api.ApiAuthService
 import vn.vunganyen.fastdelivery.data.model.auth.ChangePwReq
+import vn.vunganyen.fastdelivery.data.model.classSupport.MD5Hash
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
 import vn.vunganyen.fastdelivery.data.model.staff.CheckWordRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -12,6 +13,7 @@ import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 class AdminMyAccountPst {
     var adminMyAccountItf : AdminMyAccountItf
     var tendangnhap = SplashActivity.profile.result.tendangnhap
+    var md5 : MD5Hash = MD5Hash()
 
     constructor(adminMyAccountItf: AdminMyAccountItf) {
         this.adminMyAccountItf = adminMyAccountItf
@@ -41,7 +43,7 @@ class AdminMyAccountPst {
                 if(response.isSuccessful){
                     if(response.body()!!.result == true){
                         println("vô nè")
-                        changePassword(pw1)
+                        changePassword(md5.md5Code(pw1))
                     }
                     else adminMyAccountItf.ErrorCurrentPw()
                 }

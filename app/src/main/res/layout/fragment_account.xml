@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainbg3"
+    android:background="@drawable/bg7"
     tools:context=".screens.account.FragmentAccount">
 
 
@@ -181,6 +181,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_70sdp"
             android:layout_marginEnd="@dimen/_20sdp"
+            android:textColor="@color/white"
             android:text="@string/ad_nav4_mainLogout"
             android:textSize="@dimen/_13sdp" />
 

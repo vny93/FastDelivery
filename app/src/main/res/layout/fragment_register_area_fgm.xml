@@ -4,18 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/mainbg3"
+    android:background="@drawable/bg7"
     tools:context=".screens.shipper.registerArea.RegisterAreaFgm">
+
+    <androidx.cardview.widget.CardView
+        style="@style/style_cardview_userlogin2"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:backgroundTint="@color/color7"
+        app:cardCornerRadius="@dimen/_15sdp">
+
+        <LinearLayout
+            android:id="@+id/lnl_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <TextView
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:textSize="@dimen/_13sdp"
         android:enabled="false"
         android:textStyle="bold"
-        android:textColor="@color/dark_green"
+        android:textColor="@color/black"
         android:text="@string/title_area"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -24,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:padding="@dimen/_2sdp"
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.Bridge">
 
@@ -40,14 +56,18 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <Button
         android:id="@+id/btnSave"
         style="@style/style_btnlogin"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_100sdp"
         android:layout_marginBottom="@dimen/_20sdp"
+        android:textColor="@color/white"
         android:text="@string/tv_save2"
         android:textSize="@dimen/_13sdp" />
 
@@ -59,7 +79,7 @@
         android:textSize="@dimen/_13sdp"
         android:enabled="false"
         android:textStyle="bold"
-        android:textColor="@color/dark_green"
+        android:textColor="@color/black"
         android:text="@string/title_list_area"/>
 
     <androidx.recyclerview.widget.RecyclerView

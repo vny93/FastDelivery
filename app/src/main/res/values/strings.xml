@@ -4,12 +4,12 @@
     <!-- login/register -->
     <string name="hint_edtusername">Nhập tên đăng nhập</string>
     <string name="hint_edtpassword">Nhập mật khẩu</string>
-    <string name="tv_forgotpass">Quên mật khẩu?</string>
+    <string name="tv_forgotpass"><b><u>Quên mật khẩu?</u></b></string>
     <string name="tv_username">Tên đăng nhập</string>
     <string name="tv_password">Mật khẩu</string>
     <string name="name_btnlogin">Đăng nhập</string>
     <string name="tv_singup">Đăng ký</string>
-    <string name="tv_comeback"><u>Đăng nhập</u></string>
+    <string name="tv_comeback"><b><u>Đăng nhập</u></b></string>
 
     <!-- account-->
     <string name="mess_logOut">Bạn có thực sự muốn đăng xuất?</string>
@@ -52,7 +52,19 @@
     <string name="tv_id">Mã</string>
     <string name="RemoveStaffFail">Bạn không thể xóa nhân viên này</string>
     <string name="AllRemoveStaff">Bạn có chắc chắn muốn xóa nhân viên này?</string>
+    <string name="RemoveMass">Bạn có chắc chắn muốn xóa khối lượng này?</string>
+    <string name="RemoveDistance">Bạn có chắc chắn muốn xóa khoảng cách này?</string>
     <string name="RemoveStaffSuccess">Xóa thành công</string>
+    <string name="empty_price">Vui lòng điền giá tiền</string>
+    <string name="RemoveMassSuccess">Xóa khối lượng thành công</string>
+    <string name="AddMassSuccess">Thêm khối lượng thành công</string>
+    <string name="massErorr">Khối lượng bắt đầu phải >= %1$s</string>
+    <string name="distanceErorr">Khoảng cách bắt đầu phải >= %1$s</string>
+    <string name="RemoveDistanceSuccess">Xóa khoảng cách thành công</string>
+    <string name="AddDistanceSuccess">Thêm khoảng cách thành công</string>
+    <string name="comtopareMassError">Khối lượng kết thúc phải lớn hơn khối lượng bắt đầu</string>
+    <string name="comtopareDistanceError">Khoảng cách kết thúc phải lớn hơn khoảng cách bắt đầu</string>
+    <string name="priceError">Giá tiền phải lớn hơn 0</string>
     <string name="tv_staffId">Mã nhân viên</string>
     <string name="tv_staffCmnd">CMND</string>
     <string name="hint_staffCmnd">Nhập CMND</string>
@@ -61,6 +73,7 @@
     <string name="pf_phone">Số điện thoại</string>
     <string name="pf_hintPhone">Nhập số điện thoại</string>
     <string name="pf_hintName">Nhập họ và tên</string>
+    <string name="pf_shopName">Nhập tên cửa hàng</string>
     <string name="pf_hintBirth">Chọn ngày sinh</string>
     <string name="tv_email">Email</string>
     <string name="hint_email">Nhập Email</string>
@@ -72,6 +85,7 @@
     <string name="tv_save">Cập nhật</string>
     <string name="AddProfileSucces">Cập nhật hồ sơ thành công</string>
     <string name="tv_save2">Thêm</string>
+    <string name="tv_save4">Đăng ký</string>
     <string name="tv_save3">Lưu</string>
     <string name="tv_warehouse">Kho</string>
     <string name="tv_rgt_staffSuccess">Thêm nhân viên thành công</string>
@@ -194,6 +208,7 @@
     <string name="error_empty2">Vui lòng chọn thời gian</string>
     <string name="errorDate3">Chọn thời gian không hợp lệ</string>
     <string name="tv_number">Số lượng</string>
+    <string name="tv_id_parcel">Mã bưu kiện</string>
     <string name="find_account">Tìm tài khoản của bạn</string>
     <string name="find_account2">Vui lòng nhập tên đăng nhập để tìm kiếm tài khoản của bạn.</string>
     <string name="find_account3">Vui lòng nhập email để nhận được mật khẩu mới.</string>
@@ -201,6 +216,12 @@
     <string name="salary_date">Ngày nhận:</string>
     <string name="salary_sum">Tiền lương:</string>
     <string name="title_time">Tháng - Năm</string>
+    <string name="mass_add">Thêm khối lượng</string>
+    <string name="mass_start">Từ khối lượng</string>
+    <string name="mass_end">Đến khối lượng</string>
+    <string name="distance_add">Thêm khoảng cách</string>
+    <string name="distance_start">Từ khoảng cách</string>
+    <string name="distance_end">Đến khoảng cách</string>
 
     <string-array name="month">
         <item>Tháng 1</item>

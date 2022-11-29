@@ -22,6 +22,8 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
     var clickGetTheShop: ((data : StaffGetParcelRes)->Unit)?=null
     var clickSaveWarehouse: ((data : StaffGetParcelRes)->Unit)?=null
     var clickGetCustomer: ((data : StaffGetParcelRes)->Unit)?=null
+    var clickOutWarehouse: ((data : StaffGetParcelRes)->Unit)?=null
+    var clickReturn: ((data : StaffGetParcelRes)->Unit)?=null
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<StaffGetParcelRes>) {
         this.listData = list
@@ -52,13 +54,16 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
                     binding.btnstActionPc.setText("Xác nhận")
 
                 }else if(data.tentrangthai.equals("Đã xác nhận") || data.tentrangthai.equals("Từ chối lấy hàng") ||
-                    data.tentrangthai.equals("Đang lưu kho") || data.tentrangthai.equals("Từ chối giao hàng")){
+                    data.tentrangthai.equals("Đang lưu kho") || data.tentrangthai.equals("Từ chối giao hàng") ||
+                        data.tentrangthai.equals("Hoàn trả")){
                     binding.btnstActionPc.setText("Giao")
 
                 }else if(data.tentrangthai.equals("Lấy hàng thành công") || data.tentrangthai.equals("Đã chuyển kho")){
                     if(!data.htvanchuyen.equals("Giao hàng trong 2h")){
                         binding.btnstActionPc.setText("Lưu kho")
                     }
+                }else if(data.tentrangthai.equals("Đang xuất kho")) {
+                    binding.btnstActionPc.setText("Xuất kho")
                 }else{
                     binding.btnstActionPc.visibility = View.GONE
                 }
@@ -104,12 +109,18 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
                 if(data.tentrangthai.equals("Đã xác nhận") || data.tentrangthai.equals("Từ chối lấy hàng")){
                     clickGetTheShop?.invoke(data)
                 }
+                else if(data.tentrangthai.equals("Hoàn trả")){
+                    clickReturn?.invoke(data)
+                }
                 else{
                     clickGetCustomer?.invoke(data)
                 }
             }
             else if(holder.binding.btnstActionPc.text.equals("Lưu kho")){
                 clickSaveWarehouse?.invoke(data)
+            }
+            else if(holder.binding.btnstActionPc.text.equals("Xuất kho")){
+                clickOutWarehouse?.invoke(data)
             }
         }
 

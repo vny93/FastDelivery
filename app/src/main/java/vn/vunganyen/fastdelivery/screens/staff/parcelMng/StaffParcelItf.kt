@@ -18,7 +18,7 @@ interface StaffParcelItf {
     fun getListWards(list: List<WardsRes>)
     fun getIdStatus(res : GetIdStatusRes, req2:StaffGetParcelRes)
     fun addDetailStatus()
-    fun getShipperArea(list : List<ShipperAreaRes>)
+    fun getShipperArea(list : List<ShipperAreaRes>, status : String)
     fun getShopDetail(res : GetShopDetailRes)
     fun wayExist(res : WarehouseRes, data : StaffGetParcelRes)
     fun wayNotExist(data: StaffGetParcelRes)

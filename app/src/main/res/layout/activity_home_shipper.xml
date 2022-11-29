@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/custom_button5"
-        app:itemBackground="@drawable/custom_button5"
+        android:background="@color/white"
+        app:itemBackground="@color/white"
         app:itemIconTint="@color/custom_color_bottom_nav"
         app:itemTextColor="@color/custom_color_bottom_nav"
         app:menu="@menu/menu_bottom_nav2" />

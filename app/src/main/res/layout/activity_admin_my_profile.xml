@@ -10,7 +10,7 @@
         android:id="@+id/lnl_custom_staff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color4"
+        android:background="@drawable/bg7"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
@@ -32,7 +32,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/tv_staffId" />
 
             <androidx.cardview.widget.CardView
@@ -62,7 +62,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/tv_role_Staff" />
 
             <androidx.cardview.widget.CardView
@@ -92,7 +92,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/tv_staffCmnd" />
 
             <androidx.cardview.widget.CardView
@@ -122,7 +122,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/pf_name" />
 
             <androidx.cardview.widget.CardView
@@ -152,7 +152,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/pf_birth" />
 
             <androidx.cardview.widget.CardView
@@ -191,7 +191,7 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/pf_gender"
-            android:textColor="@color/dark_green"/>
+            android:textColor="@color/white"/>
 
         <RadioGroup
             android:id="@+id/radG_staff"
@@ -206,7 +206,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:text="@string/pf_male"
                 android:enabled="false"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_13sdp" />
 
             <RadioButton
@@ -216,7 +216,7 @@
                 android:layout_marginStart="@dimen/_25sdp"
                 android:text="@string/pf_female"
                 android:enabled="false"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_13sdp" />
 
         </RadioGroup>
@@ -231,7 +231,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/pf_phone" />
 
             <androidx.cardview.widget.CardView
@@ -264,7 +264,7 @@
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/white"
                 android:text="@string/hint_email" />
 
             <androidx.cardview.widget.CardView
@@ -290,7 +290,7 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_minus10sdp"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/white"
             android:text="@string/pf_address" />
 
         <androidx.cardview.widget.CardView

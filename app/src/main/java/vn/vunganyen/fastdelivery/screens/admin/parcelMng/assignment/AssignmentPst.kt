@@ -12,7 +12,9 @@ import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 import vn.vunganyen.fastdelivery.data.model.graphhopper.GraphhopperRes
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelReq
+import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.parcel.MainAdGetParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.StaffGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.MainGetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.status.MainListStatusRes
@@ -22,6 +24,7 @@ import vn.vunganyen.fastdelivery.data.model.warehouse.MainWarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.WayReq
 import vn.vunganyen.fastdelivery.data.model.way.WayRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import vn.vunganyen.fastdelivery.screens.staff.parcelMng.StaffParceFgm
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -84,6 +87,7 @@ class AssignmentPst {
             override fun onResponse(call: Call<MainAdGetParcelRes>, response: Response<MainAdGetParcelRes>) {
                 println("????")
                 if(response.isSuccessful){
+                    AssignmentMngActivity.listParcel = response.body()!!.result as ArrayList<AdGetParcelRes>
                     assignmentItf.getListParcel(response.body()!!.result)
                 }
             }
@@ -240,6 +244,16 @@ class AssignmentPst {
             }
 
         })
+    }
+
+    fun getFilter(s: String){
+        AssignmentMngActivity.listFilter = ArrayList<AdGetParcelRes>()
+        for(list in AssignmentMngActivity.listParcel){
+            if(list.mabk.toString().toUpperCase().contains(s.toUpperCase())){
+                AssignmentMngActivity.listFilter.add(list)
+            }
+        }
+        assignmentItf.getListParcel(AssignmentMngActivity.listFilter)
     }
 
 }

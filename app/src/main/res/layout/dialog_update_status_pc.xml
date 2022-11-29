@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_update_price"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_190sdp"
+    android:layout_height="@dimen/_180sdp"
     android:layout_marginStart="@dimen/_20sdp"
     android:layout_marginEnd="@dimen/_20sdp"
     android:orientation="vertical"
+    android:background="@drawable/boder_rectangle2"
     tools:ignore="MissingDefaultResource">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:padding="@dimen/_8sdp"
         android:gravity="center"
         android:text="@string/tv_dialog_status"
-        android:textColor="@color/dark_green"
+        android:background="@color/color_main"
+        android:textColor="@color/white"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold" />
     <com.google.android.material.textfield.TextInputLayout
@@ -25,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_50sdp"
         android:layout_marginEnd="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:padding="@dimen/_2sdp"
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.Bridge">
 
@@ -51,26 +53,28 @@
         <TextView
             android:id="@+id/okDialog"
             android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/custom_button4"
             android:gravity="center"
             android:text="@string/tv_dialogOk"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/cancelDialog"
             android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/custom_button4"
             android:gravity="center"
             android:text="@string/tv_dialogCancel"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
+            android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
 

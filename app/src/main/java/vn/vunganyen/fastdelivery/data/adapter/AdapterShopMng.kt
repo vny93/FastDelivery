@@ -54,9 +54,7 @@ class AdapterShopMng : RecyclerView.Adapter<AdapterShopMng.MainViewHolder>() {
            intent.putExtra("data",data)
             holder.itemView.context.startActivity(intent)
         }
-        holder.binding.imvRemoveStaff.setOnClickListener{
-         //   clickRemoveStaff?.invoke(data.manv)
-        }
+
 
     }
 }

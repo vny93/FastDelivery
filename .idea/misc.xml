@@ -26,16 +26,22 @@
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.11" />
         <entry key="app/src/main/res/drawable/custom_button4.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/custom_button5.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/custom_button7.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_month2_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_baseline_delivery_dining_24.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_phone_24.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_view_in_ar_24.xml" value="0.15" />
         <entry key="app/src/main/res/layout-w1240dp/item_staff_parcel.xml" value="0.1606425702811245" />
         <entry key="app/src/main/res/layout-w936dp/dialog_update_price.xml" value="0.14651639344262296" />
@@ -46,28 +52,31 @@
         <entry key="app/src/main/res/layout/activity_admin_my_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_assignment_mng.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_choose_staff_mng.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24791666666666667" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home_admin.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_home_shipper.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_home_staff.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_insert_staff.xml" value="0.16201859229747675" />
-        <entry key="app/src/main/res/layout/activity_insert_warehouse.xml" value="0.16201859229747675" />
+        <entry key="app/src/main/res/layout/activity_insert_staff.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_insert_warehouse.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main_admin.xml" value="0.19429347826086957" />
-        <entry key="app/src/main/res/layout/activity_parcel_detail.xml" value="0.13590033975084936" />
+        <entry key="app/src/main/res/layout/activity_parcel_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_price.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile_st_sp.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_shipper_mng.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_shop_mng.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_shop_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_staff_mng.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_staff_parcel_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_statistics.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/activity_turnover.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_update_shop_mng.xml" value="0.15384615384615385" />
-        <entry key="app/src/main/res/layout/activity_update_staff.xml" value="0.20504201680672268" />
-        <entry key="app/src/main/res/layout/activity_update_warehouse.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_update_shop_mng.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_update_staff.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_update_warehouse.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_warehouse_mng.xml" value="0.2359375" />
+        <entry key="app/src/main/res/layout/dialog_add_distance.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/dialog_add_mass.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/dialog_choose_adress.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/dialog_choose_shipper.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/dialog_date.xml" value="0.246875" />

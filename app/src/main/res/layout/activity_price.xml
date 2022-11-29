@@ -19,17 +19,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/mainbg3"
+        android:background="@drawable/bg7"
         android:orientation="vertical">
 
         <TextView
-            style="@style/style_textview_login3"
-            android:gravity="center"
+            style="@style/style_textview_login2"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/tv_mass_list"
             android:textSize="@dimen/_15sdp"
-            android:background="@color/color3"
-            android:textColor="@color/dark_green"/>
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/imv_add_mass"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_270sdp"
+            android:layout_marginTop="@dimen/_minus23sdp"
+            android:background="@drawable/ic_baseline_add_circle_24"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +50,7 @@
                 android:layout_gravity="center"
                 android:text="@string/tv_start_mass"
                 android:textStyle="bold"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:textSize="@dimen/_12sdp" />
 
@@ -53,7 +60,7 @@
                 android:layout_marginStart="@dimen/_70sdp"
                 android:layout_marginEnd="@dimen/_60sdp"
                 android:text="@string/tv_end_mass"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/_12sdp" />
 
@@ -63,7 +70,7 @@
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:text="@string/tv_price_delivery"
                 android:textStyle="bold"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
@@ -80,13 +87,20 @@
 <!--            android:background="@color/white" />-->
 
         <TextView
-            style="@style/style_textview_login3"
-            android:gravity="center"
+            style="@style/style_textview_login2"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/tv_distance_list"
             android:textSize="@dimen/_15sdp"
-            android:background="@color/color3"
-            android:textColor="@color/dark_green"/>
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/imv_add_distance"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_270sdp"
+            android:layout_marginTop="@dimen/_minus23sdp"
+            android:background="@drawable/ic_baseline_add_circle_24"/>
 
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->

@@ -1,8 +1,12 @@
 package vn.vunganyen.fastdelivery.screens.staff.parcelMng
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,6 +54,10 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     lateinit var dialog2: Dialog
     lateinit var bindingDialog : DialogChooseShipperBinding
     var m_status = ""
+    companion object{
+        var listParcel = ArrayList<StaffGetParcelRes>()
+        lateinit var listFilter : ArrayList<StaffGetParcelRes>
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentStaffParceBinding.inflate(layoutInflater)
         staffParcelPst = StaffParcelPst(this)
@@ -61,9 +69,9 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         callInvokeConfirm()
         callInvokeGetTheShop()
         callInvokeSaveWarehouse()
-
         callInvokeRadio()
         callInvokeGetCustomer()
+        callInvokeConfirmSuccess()
         dialog2 = context?.let { Dialog(it) }!!
         bindingDialog = DialogChooseShipperBinding.inflate(layoutInflater)
         dialog2.setContentView(bindingDialog.root)
@@ -102,7 +110,8 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     fun callInvokeGetTheShop() {
         adapter.clickGetTheShop = { data ->
             dataParcel = data
-            m_status = "Đang lấy hàng"
+          //  m_status = "Đang lấy hàng"
+            m_status = "Chờ lấy hàng"
             staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
         }
     }
@@ -144,26 +153,34 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         }
     }
 
-//    fun callInvokeConfirmSuccess(){
-//        adapter.clickConfirmSucess = { data ->
-//            //xác nhận -> cập nhật trạng thái hoàn tất
-//        }
-//    }
-//
-//    fun callInvokeConfrimFail(){
-//        adapter.clickConfirmFail = { data ->
-//            //xác nhận -> cập nhật trang thái lưu kho, nếu quá 3 lần thất bại thì tự thành hoàn trả
-//        }
-//    }
-//
-//    fun callInvokeReturn(){
-//        adapter.clickReturn = { data ->
-//            //xác nhận -> thì tự cập nhật thành hoàn trà
-//        }
-//    }
+    fun callInvokeConfirmSuccess(){
+        adapter.clickOutWarehouse = { data ->
+            idShipper = data.mashipper
+            staffParcelPst.getIdStatus(GetIdStatusReq("Đang giao hàng"), data)
+        }
+    }
+
+    fun callInvokeReturn() {
+        adapter.clickGetTheShop = { data ->
+            dataParcel = data
+            m_status = "Chờ hoàn trả"
+            staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
+        }
+    }
 
 
     fun setEvent() {
+        binding.edtSearchId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun afterTextChanged(p0: Editable?) {
+                var str = binding.edtSearchId.text.toString()
+                staffParcelPst.getFilter(str)
+            }
+        })
+
         binding.spinnerDistrict.setOnItemClickListener(({ adapterView, view, i, l ->
             adress = adapterView.getItemAtPosition(i).toString()
             if (adress.equals("Tất cả")) {
@@ -202,6 +219,11 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             staffParcelPst.filterParcel(req)
         }))
 
+        binding.lnlHome.setOnClickListener{
+            binding.edtSearchId.clearFocus()
+            binding.lnlHome.hideKeyboard()
+        }
+
         binding.refresh.setOnClickListener{
             var req = StGetParcelReq(idWarehouse, "", "")
             staffParcelPst.filterParcel(req)
@@ -211,7 +233,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         }
     }
 
-    fun showDialogShipper(gravity : Int, list : List<ShipperAreaRes>, m_status : String){
+    fun showDialogShipper(gravity : Int, list : List<ShipperAreaRes>, m_status : String, title : String){
         val window = dialog2.window ?: return
         window.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
@@ -233,6 +255,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         bindingDialog.rcvListShipper.layoutManager =  LinearLayoutManager(context,
             LinearLayoutManager.VERTICAL,false)
 
+        bindingDialog.tvTitle.setText(title)
         bindingDialog.btnAccept.setOnClickListener{
             if(idShipper.isEmpty()){
                 context?.let { it1 ->
@@ -298,6 +321,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         staffParcelPst.addDetailStatus(
             DetailStatusReq(req2.mabk, res.matrangthai, SplashActivity.profile.result.manv, idShipper)
         )
+        idShipper =""
     }
 
     override fun addDetailStatus() {
@@ -307,16 +331,26 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     }
 
     override fun getShopDetail(res: GetShopDetailRes) {
-        var adress = getStrAdress(res.diachi)
-        var status = "Đang lấy hàng"
-        println(adress)
-        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        if(m_status.equals("Chờ lấy hàng")){
+            var adress = getStrAdress(res.diachi)
+            var status = "Đang lấy hàng"
+            println(adress)
+            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        }
+        else if(m_status.equals("Chờ hoàn trả")){
+            var adress = getStrAdress(res.diachi)
+            var status = "Đang giao hàng"
+            println(adress)
+            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        }
+
     }
 
     override fun wayExist(res: WarehouseRes, data: StaffGetParcelRes) {
         //truyền địa chỉ kho vào nếu còn phải đi qua kho tiếp theo
         var adress = getStrAdress(res.diachi)
-        m_status = "Đang xuất kho"
+       // m_status = "Đang xuất kho"
+        m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
         var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
         println(adress)
         staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
@@ -325,7 +359,8 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     override fun wayNotExist(data: StaffGetParcelRes) {
         //truyền địa chỉ người nhận vào nếu hết kho và giao luôn cho khách hàng
         var adress = getStrAdress(data.diachinguoinhan)
-        m_status = "Đang xuất kho"
+    //    m_status = "Đang xuất kho"
+        m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
         var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
         println(adress)
         staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
@@ -355,8 +390,11 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         return adress
     }
 
-    override fun getShipperArea(list: List<ShipperAreaRes>) {
-        showDialogShipper(Gravity.CENTER, list, m_status)
+    override fun getShipperArea(list: List<ShipperAreaRes>, status : String) {
+        var title = ""
+        if(status.equals("Đang lấy hàng")) title = "Số lượng bưu kiện đang giao lấy"
+        else title = "Số lượng bưu kiện đang giao khách"
+        showDialogShipper(Gravity.CENTER, list, m_status,title)
     }
 
     fun setAdapterWards(list: List<String>) {
@@ -373,5 +411,15 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             context,
             LinearLayoutManager.VERTICAL, false
         )
+    }
+
+    fun View.hideKeyboard(): Boolean {
+        try {
+            val inputMethodManager =
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        } catch (ignored: RuntimeException) {
+        }
+        return false
     }
 }

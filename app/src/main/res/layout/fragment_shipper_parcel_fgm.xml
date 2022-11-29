@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainbg3"
+    android:background="@drawable/bg7"
+    android:id="@+id/lnl_home"
     android:orientation="vertical">
 
     <LinearLayout
@@ -34,6 +35,17 @@
             android:text="@string/pf_name"/>
 
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/color7"
+        app:cardElevation="@dimen/_20sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -116,20 +128,20 @@
     <TextView
         android:id="@+id/tv_warehouse"
         style="@style/style_textview_forgotpw"
-        android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginBottom="@dimen/_minus15sdp"
         android:layout_marginEnd="@dimen/_50sdp"
-        android:gravity="center"
+        android:layout_marginStart="@dimen/_30sdp"
         android:textStyle="italic"
         android:textColor="@color/dark_green"
+        android:textSize="@dimen/_12sdp"
         android:text="@string/tv_status" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_180sdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_50sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:padding="@dimen/_2sdp"
@@ -148,13 +160,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <EditText
+        android:id="@+id/edt_search_id"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_192sdp"
+        android:layout_marginTop="@dimen/_minus32sdp"
+        android:hint="@string/tv_id_parcel"
+        android:textSize="@dimen/_11sdp"
+        android:gravity="center"
+        android:background="@drawable/boder_rectangle2"/>
+
     <ImageView
         android:id="@+id/refresh"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
-        android:layout_marginStart="@dimen/_275sdp"
+        android:layout_marginStart="@dimen/_280sdp"
         android:layout_marginTop="@dimen/_minus25sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:background="@drawable/ic_baseline_refresh_24"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_listParcel"

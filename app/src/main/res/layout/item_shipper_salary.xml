@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/salary_date"
-                    android:textColor="@color/dark_green"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp"
                     android:background="@color/white"
                     android:textStyle="bold" />
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/pf_name"
-                    android:textColor="@color/dark_green"
+                    android:textColor="@color/color8"
                     android:textSize="@dimen/_13sdp"
                     android:background="@color/white"
                     android:textStyle="bold" />
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/salary_sum"
                     android:gravity="center"
-                    android:textColor="@color/dark_green"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp"
                     android:background="@color/white"
                     android:textStyle="bold" />

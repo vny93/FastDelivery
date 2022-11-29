@@ -10,12 +10,13 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_2sdp">
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:cardElevation="@dimen/_20sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color7"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal">
 
 

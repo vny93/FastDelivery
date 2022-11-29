@@ -28,6 +28,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".screens.registerShop.ShopRegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.forgotPassword.ForgotPasswordActivity"
             android:exported="false" />
         <activity

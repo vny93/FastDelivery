@@ -1,8 +1,12 @@
 package vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +18,7 @@ import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelReq
 import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.StaffGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.parcel.UpdatePaymentStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusRes
@@ -45,6 +50,10 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
     var list = ArrayList<String>()
     var updateNameStatus = ""
     var idWarehouse = 0
+    companion object{
+        var listParcel = ArrayList<SpGetParcelRes>()
+        lateinit var listFilter : ArrayList<SpGetParcelRes>
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShipperParcelFgmBinding.inflate(layoutInflater)
         shipperParcelPst = ShipperParcelPst(this)
@@ -62,9 +71,13 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         callInvokkeDelivering()
 
         //new
+        callInvokeConfirmGetShop()
+        callInvokeCancelPickParcel()
         callInvokeGetShop()
         callInvokeDelivering()
         callInvokeOutWarehouse()
+        callInvokeConfirmCustomer()
+        callInvokeCancelDeliveryParcel()
         return binding.root
     }
 
@@ -91,12 +104,48 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
 //        }
 //    }
 
+    fun callInvokeConfirmGetShop(){
+        adapter.clickConfirmGetShop = {
+                data -> shipperParcelPst.getIdStatus(GetIdStatusReq("Đang lấy hàng"), data)
+        }
+    }
+
+    fun callInvokeCancelPickParcel(){
+        adapter.clickCancelPickParcel = {
+                data -> shipperParcelPst.getIdStatus(GetIdStatusReq("Từ chối lấy hàng"), data)
+        }
+    }
+
+    fun callInvokeConfirmCustomer(){
+        adapter.clickConfirmCustomer = {
+                data -> shipperParcelPst.getIdStatus(GetIdStatusReq("Đang xuất kho"), data)
+        }
+    }
+
+    fun callInvokeCancelDeliveryParcel(){
+        adapter.clickCancelDeliveryParcel = {
+                data -> shipperParcelPst.getIdStatus(GetIdStatusReq("Từ chối giao hàng"), data)
+        }
+    }
+
+    fun callInvokeComfirmReturn(){
+        adapter.clickComfirmReturn = {
+                data -> shipperParcelPst.getIdStatus(GetIdStatusReq("Đang hoàn trả"), data)
+        }
+    }
+
+    fun callInvokeCancelReturn(){
+        adapter.clickCancelReturn = {
+                data -> shipperParcelPst.getIdStatus(GetIdStatusReq("Hoàn trả"), data)
+        }
+    }
+
     fun callInvokeGetShop(){
         adapter.clickGetShop = {
                 data ->
             list.clear()
             list.add("Lấy hàng thành công")
-            list.add("Từ chối lấy hàng")
+            //list.add("Từ chối lấy hàng")
             showDialogShipper(Gravity.CENTER,list,data)
         }
     }
@@ -139,6 +188,17 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
 
 
     fun setEvent(){
+        binding.edtSearchId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun afterTextChanged(p0: Editable?) {
+                var str = binding.edtSearchId.text.toString()
+                shipperParcelPst.getFilter(str)
+            }
+        })
+
         binding.spinnerDistrict.setOnItemClickListener(({ adapterView, view, i, l ->
             adress = adapterView.getItemAtPosition(i).toString()
             if (adress.equals("Tất cả")) {
@@ -183,6 +243,11 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
             binding.spinnerDistrict.setText("",false)
             binding.spinnerStatus.setText("",false)
             binding.spinnerWards.setText("",false)
+        }
+
+        binding.lnlHome.setOnClickListener{
+            binding.edtSearchId.clearFocus()
+            binding.lnlHome.hideKeyboard()
         }
 
         bindingDialog.dialogSpinnerStatus.setOnItemClickListener { parent, view, position, id ->
@@ -349,6 +414,16 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         shipperParcelPst.getIdStatus(GetIdStatusReq(updateNameStatus),data)
         updateNameStatus = ""
         bindingDialog.dialogSpinnerStatus.setText("",false)
+    }
+
+    fun View.hideKeyboard(): Boolean {
+        try {
+            val inputMethodManager =
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        } catch (ignored: RuntimeException) {
+        }
+        return false
     }
 
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainbg3">
+    android:background="@drawable/bg7">
 
     <LinearLayout
         android:id="@+id/view_staff_mng"
@@ -16,8 +16,8 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_listStaff"
                 style="@style/style_toolbar"
-                app:title="@string/tv_staff_mng"
-                app:titleTextColor="@color/white"/>
+                app:title="@string/tv_chooseStaff_mng"
+                app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.cardview.widget.CardView

@@ -10,7 +10,7 @@
         android:id="@+id/lnl_custom_staff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color4"
+        android:background="@drawable/bg7"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
@@ -22,6 +22,21 @@
                 app:title="Thông tin nhân viên" />
         </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.cardview.widget.CardView
+        style="@style/style_cardview_userlogin2"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:backgroundTint="@color/color7"
+        app:cardCornerRadius="@dimen/_15sdp">
+
+    <LinearLayout
+        android:id="@+id/lnl_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,17 +44,17 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/tv_staffId" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_staffId"
                 style="@style/style_cardview_userlogin2"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <EditText
                     android:id="@+id/edt_staffId"
@@ -59,17 +74,16 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/tv_role_Staff" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_staffRole"
                 style="@style/style_cardview_userlogin2"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <EditText
                     android:id="@+id/edt_staffRole"
@@ -89,17 +103,16 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/tv_staffCmnd" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_staffCmnd"
                 style="@style/style_cardview_userlogin2"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <EditText
                     android:id="@+id/edt_staffCmnd"
@@ -119,17 +132,16 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/pf_name" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_name_staff"
                 style="@style/style_cardview_userlogin2"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <EditText
                     android:id="@+id/edt_name_staff"
@@ -149,17 +161,16 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/pf_birth" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_birth_staff"
                 style="@style/style_cardview_userlogin2"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -188,10 +199,9 @@
 
         <TextView
             style="@style/style_textview_forgotpw"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:text="@string/pf_gender"
-            android:textColor="@color/dark_green"/>
+            android:textColor="@color/black"/>
 
         <RadioGroup
             android:id="@+id/radG_staff"
@@ -203,10 +213,10 @@
                 android:id="@+id/radio_male_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:text="@string/pf_male"
                 android:enabled="false"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
             <RadioButton
@@ -216,7 +226,7 @@
                 android:layout_marginStart="@dimen/_25sdp"
                 android:text="@string/pf_female"
                 android:enabled="false"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
         </RadioGroup>
@@ -228,19 +238,17 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/pf_phone" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_phone"
                 style="@style/style_cardview_userlogin2"
-                android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <EditText
                     android:id="@+id/edt_phone_staff"
@@ -261,17 +269,17 @@
 
             <TextView
                 style="@style/style_textview_forgotpw"
-                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_minus20sdp"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:text="@string/hint_email" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cart_email_staff"
                 style="@style/style_cardview_userlogin2"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <EditText
                     android:id="@+id/edt_email_staff"
@@ -287,18 +295,18 @@
 
         <TextView
             style="@style/style_textview_forgotpw"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_minus10sdp"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/black"
             android:text="@string/pf_address" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cart_address"
             style="@style/style_cardview_itemProductType"
-            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_30sdp">
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp">
 
             <EditText
                 android:id="@+id/edt_address_staff"
@@ -314,6 +322,8 @@
                 android:enabled="false"
                 android:textSize="@dimen/_11sdp" />
         </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/btnSave"
@@ -322,8 +332,8 @@
             android:layout_marginStart="@dimen/_100sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_100sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
             android:text="@string/tv_save"
+            android:textColor="@color/white"
             android:textSize="@dimen/_13sdp" />
 
 

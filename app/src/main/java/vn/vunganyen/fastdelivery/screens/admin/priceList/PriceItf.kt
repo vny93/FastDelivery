@@ -8,4 +8,13 @@ interface PriceItf {
     fun getListMass(list : List<MassRes>)
     fun updateMassPrice()
     fun updateDistancePrice()
+    fun deleteMass()
+    fun deleteDistance()
+    fun massError(max : Int)
+    fun distanceErorr(max : Int)
+    fun addDistance()
+    fun addMass()
+    fun comtopareMassError()
+    fun comtopareDistanceError()
+    fun priceError()
 }

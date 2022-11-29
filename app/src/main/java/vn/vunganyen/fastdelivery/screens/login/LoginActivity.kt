@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.adapter.AdapterPhoto
+import vn.vunganyen.fastdelivery.data.model.classSupport.MD5Hash
 import vn.vunganyen.fastdelivery.data.model.classSupport.Photo
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.ActivityLoginBinding
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity(), LoginItf {
     lateinit var photoAdapter : AdapterPhoto
     lateinit var listPhoto : List<Photo>
     var time : Timer = Timer()
+    var md5 : MD5Hash = MD5Hash()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,7 @@ class LoginActivity : AppCompatActivity(), LoginItf {
     fun setEvent(){
         binding.btnLogin.setOnClickListener{
             var username = binding.edtUsername.text.toString().toLowerCase().trim()
-            var password = binding.edtPassword.text.toString()
+            var password = md5.md5Code(binding.edtPassword.text.toString())
             loginPst.checkEmpty(username,password)
         }
 

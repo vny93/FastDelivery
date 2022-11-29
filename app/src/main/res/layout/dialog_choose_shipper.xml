@@ -31,7 +31,7 @@
             android:textSize="@dimen/_13sdp" />
 
         <TextView
-            android:id="@+id/tv_number_parcel"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"

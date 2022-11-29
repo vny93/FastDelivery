@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient android:startColor="#34ABA4"
-        android:endColor="#34ABA4"
+    <gradient android:startColor="#3F51B5"
+        android:endColor="#3F51B5"
         android:angle="90" />
     <corners android:radius="20dp"/>
     <stroke
-        android:color="@color/white"
+        android:color="@color/black"
         android:width="@dimen/_1sdp"
         />
+<!--   A4F4F1
+        6effdc-->
 </shape>

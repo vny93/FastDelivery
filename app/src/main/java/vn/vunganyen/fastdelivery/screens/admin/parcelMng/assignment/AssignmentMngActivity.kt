@@ -1,9 +1,7 @@
 package vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment
 
-import android.R
-import android.app.DatePickerDialog
 import android.app.Dialog
-import android.content.Intent
+import android.content.Context
 import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +11,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import demo.kotlin.model.dijkstra.Edge
@@ -25,6 +25,7 @@ import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelReq
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.StaffGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.role.ListRoleRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
@@ -35,10 +36,6 @@ import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.WayReq
 import vn.vunganyen.fastdelivery.databinding.ActivityAssignmentMngBinding
 import vn.vunganyen.fastdelivery.databinding.DialogSettingWarehouseBinding
-import vn.vunganyen.fastdelivery.screens.login.LoginActivity
-import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
@@ -58,7 +55,6 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     var adapterWH : AdapterParcelWh = AdapterParcelWh()
     var parcel_way = ""
     var checkCount = 0
-
     var idParcel = 0
     lateinit var adressStore : String
     lateinit var adressCustomer: String
@@ -74,7 +70,9 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         lateinit var arrDistanceWH : Array<DoubleArray>
         lateinit var distanceStore : DoubleArray
         lateinit var distanceCustomer : DoubleArray
-
+        //filter
+        var listParcel = ArrayList<AdGetParcelRes>()
+        lateinit var listFilter : ArrayList<AdGetParcelRes>
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,6 +107,17 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     }
 
     fun setEvent(){
+        binding.edtSearchId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun afterTextChanged(p0: Editable?) {
+                var str = binding.edtSearchId.text.toString()
+                assignmentPst.getFilter(str)
+            }
+        })
+
         binding.spinnerDistrict.setOnItemClickListener(({adapterView, view, i , l ->
             adress = adapterView.getItemAtPosition(i).toString()
             if(adress.equals("Tất cả")){
@@ -147,6 +156,11 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
             var req = AdGetParcelReq(adress,status)
             assignmentPst.filterParcel(req)
         }))
+
+        binding.lnlHome.setOnClickListener{
+            binding.edtSearchId.clearFocus()
+            binding.lnlHome.hideKeyboard()
+        }
 
         binding.refresh.setOnClickListener{
             var req = AdGetParcelReq("","")
@@ -439,5 +453,16 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         super.onResume()
         var req = AdGetParcelReq(adress,status)
         assignmentPst.filterParcel(req)
+        binding.edtSearchId.setText("")
+    }
+
+    fun View.hideKeyboard(): Boolean {
+        try {
+            val inputMethodManager =
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        } catch (ignored: RuntimeException) {
+        }
+        return false
     }
 }

@@ -12,10 +12,7 @@ import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusRes
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
-import vn.vunganyen.fastdelivery.data.model.parcel.MainSpGetParcelRes
-import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelReq
-import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
-import vn.vunganyen.fastdelivery.data.model.parcel.UpdatePaymentStatusReq
+import vn.vunganyen.fastdelivery.data.model.parcel.*
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.MainGetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.MainListStatusRes
@@ -23,6 +20,7 @@ import vn.vunganyen.fastdelivery.data.model.warehouse.MainWarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
 import vn.vunganyen.fastdelivery.data.model.way.UpdateWayReq
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import vn.vunganyen.fastdelivery.screens.staff.parcelMng.StaffParceFgm
 
 class ShipperParcelPst {
     var shipperParcelItf : ShipperParcelItf
@@ -83,6 +81,7 @@ class ShipperParcelPst {
             override fun onResponse(call: Call<MainSpGetParcelRes>, response: Response<MainSpGetParcelRes>) {
                 if(response.isSuccessful){
                     println("????")
+                    ShipperParcelFgm.listParcel = response.body()!!.result as ArrayList<SpGetParcelRes>
                     shipperParcelItf.getListParcel(response.body()!!.result)
                 }
             }
@@ -184,5 +183,15 @@ class ShipperParcelPst {
             }
 
         })
+    }
+
+    fun getFilter(s: String){
+        ShipperParcelFgm.listFilter = ArrayList<SpGetParcelRes>()
+        for(list in ShipperParcelFgm.listParcel){
+            if(list.mabk.toString().toUpperCase().contains(s.toUpperCase())){
+                ShipperParcelFgm.listFilter.add(list)
+            }
+        }
+        shipperParcelItf.getListParcel(ShipperParcelFgm.listFilter)
     }
 }

@@ -81,6 +81,7 @@ class StaffParcelPst {
             override fun onResponse(call: Call<MainStaffParcelRes>, response: Response<MainStaffParcelRes>) {
                 println("????")
                 if(response.isSuccessful){
+                    StaffParceFgm.listParcel = response.body()!!.result as ArrayList<StaffGetParcelRes>
                     staffParcelItf.getListParcel(response.body()!!.result)
                 }
             }
@@ -142,7 +143,7 @@ class StaffParcelPst {
         ApiStaffService.Api.api.getShipperArea(SplashActivity.token,req).enqueue(object : Callback<MainShipperAreaRes>{
             override fun onResponse(call: Call<MainShipperAreaRes>, response: Response<MainShipperAreaRes>) {
                 if(response.isSuccessful){
-                    staffParcelItf.getShipperArea(response.body()!!.result)
+                    staffParcelItf.getShipperArea(response.body()!!.result, req.tentrangthai)
                 }
             }
 
@@ -186,6 +187,16 @@ class StaffParcelPst {
             }
 
         })
+    }
+
+    fun getFilter(s: String){
+        StaffParceFgm.listFilter = ArrayList<StaffGetParcelRes>()
+        for(list in StaffParceFgm.listParcel){
+            if(list.mabk.toString().toUpperCase().contains(s.toUpperCase())){
+                StaffParceFgm.listFilter.add(list)
+            }
+        }
+        staffParcelItf.getListParcel(StaffParceFgm.listFilter)
     }
 
 }

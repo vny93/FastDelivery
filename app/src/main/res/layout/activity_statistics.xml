@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_stt_1"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
         <TextView
@@ -78,7 +78,7 @@
             android:layout_marginStart="@dimen/_25sdp"
             android:text="@string/tv_number"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
     </LinearLayout>
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_stt_2"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
         <TextView
@@ -104,7 +104,7 @@
             android:layout_marginStart="@dimen/_33sdp"
             android:text="@string/tv_number"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
     </LinearLayout>
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_stt_3"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
         <TextView
@@ -130,7 +130,7 @@
             android:layout_marginStart="@dimen/_53sdp"
             android:text="@string/tv_number"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
     </LinearLayout>
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_stt_4"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
         <TextView
@@ -156,7 +156,7 @@
             android:layout_marginStart="@dimen/_77sdp"
             android:text="@string/tv_number"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/color8"
             android:textSize="@dimen/_13sdp"/>
 
     </LinearLayout>

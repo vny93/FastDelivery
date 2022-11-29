@@ -36,7 +36,7 @@
                 android:layout_height="@dimen/_35sdp"
                 android:gravity="center"
                 android:text="@string/tv_id"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp"
                 android:background="@color/white"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/_35sdp"
                 android:gravity="center"
                 android:text="@string/pf_name"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp"
                 android:background="@color/white"
                 android:textStyle="bold" />

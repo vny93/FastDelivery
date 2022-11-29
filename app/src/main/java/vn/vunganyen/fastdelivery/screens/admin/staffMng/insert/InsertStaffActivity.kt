@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.model.auth.AuthRegisterReq
+import vn.vunganyen.fastdelivery.data.model.classSupport.MD5Hash
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileReq
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileRes
@@ -39,6 +40,7 @@ class InsertStaffActivity : AppCompatActivity(),InsertStaffItf {
     lateinit var reqStaff : ProfileRes
     lateinit var reqShipper : InsertShipperReq
     lateinit var reqAuth : AuthRegisterReq
+    var md5 : MD5Hash = MD5Hash()
     companion object{
         var roleId = 2
     }
@@ -133,7 +135,7 @@ class InsertStaffActivity : AppCompatActivity(),InsertStaffItf {
             println("quyền: "+ roleId)
             println("kho: "+ WarehouseId)
             var username = binding.edtUsernameStaff.text.toString()
-            var pass = binding.edtPasswordStaff.text.toString()
+            var pass = md5.md5Code(binding.edtPasswordStaff.text.toString())
             reqAuth = AuthRegisterReq(username,pass,roleId)
             reqStaff = ProfileRes(id.toUpperCase(),cmnd,name,gender,strDate,phone,email,address,WarehouseId,username)
             reqShipper = InsertShipperReq(id.toUpperCase(),cmnd,name,gender,strDate,phone,email,address,username)

@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import vn.vunganyen.fastdelivery.R
+import vn.vunganyen.fastdelivery.data.model.classSupport.MD5Hash
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.ActivityAdminMyAccountBinding
 
@@ -14,6 +15,7 @@ class AdminMyAccountActivity : AppCompatActivity(), AdminMyAccountItf {
     lateinit var binding : ActivityAdminMyAccountBinding
     lateinit var adminMyAccountPst: AdminMyAccountPst
     var dialog : StartAlertDialog = StartAlertDialog()
+    var md5 : MD5Hash = MD5Hash()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminMyAccountBinding.inflate(layoutInflater)
@@ -25,7 +27,7 @@ class AdminMyAccountActivity : AppCompatActivity(), AdminMyAccountItf {
 
     fun setEvent(){
         binding.btnChangePass.setOnClickListener{
-            var curentPw = binding.edtCurrentPass.text.toString()
+            var curentPw = md5.md5Code(binding.edtCurrentPass.text.toString())
             var password1 = binding.edtNewPass.text.toString()
             var password2 = binding.edtPass2.text.toString()
             adminMyAccountPst.validCheck(curentPw,password1,password2)

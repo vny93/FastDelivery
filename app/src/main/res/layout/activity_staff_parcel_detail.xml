@@ -23,19 +23,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg7"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 style="@style/style_cardview_itemProductType2"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_2sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/green2"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -45,7 +46,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:text="@string/from"
-                        android:textColor="@color/dark_green"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -81,7 +82,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/tv_name_pc"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
 
                             </LinearLayout>
@@ -108,7 +109,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/tv_phone_pc"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
 
                             </LinearLayout>
@@ -136,7 +137,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/title_address3"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
                             </LinearLayout>
 
@@ -153,13 +154,13 @@
                 style="@style/style_cardview_itemProductType2"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_2sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/green2"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -169,7 +170,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:text="@string/to"
-                        android:textColor="@color/dark_green"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -205,7 +206,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/tv_name_pc"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
 
                             </LinearLayout>
@@ -232,7 +233,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/tv_phone_pc"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
 
                             </LinearLayout>
@@ -260,7 +261,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/title_address3"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
                             </LinearLayout>
 
@@ -277,13 +278,13 @@
                 style="@style/style_cardview_itemProductType2"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_2sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/green2"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -293,7 +294,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:text="@string/information"
-                        android:textColor="@color/dark_green"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
