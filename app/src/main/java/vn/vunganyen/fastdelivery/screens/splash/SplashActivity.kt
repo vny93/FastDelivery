@@ -8,10 +8,12 @@ import android.os.Handler
 import android.preference.PreferenceManager
 import vn.vunganyen.fastdelivery.data.model.profile.MainProfileRes
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileRes
+import vn.vunganyen.fastdelivery.data.model.shop.MainShopProfileRes
 import vn.vunganyen.fastdelivery.databinding.ActivitySplashBinding
 import vn.vunganyen.fastdelivery.screens.admin.home.HomeAdminActivity
 import vn.vunganyen.fastdelivery.screens.login.LoginActivity
 import vn.vunganyen.fastdelivery.screens.shipper.home.HomeShipperActivity
+import vn.vunganyen.fastdelivery.screens.shop.homeShop.HomeShopActivity
 import vn.vunganyen.fastdelivery.screens.staff.home.HomeStaffActivity
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -29,7 +31,9 @@ class SplashActivity : AppCompatActivity() {
         var API_RPOFILE = "scooter"//"car" //"scooter"
         var API_LOCALE = "vn"
         var API_CALC_POINTS = false
-        var API_KEY = "03b225ae-3ff7-40d9-86ee-901bc4347172"
+        var API_CALC_POINTS2 = true
+        var API_KEY = "b09dc0b1-4114-4136-b3da-22df168b6949"
+        var PERCENT = 5
         //Tên đăng nhập tối thiểu tám ký tự, ít nhất một chữ cái và một số
         var USERNAME = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}\$")
         var EMAIL_ADDRESS = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
@@ -38,6 +42,9 @@ class SplashActivity : AppCompatActivity() {
         var SDT = Pattern.compile("(84|0){1}(3|5|7|8|9){1}+([0-9]{8})")
         var CMND = Pattern.compile("[0-9]{9}")
         lateinit var profile: MainProfileRes
+        lateinit var profileShop: MainShopProfileRes
+        var salaryStaff = 6000000f
+        var salaryShipper = 4500000f
         var token: String = ""
         var roleId: Int = 0
         lateinit var sharedPreferences: SharedPreferences
@@ -129,8 +136,8 @@ class SplashActivity : AppCompatActivity() {
 
     fun moveStore() {
         Handler().postDelayed({
-//            var intent = Intent(this, MainShipperActivity::class.java)
-//            startActivity(intent)
+            var intent = Intent(this, HomeShopActivity::class.java)
+            startActivity(intent)
         }, 3000)
     }
 

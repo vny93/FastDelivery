@@ -9,6 +9,7 @@ import vn.vunganyen.fastdelivery.data.model.area.MainGetListAreaRes
 import vn.vunganyen.fastdelivery.data.model.detailRegister.GetAreaShipperReq
 import vn.vunganyen.fastdelivery.data.model.detailRegister.InsertAreaReq
 import vn.vunganyen.fastdelivery.data.model.detailRegister.InsertAreaRes
+import vn.vunganyen.fastdelivery.data.model.detailRegister.UpdateAreaShipperReq
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
 import vn.vunganyen.fastdelivery.data.model.staff.CheckWordRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -94,11 +95,11 @@ class RegisterAreaPst {
         })
     }
 
-    fun deleteArea(req : InsertAreaReq){
-        ApiDetailRegisterService.Api.api.deleteAreaShipper(SplashActivity.token,req).enqueue(object : Callback<UpdateRes>{
+    fun updateArea(req : UpdateAreaShipperReq){
+        ApiDetailRegisterService.Api.api.updateAreaShipper(SplashActivity.token,req).enqueue(object : Callback<UpdateRes>{
             override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
                 if(response.isSuccessful){
-                    registerAreaItf.deleteSuccess()
+                    registerAreaItf.updateSuccess()
                 }
             }
 

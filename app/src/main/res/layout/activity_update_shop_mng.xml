@@ -233,6 +233,16 @@
             android:text="@string/tv_save"
             android:textSize="@dimen/_13sdp" />
 
+        <Button
+            android:id="@+id/btnLock"
+            style="@style/style_btnlogin"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_90sdp"
+            android:layout_marginEnd="@dimen/_90sdp"
+            android:text="@string/tv_lock"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+
     </LinearLayout>
 
 </ScrollView>

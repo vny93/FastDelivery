@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import vn.vunganyen.fastdelivery.R
+import vn.vunganyen.fastdelivery.data.model.auth.UpdateStatusAuthReq
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
@@ -16,6 +17,7 @@ import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.shop.UpdateShopReq
 import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.databinding.ActivityUpdateShopMngBinding
+import vn.vunganyen.fastdelivery.screens.admin.staffMng.update.UpdateStaffActivity
 import vn.vunganyen.fastdelivery.screens.admin.warehouseMng.update.UpdateWarehouseActivity
 
 class UpdateShopMngActivity : AppCompatActivity(), UpdateShopMngItf {
@@ -53,6 +55,13 @@ class UpdateShopMngActivity : AppCompatActivity(), UpdateShopMngItf {
         wards = arrWord[1]
         binding.spinnerDistrict.setText(arrWord[2])
         district = arrWord[2]
+
+        if(shop.trangthai == 0){
+            binding.btnLock.setText(getString(R.string.tv_lock))
+        }
+        else{
+            binding.btnLock.setText(getString(R.string.tv_activi))
+        }
     }
 
     fun setEvent(){
@@ -72,8 +81,20 @@ class UpdateShopMngActivity : AppCompatActivity(), UpdateShopMngItf {
             println("wards: " + wards)
         }))
 
+        binding.btnLock.setOnClickListener{
+            if(binding.btnLock.text.toString().equals("Khóa tài khoản")){
+                var req = UpdateStatusAuthReq(shop.tendangnhap,1)
+                updateShopMngPst.updateStatus(req)
+            }
+            else{
+                var req = UpdateStatusAuthReq(shop.tendangnhap,0)
+                updateShopMngPst.updateStatus(req)
+            }
+        }
+
         binding.btnSave.setOnClickListener {
             if (binding.btnSave.text.toString().equals("Cập nhật")) {
+                binding.btnLock.visibility = View.GONE
                 binding.btnSave.setText("Lưu")
 
                 updateShopMngPst.getDistrict()
@@ -195,6 +216,7 @@ class UpdateShopMngActivity : AppCompatActivity(), UpdateShopMngItf {
     override fun UpdateSucces() {
         dialog.showStartDialog3(getString(R.string.UpdateSucces),this)
         binding.btnSave.setText(getString(R.string.tv_save))
+        binding.btnLock.visibility = View.VISIBLE
 
         binding.cartName.setCardBackgroundColor(Color.parseColor("#EFEDED"))
         binding.edtShopName.setBackground(resources.getDrawable(R.color.gray))
@@ -222,5 +244,15 @@ class UpdateShopMngActivity : AppCompatActivity(), UpdateShopMngItf {
         mlist.clear()
         setAdapterDistrict(mlist)
         setAdapterWards(mlist)
+    }
+
+    override fun lockAccount() {
+        dialog.showStartDialog3(getString(R.string.tv_lock_success),this)
+        binding.btnLock.setText(getString(R.string.tv_activi))
+    }
+
+    override fun activeAccount() {
+        dialog.showStartDialog3(getString(R.string.tv_activi_success),this)
+        binding.btnLock.setText(getString(R.string.tv_lock))
     }
 }

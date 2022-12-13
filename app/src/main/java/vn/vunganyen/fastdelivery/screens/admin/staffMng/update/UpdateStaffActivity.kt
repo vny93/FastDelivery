@@ -13,11 +13,16 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import okhttp3.internal.notify
 import vn.vunganyen.fastdelivery.R
+import vn.vunganyen.fastdelivery.data.model.auth.UpdateStatusAuthReq
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelReq
+import vn.vunganyen.fastdelivery.data.model.parcel.ShipperStatisticsReq
+import vn.vunganyen.fastdelivery.data.model.parcel.ShipperStatisticsRes
+import vn.vunganyen.fastdelivery.data.model.salary.*
 import vn.vunganyen.fastdelivery.data.model.staff.AdminUpdateReq
 import vn.vunganyen.fastdelivery.data.model.staff.ListStaffRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhRes
@@ -27,6 +32,7 @@ import vn.vunganyen.fastdelivery.databinding.DialogChooseAdressBinding
 import vn.vunganyen.fastdelivery.databinding.DialogSettingWarehouseBinding
 import vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment.AssignmentMngActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import java.text.SimpleDateFormat
 import java.util.*
 
 class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
@@ -84,6 +90,14 @@ class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
             binding.radioMaleStaff.isChecked = true
         }
         else binding.radioFemaleStaff.isChecked = true
+
+        if(staff.trangthai == 0){
+            binding.btnLock.setText(getString(R.string.tv_lock))
+        }
+        else{
+            binding.btnLock.setText(getString(R.string.tv_activi))
+        }
+
         updateStaffPst.getDistrict()
     }
 
@@ -114,9 +128,31 @@ class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
             showDialogSetting(Gravity.CENTER)
         }
 
+        binding.btnLock.setOnClickListener{
+            if(binding.btnLock.text.toString().equals("Khóa tài khoản")){
+                var req = UpdateStatusAuthReq(staff.tendangnhap,1)
+                updateStaffPst.updateStatus(req)
+            }
+            else{
+                var req = UpdateStatusAuthReq(staff.tendangnhap,0)
+                updateStaffPst.updateStatus(req)
+            }
+        }
+
+        binding.btnSalary.setOnClickListener{
+            var m_c = Calendar.getInstance()
+            m_c.add(Calendar.HOUR_OF_DAY, 7)
+            val formatDate = SimpleDateFormat("yyyy-MM")
+            var strDate = formatDate.format(m_c.time)
+            println("check: "+strDate) //check tháng hiện tại (ngày nhận) đã trả lương cho tháng trước chưa
+            updateStaffPst.checkSalary(CheckSalaryReq(staff.manv,strDate))
+        }
+
+
         binding.btnSave.setOnClickListener{
             if(binding.btnSave.text.toString().equals("Cập nhật")){
                 binding.btnSave.setText("Lưu")
+                binding.btnLock.visibility = View.GONE
 
                 binding.cartStaffCmnd.setCardBackgroundColor(Color.WHITE)
                 binding.edtStaffCmnd.setBackground(resources.getDrawable(R.color.white))
@@ -298,6 +334,7 @@ class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
     override fun updateSuccess() {
         dialog.showStartDialog3(getString(R.string.AddProfileSucces),this)
         binding.btnSave.setText(getString(R.string.tv_save))
+        binding.btnLock.visibility = View.VISIBLE
 
         binding.cartStaffCmnd.setCardBackgroundColor(Color.parseColor("#EFEDED"))
         binding.edtStaffCmnd.setBackground(resources.getDrawable(R.color.gray))
@@ -352,6 +389,85 @@ class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
             listWardstName.add(list.get(i).name)
         }
         setAdapterWards(listWardstName)
+    }
+
+    override fun lockAccount() {
+        dialog.showStartDialog3(getString(R.string.tv_lock_success),this)
+        binding.btnLock.setText(getString(R.string.tv_activi))
+    }
+
+    override fun activeAccount() {
+        dialog.showStartDialog3(getString(R.string.tv_activi_success),this)
+        binding.btnLock.setText(getString(R.string.tv_lock))
+    }
+
+    override fun checkSalaryExist(strDate : String) {
+        var str = strDate.split("-")
+        dialog.showStartDialog3(getString(R.string.tv_salary_exist,str[1],str[0]),this)
+    }
+
+    override fun checkSalaryNotExist() {
+        if(staff.maquyen == SplashActivity.STAFF){
+            var m_c = Calendar.getInstance()
+            m_c.add(Calendar.HOUR_OF_DAY, 7)
+            var strDate = SplashActivity.formatdate.format(m_c.time)
+            var req = AddSalaryStaffReq(staff.manv,strDate,SplashActivity.salaryStaff)
+            updateStaffPst.addSalaryStaff(req)
+        }else{
+            var m_c = Calendar.getInstance()
+            var calStartMonth = Calendar.getInstance()
+            var calEndMonth = Calendar.getInstance()
+
+            var day = 1
+            m_c.roll(Calendar.MONTH,-1)
+            println("date: "+ SplashActivity.formatdate4.format(m_c.time))
+            var m_month = SplashActivity.formatMonth.format(m_c.time).toInt()
+            var m_year = SplashActivity.formatYear.format(m_c.time).toInt()
+            println("day: "+day)
+            println("month ne: "+m_month)
+            println("year: "+m_year)
+
+            calStartMonth.clear()
+            calStartMonth.set(m_year, m_month,day)
+            calStartMonth.roll(Calendar.MONTH,-1)
+            var dateFrom = SplashActivity.formatdate.format(calStartMonth.time)+" 00:00:00"
+            println("start month: "+ SplashActivity.formatdate4.format(calStartMonth.time))
+            calEndMonth.clear()
+            calEndMonth.set(m_year, m_month,day)
+            calEndMonth.roll(Calendar.MONTH,-1)
+            // ngày cuối của tháng hiện tại
+            updateStaffPst.findEndOfMonth(calEndMonth)
+            var dateTo = SplashActivity.formatdate.format(calEndMonth.time)+" 23:59:59"
+            println("end month: "+ SplashActivity.formatdate4.format(calEndMonth.time))
+
+            var idShipper = staff.manv
+            var req = ShipperStatisticsReq(idShipper,dateFrom!!,dateTo!!)
+            updateStaffPst.shipperStatistics(req)
+        }
+    }
+
+    override fun getListSuccess(list : List<ShipperStatisticsRes>) {
+        var sum = 0.0f
+        for(i in 0..list.size-1){
+            sum = sum + list.get(i).phigiao
+        }
+        var sumCommission = sum*(SplashActivity.PERCENT.toFloat()/100)
+        println("sumCommission: "+sumCommission)
+        var m_c = Calendar.getInstance()
+        m_c.add(Calendar.HOUR_OF_DAY, 7)
+        var strDate = SplashActivity.formatdate.format(m_c.time)
+        var req = AddSalaryShipperReq(staff.manv,strDate,SplashActivity.salaryShipper,sumCommission)
+        updateStaffPst.addSalaryShipper(req)
+    }
+
+    override fun addSalaryStaff(strDate : String) {
+        var str = strDate.split("-")
+        dialog.showStartDialog3(getString(R.string.tv_salary_staff,str[1],str[0]),this)
+    }
+
+    override fun addSalaryShipper(strDate : String) {
+        var str = strDate.split("-")
+        dialog.showStartDialog3(getString(R.string.tv_salary_shipper,str[1],str[0]),this)
     }
 
     fun setAdapterWards(list: List<String>){

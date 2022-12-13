@@ -3,10 +3,14 @@ package vn.vunganyen.fastdelivery.screens.staff.parcelDetail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.vunganyen.fastdelivery.data.adapter.AdapterDetailParcel
+import vn.vunganyen.fastdelivery.data.adapter.AdapterStatusDetail
 import vn.vunganyen.fastdelivery.data.model.detailParcel.GetDetailParcelReq
 import vn.vunganyen.fastdelivery.data.model.detailParcel.GetDetailParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.FullStatusDetailReq
+import vn.vunganyen.fastdelivery.data.model.parcel.FullStatusDetailRes
 import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
@@ -18,6 +22,7 @@ class StaffParcelDetailActivity : AppCompatActivity(), StaffParcelDetailItf {
     lateinit var data : SpGetParcelRes
     lateinit var staffParcelDetailPst: StaffParcelDetailPst
     var adapterDetailParcel : AdapterDetailParcel = AdapterDetailParcel()
+    var adapterStatusDetaillMng : AdapterStatusDetail = AdapterStatusDetail()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStaffParcelDetailBinding.inflate(layoutInflater)
@@ -31,6 +36,11 @@ class StaffParcelDetailActivity : AppCompatActivity(), StaffParcelDetailItf {
         data = getIntent().getSerializableExtra("data") as SpGetParcelRes
         staffParcelDetailPst.getShopDetail(GetShopDetailReq(data.mach))
         staffParcelDetailPst.getDateilParcel(GetDetailParcelReq(data.mabk))
+        if(SplashActivity.roleId == SplashActivity.STORE){
+            binding.viewStatusDetail.visibility = View.VISIBLE
+            staffParcelDetailPst.fullStatusDetail(FullStatusDetailReq(data.mabk))
+        }
+        else binding.viewStatusDetail.visibility = View.GONE
     }
 
     override fun getShopDetail(res: GetShopDetailRes) {
@@ -58,6 +68,12 @@ class StaffParcelDetailActivity : AppCompatActivity(), StaffParcelDetailItf {
         adapterDetailParcel.setData(list)
         binding.rcvListDetailParcel.adapter = adapterDetailParcel
         binding.rcvListDetailParcel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    override fun fullStatusDetail(list: List<FullStatusDetailRes>) {
+        adapterStatusDetaillMng.setData(list)
+        binding.rcvListDetailStatus.adapter = adapterStatusDetaillMng
+        binding.rcvListDetailStatus.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     fun setToolbar() {

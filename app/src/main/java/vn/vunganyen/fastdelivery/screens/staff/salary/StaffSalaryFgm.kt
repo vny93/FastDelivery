@@ -21,9 +21,10 @@ class StaffSalaryFgm : Fragment(), StaffSalaryItf {
     lateinit var staffSalaryPst: StaffSalaryPst
     var adapter : AdapterShipperSalaryMng = AdapterShipperSalaryMng()
     lateinit var idstaff : String
-    var day = GregorianCalendar(TimeZone.getTimeZone("GMT+7")).get(Calendar.DAY_OF_MONTH)
-    var year = GregorianCalendar(TimeZone.getTimeZone("GMT+7")).get(Calendar.YEAR)
-    var month = GregorianCalendar(TimeZone.getTimeZone("GMT+7")).get(Calendar.MONTH)
+    var c = Calendar.getInstance()
+    var day = c.get(Calendar.DAY_OF_MONTH)
+    var year = c.get(Calendar.YEAR)
+    var month = c.get(Calendar.MONTH)
     var calFilter : Calendar = GregorianCalendar(TimeZone.getTimeZone("GMT+7"))
     var calStartMonth = GregorianCalendar(TimeZone.getTimeZone("GMT+7"))
     var calEndMonth = GregorianCalendar(TimeZone.getTimeZone("GMT+7"))
@@ -55,12 +56,20 @@ class StaffSalaryFgm : Fragment(), StaffSalaryItf {
                     year = mYear
                     calFilter.clear()
                     calFilter.set(year, month,1)
-                    binding.selectDate.text = ""+month.toString()+" - "+year
+                    binding.selectDate.text = ""+(month+1).toString()+" - "+year
                     setDate()
                 }
             }
             newFragment.show(this.requireFragmentManager(), "MonthYearPickerDialog")
             // show(parentFragmentManager, "MonthYearPickerDialog")
+        }
+
+        binding.refresh.setOnClickListener{
+            dateFrom =""
+            dateTo =""
+            binding.selectDate.text = getString(R.string.title_time)
+            var req = ShipperSalaryReq(idstaff,dateFrom,dateTo)
+            staffSalaryPst.staff_get_salary(req)
         }
     }
 
@@ -72,11 +81,12 @@ class StaffSalaryFgm : Fragment(), StaffSalaryItf {
         //
         calStartMonth.clear()
         calStartMonth.set(year, month,day)
+        calStartMonth.add(Calendar.MONTH,1)
         println("start month: "+ SplashActivity.formatdate.format(calStartMonth.time))
         //
         calEndMonth.clear()
         calEndMonth.set(year, month,day)
-
+        calEndMonth.add(Calendar.MONTH,1)
         // ngày cuối của tháng hiện tại
         staffSalaryPst.findEndOfMonth(calEndMonth)
         println("end month: "+ SplashActivity.formatdate.format(calEndMonth.time))

@@ -5,7 +5,8 @@ import vn.vunganyen.fastdelivery.data.model.parcel.Statistics2Res
 
 interface StatisticItf {
     fun getTt1(list : List<Statistics1Res>)
-    fun getTt2(list : List<Statistics2Res>)
-    fun getTt3(list : List<Statistics2Res>)
-    fun getTt4(list : List<Statistics2Res>)
+    fun success(list : List<Statistics1Res>)
+    fun fail(list : List<Statistics1Res>)
+    fun toReturn(list : List<Statistics1Res>)
+    fun shipping(list : List<Statistics1Res>)
 }

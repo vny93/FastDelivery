@@ -18,7 +18,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_insert_staff"
             style="@style/style_toolbar"
-            app:title="Đăng ký cửa hàng"
+            app:title="Đăng ký tài khoản cho cửa hàng"
             app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -60,7 +60,7 @@
                     android:backgroundTint="@color/white">
 
                     <EditText
-                        android:id="@+id/edt_username_staff"
+                        android:id="@+id/edt_username"
                         style="@style/style_edt_login2"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:background="@color/white"
@@ -99,7 +99,7 @@
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_currentPas"
+                            android:id="@+id/edt_password"
                             style="@style/style_edt_login2"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:textColor="@color/black"
@@ -132,7 +132,7 @@
                     android:backgroundTint="@color/white">
 
                     <EditText
-                        android:id="@+id/edt_name_staff"
+                        android:id="@+id/edt_name_shopf"
                         style="@style/style_edt_login2"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:backgroundTint="@color/white"
@@ -162,7 +162,7 @@
                     android:layout_marginBottom="@dimen/_10sdp">
 
                     <EditText
-                        android:id="@+id/edt_phone_staff"
+                        android:id="@+id/edt_phone_shop"
                         style="@style/style_edt_login2"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:hint="@string/pf_hintPhone"
@@ -192,7 +192,7 @@
                     android:layout_marginBottom="@dimen/_10sdp">
 
                     <EditText
-                        android:id="@+id/edt_email_staff"
+                        android:id="@+id/edt_email_shop"
                         style="@style/style_edt_login2"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:backgroundTint="@color/white"
@@ -220,7 +220,7 @@
                 android:elevation="@dimen/_20sdp">
 
                 <EditText
-                    android:id="@+id/edt_address_staff"
+                    android:id="@+id/edt_address_shop"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_80sdp"
                     android:background="@drawable/boder_rectangle"
@@ -239,7 +239,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"

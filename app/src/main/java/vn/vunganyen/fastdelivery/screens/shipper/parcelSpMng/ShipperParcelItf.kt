@@ -18,4 +18,5 @@ interface ShipperParcelItf {
     fun wayNotExist(data: SpGetParcelRes)
     fun updateWay(data: SpGetParcelRes)
     fun updatePaymentStatus(data: SpGetParcelRes)
+   // fun updateCartStatus()
 }

@@ -329,13 +329,34 @@
             android:id="@+id/btnSave"
             style="@style/style_btnlogin"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_100sdp"
+            android:layout_marginStart="@dimen/_90sdp"
             android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_100sdp"
+            android:layout_marginEnd="@dimen/_90sdp"
             android:text="@string/tv_save"
             android:textColor="@color/white"
             android:textSize="@dimen/_13sdp" />
 
+        <Button
+            android:id="@+id/btnLock"
+            style="@style/style_btnlogin"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_90sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_90sdp"
+            android:text="@string/tv_lock"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+
+        <Button
+            android:id="@+id/btnSalary"
+            style="@style/style_btnlogin"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_90sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_90sdp"
+            android:text="@string/tv_salary"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
 
     </LinearLayout>
 

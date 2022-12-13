@@ -25,30 +25,50 @@
                 android:id="@+id/imv_avt_staff"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:gravity="center"
                 android:textSize="@dimen/_14sdp"
                 android:background="@drawable/ic_baseline_location_on_24"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_area_name"
-                android:layout_width="@dimen/_220sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:gravity="center"
-                android:text="@string/pf_wh_name"
+                android:layout_width="@dimen/_170sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:text="@string/pf_name_area"
                 android:textColor="@color/dark_green"
                 android:textSize="@dimen/_13sdp"
                 android:background="@color/white"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_status_name"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:text="@string/pf_name_area"
+                android:textColor="#535050"
+                android:textSize="@dimen/_13sdp"
+                android:background="@color/white"
+                android:textStyle="italic" />
+
+            </LinearLayout>
+
             <ImageView
-                android:id="@+id/imv_remove_area"
+                android:id="@+id/imv_setting_area"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:gravity="center"
                 android:textSize="@dimen/_12sdp"
-                android:src="@drawable/ic_baseline_delete_forever_24"
+                android:background="@drawable/ic_baseline_pause_circle_24"
                 android:textStyle="bold" />
 
         </LinearLayout>

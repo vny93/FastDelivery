@@ -30,6 +30,7 @@
     <string name="pf_wh_name">Tên kho</string>
     <string name="pf_shop_name">Tên cửa hàng</string>
     <string name="pf_name_status">Tên trạng thái</string>
+    <string name="pf_name_area">Tên khu vực</string>
 
     <!-- title -->
     <string name="tv_app_nem">Giao hàng nhanh</string>
@@ -66,6 +67,7 @@
     <string name="comtopareDistanceError">Khoảng cách kết thúc phải lớn hơn khoảng cách bắt đầu</string>
     <string name="priceError">Giá tiền phải lớn hơn 0</string>
     <string name="tv_staffId">Mã nhân viên</string>
+    <string name="tv_shopId">Mã cửa hàng</string>
     <string name="tv_staffCmnd">CMND</string>
     <string name="hint_staffCmnd">Nhập CMND</string>
     <string name="pf_birth">Ngày sinh</string>
@@ -83,12 +85,22 @@
     <string name="pf_male">Nam</string>
     <string name="pf_female">Nữ</string>
     <string name="tv_save">Cập nhật</string>
+    <string name="tv_lock">Khóa tài khoản</string>
+    <string name="tv_salary">Phát lương</string>
+    <string name="tv_activi">Kích hoạt</string>
+    <string name="tv_lock_success">Khóa tài khoản thành công</string>
+    <string name="tv_activi_success">Kích hoạt tài khoản thành công</string>
     <string name="AddProfileSucces">Cập nhật hồ sơ thành công</string>
+    <string name="tv_salary_exist">Nhân viên này đã được phát tiền lương tháng %1$s năm %2$s</string>
+    <string name="tv_salary_staff">Phát tiền lương tháng %1$s năm %2$s thành công</string>
+    <string name="tv_salary_shipper">Phát tiền lương và tiền hoa hồng tháng %1$s năm %2$s thành công</string>
     <string name="tv_save2">Thêm</string>
     <string name="tv_save4">Đăng ký</string>
     <string name="tv_save3">Lưu</string>
+    <string name="tv_save5">Đổi mật khẩu</string>
     <string name="tv_warehouse">Kho</string>
     <string name="tv_rgt_staffSuccess">Thêm nhân viên thành công</string>
+    <string name="tv_rgt_shopSuccess">Đăng ký thành công! Mời bạn đăng nhập</string>
     <string name="mes_assignment_success">Đã phân kho thành công</string>
     <string name="mes_way_parcel">Bưu kiện %1$s có lộ trình như sau:</string>
     <string name="tv_checkbox_warehouse">Tên kho</string>
@@ -113,6 +125,8 @@
     <string name="tv_dialog_status">Chọn trạng thái bạn muốn cập nhật</string>
     <string name="tv_home_role_st">NHÂN VIÊN KHO:</string>
     <string name="tv_home_role_sp">NHÂN VIÊN GIAO HÀNG:</string>
+    <string name="tv_shop_role">CỬA HÀNG:</string>
+    <string name="tv_warehouse_name">CHI NHÁNH:</string>
 
     <!--toolbar-->
     <string name="tv_chooseStaff_mng">Quản lý nhân viên</string>
@@ -124,6 +138,7 @@
     <!--message -->
     <string name="login_empty">Tên đăng nhập và mật khẩu không được bỏ trống</string>
     <string name="wrong_account">Tên đăng nhập hoặc mật khẩu không đúng</string>
+    <string name="lock_account">Tài khoản của bạn đã ngừng kích hoạt</string>
     <string name="title_activity_price">PriceActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -186,9 +201,13 @@
     <string name="filter">Lọc</string>
     <string name="sum_price">0đ</string>
     <string name="block">-</string>
+    <string name="tv_sum">Tổng:</string>
+    <string name="tv_percent">Phần trăm hoa hồng:</string>
+    <string name="tv_sum_commission">Tổng nhận:</string>
     <string name="tv_sum_statistics">Tổng doanh thu:</string>
     <string name="statistics_month">Tháng/Năm</string>
     <string name="tv_statistics">Doanh thu</string>
+    <string name="tv_price_ship">Phí giao</string>
     <string name="tv_seen_statistics">Xem thống kê số liệu</string>
     <string name="information">Thông tin hàng hóa</string>
     <string name="mass">Khối lượng:</string>
@@ -205,6 +224,7 @@
     <string name="tv_stt_2">Số bưu kiện giao thành công:</string>
     <string name="tv_stt_3">Số bưu kiện giao thất bại:</string>
     <string name="tv_stt_4">Số bưu kiện hoàn trả:</string>
+    <string name="tv_stt_5">Số bưu kiện đang vận chuyễn:</string>
     <string name="error_empty2">Vui lòng chọn thời gian</string>
     <string name="errorDate3">Chọn thời gian không hợp lệ</string>
     <string name="tv_number">Số lượng</string>
@@ -214,8 +234,11 @@
     <string name="find_account3">Vui lòng nhập email để nhận được mật khẩu mới.</string>
     <string name="find_account4">Nhận mật khẩu mới</string>
     <string name="salary_date">Ngày nhận:</string>
+    <string name="salary_price">Lương tháng: 0</string>
     <string name="salary_sum">Tiền lương:</string>
+    <string name="tv_commission">Tiền hoa hồng:</string>
     <string name="title_time">Tháng - Năm</string>
+    <string name="title_year">Năm</string>
     <string name="mass_add">Thêm khối lượng</string>
     <string name="mass_start">Từ khối lượng</string>
     <string name="mass_end">Đến khối lượng</string>
@@ -238,6 +261,12 @@
         <item>Tháng 12</item>
     </string-array>
 
+    <string name="map_api_key">AIzaSyAe8rMUSfqcr3AhAtDoqInCmlU0JFacgG4</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_seen_salary">Bạn muốn xem lương của tháng</string>
+    <string name="tv_statistics_year">Xem biểu đồ cột theo năm</string>
+    <string name="tv_cancel_parcel">Từ chối lấy hàng</string>
+
 </resources>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_mass"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boder_rectangle2"
+    android:elevation="@dimen/_10sdp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_15sdp"
+        android:layout_gravity="center"
+        android:enabled="false"
+        android:textStyle="bold"
+        android:textColor="@color/color8"
+        android:text="@string/tv_cancel_parcel"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textColor="@color/color8"
+            android:text="@string/tv_staffId"/>
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textColor="@color/color8"
+            android:text="@string/tv_staffId"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textColor="@color/color8"
+            android:text="@string/pf_name"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_43sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textColor="@color/color8"
+            android:text="@string/pf_name"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textColor="@color/color8"
+            android:text="@string/pf_phone"/>
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textSize="@dimen/_13sdp"
+            android:enabled="false"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textColor="@color/color8"
+            android:text="@string/pf_phone"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

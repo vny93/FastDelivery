@@ -41,6 +41,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_phone_24.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.1525" />
         <entry key="app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_view_in_ar_24.xml" value="0.15" />
         <entry key="app/src/main/res/layout-w1240dp/item_staff_parcel.xml" value="0.1606425702811245" />
@@ -48,6 +49,7 @@
         <entry key="app/src/main/res/layout-w936dp/item_area.xml" value="0.1875" />
         <entry key="app/src/main/res/layout-w936dp/item_distance.xml" value="0.14651639344262296" />
         <entry key="app/src/main/res/layout-w936dp/item_mass.xml" value="0.14651639344262296" />
+        <entry key="app/src/main/res/layout/activity_admin_bar_chart.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_admin_my_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_admin_my_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_assignment_mng.xml" value="0.25" />
@@ -55,15 +57,20 @@
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home_admin.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_home_shipper.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_home_shop.xml" value="0.19362186788154898" />
         <entry key="app/src/main/res/layout/activity_home_staff.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_insert_staff.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_insert_staff.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_insert_warehouse.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main_admin.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_map.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_parcel_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_price.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_profile_shop.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile_st_sp.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_shipper_mng.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_shipper_statistics.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_shop_change_pw.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_shop_mng.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_shop_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
@@ -77,17 +84,21 @@
         <entry key="app/src/main/res/layout/activity_warehouse_mng.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/dialog_add_distance.xml" value="0.335" />
         <entry key="app/src/main/res/layout/dialog_add_mass.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/dialog_cancel_infor.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/dialog_choose_adress.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/dialog_choose_shipper.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/dialog_date.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/dialog_setting_warehouse.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/dialog_update_price.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/dialog_update_status_pc.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/layout/dialog_year.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/fgm_home_admin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/fragment_account_shop_fgm.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register_area_fgm.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_shipper_parcel_fgm.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_shipper_salary_fgm.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_shop_parcel_fgm.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/fragment_staff_parce.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_staff_salary_fgm.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/header_navi.xml" value="0.19429347826086957" />
@@ -102,14 +113,17 @@
         <entry key="app/src/main/res/layout/item_radio_status.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/item_shipper_area.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/item_shipper_parcel.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_shipper_salary.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/item_shipper_salary.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_shipper_statistics.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_shop.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/item_slideview.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/item_staff_mng.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_staff_parcel.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_status_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_warehouse.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_bottom_nav2.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_bottom_nav3.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/menu/menu_nav.xml" value="0.25" />
       </map>
     </option>

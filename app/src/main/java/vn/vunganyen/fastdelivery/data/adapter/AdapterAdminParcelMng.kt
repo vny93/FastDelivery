@@ -16,7 +16,7 @@ import kotlin.collections.ArrayList
 
 class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainViewHolder>() {
     private var listData: List<AdGetParcelRes> = ArrayList()
-    var c = Calendar.getInstance()
+    var c = GregorianCalendar(TimeZone.getTimeZone("GMT+7"))
     var clickDijkstra: ((data : AdGetParcelRes)->Unit)?=null
     var clickSetting: ((data : AdGetParcelRes)->Unit)?=null
     @SuppressLint("NotifyDataSetChanged")
@@ -34,14 +34,15 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
         fun bindItem(data: AdGetParcelRes) {
             binding.tvadIdPc.setText("Mã: " + data.mabk.toString())
             binding.tvadStatusPc.setText(data.tentrangthai)
-            binding.tvadNamePc.setText(data.hotennguoinhan)
-            binding.tvadPhonePc.setText(data.sdtnguoinhan)
+            binding.tvadNamePc.setText("Người nhận: "+data.hotennguoinhan)
+            binding.tvadPhonePc.setText("SDT: "+data.sdtnguoinhan)
             binding.tvadDeleveriPc.setText(data.htvanchuyen)
             var mdate: Date = SplashActivity.formatdate2.parse(data.ngaygui)
             c.time = mdate
-            c.add(Calendar.DATE, 1) // number of days to add
+            c.add(Calendar.HOUR_OF_DAY, 7)
+          //  c.add(Calendar.DATE, 1) // number of days to add
             var strDate2 = SplashActivity.formatdate4.format(c.time)
-            binding.tvadDatePc.setText(strDate2)
+            binding.tvadDatePc.setText("Ngày cửa hàng gửi: "+strDate2)
 
             if (data.phankho == 0) {
                 binding.btnadActionPc.setText("Tự động Phân kho")

@@ -8,5 +8,6 @@ data class GetShopDetailRes(
     var sdt : String,
     var email : String,
     var diachi : String,
-    var tendangnhap : String
+    var tendangnhap : String,
+    var trangthai : Int
 ):Serializable

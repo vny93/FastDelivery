@@ -95,5 +95,6 @@ class ForgotPasswordActivity : AppCompatActivity(),ForgotPasswordItf {
 
     override fun sendSuccess() {
         dialog.showStartDialog3(getString(R.string.send_mail_success),this)
+        binding.edtUsername.setText("")
     }
 }

@@ -18,6 +18,8 @@ import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.MainGetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.MainListStatusRes
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetDetailWHReq
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetDetailWHRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.MainWarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -103,6 +105,21 @@ class StaffParcelPst {
             }
 
             override fun onFailure(call: Call<MainGetIdStatusRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getWarehouseDetail(req : GetDetailWHReq){
+        ApiWarehouseService.Api.api.getDetail(SplashActivity.token,req).enqueue(object : Callback<GetDetailWHRes>{
+            override fun onResponse(call: Call<GetDetailWHRes>, response: Response<GetDetailWHRes>) {
+                if(response.isSuccessful){
+                    staffParcelItf.getWarehouseDetail(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<GetDetailWHRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 
@@ -197,6 +214,51 @@ class StaffParcelPst {
             }
         }
         staffParcelItf.getListParcel(StaffParceFgm.listFilter)
+    }
+
+    //hàm mới, để refesh lọc lại với id tìm kiếm
+    fun filterParcel2(req : StGetParcelReq, s : String){
+        println("trangthai: "+req.trangthai)
+        ApiParcelService.Api.api.staff_get_parcel(SplashActivity.token,req).enqueue(object : Callback<MainStaffParcelRes>{
+            override fun onResponse(call: Call<MainStaffParcelRes>, response: Response<MainStaffParcelRes>) {
+                println("????")
+                if(response.isSuccessful){
+                    StaffParceFgm.listParcel = response.body()!!.result as ArrayList<StaffGetParcelRes>
+                    getFilter2(s)
+                }
+            }
+
+            override fun onFailure(call: Call<MainStaffParcelRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getFilter2(s: String){
+        println("lọc")
+        StaffParceFgm.listFilter = ArrayList<StaffGetParcelRes>()
+        for(list in StaffParceFgm.listParcel){
+            if(list.mabk.toString().equals(s)){
+                StaffParceFgm.listFilter.add(list)
+            }
+        }
+        staffParcelItf.getListParcel(StaffParceFgm.listFilter)
+    }
+
+    fun getCancelInfor(id : Int){
+        ApiParcelService.Api.api.get_cancel_infor(SplashActivity.token, FullStatusDetailReq(id)).enqueue(object : Callback<MainCancelInforRes>{
+            override fun onResponse(call: Call<MainCancelInforRes>, response: Response<MainCancelInforRes>) {
+                if(response.isSuccessful){
+                    staffParcelItf.cancelInfor(response.body()!!.result.get(0))
+                }
+            }
+
+            override fun onFailure(call: Call<MainCancelInforRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
 }

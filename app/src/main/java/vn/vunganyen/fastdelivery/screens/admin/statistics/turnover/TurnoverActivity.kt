@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import vn.vunganyen.fastdelivery.R
 import vn.vunganyen.fastdelivery.data.adapter.AdapterTurnover
 import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
-import vn.vunganyen.fastdelivery.data.model.parcel.Statistics1Req
 import vn.vunganyen.fastdelivery.data.model.turnover.TurnoverReq
 import vn.vunganyen.fastdelivery.data.model.turnover.TurnoverRes
 import vn.vunganyen.fastdelivery.databinding.ActivityTurnoverBinding
-import vn.vunganyen.fastdelivery.screens.admin.home.HomeAdminActivity
-import vn.vunganyen.fastdelivery.screens.admin.statistics.statistics.StatisticItf
+import vn.vunganyen.fastdelivery.screens.admin.statistics.barChart.AdminBarChartActivity
 import vn.vunganyen.fastdelivery.screens.admin.statistics.statistics.StatisticsActivity
 import vn.vunganyen.fastdelivery.screens.admin.statistics.statistics.StatisticsPst
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -101,14 +99,14 @@ class TurnoverActivity : AppCompatActivity(), TurnoverItf {
             if (!strFrom.equals("")) {
                 val mdateFrom: Date =
                     SplashActivity.formatdate1.parse(binding.selectFrom.text.toString())
-                dateFrom = SplashActivity.formatdate.format(mdateFrom)
+                dateFrom = SplashActivity.formatdate.format(mdateFrom)+" 00:00:00"
                 println("dateFrom: " + dateFrom)
                 dateStr = SplashActivity.formatMonthYear.format(mdateFrom)
             }
             if (!strTo.equals("")) {
                 val mdateTo: Date =
                     SplashActivity.formatdate1.parse(binding.selectTo.text.toString())
-                dateTo = SplashActivity.formatdate.format(mdateTo)
+                dateTo = SplashActivity.formatdate.format(mdateTo)+" 23:59:59"
                 println("dateTo: " + dateTo)
                 dateEnd = SplashActivity.formatMonthYear.format(mdateTo)
             }
@@ -121,6 +119,11 @@ class TurnoverActivity : AppCompatActivity(), TurnoverItf {
             var intent = Intent(this, StatisticsActivity::class.java)
             intent.putExtra("dateFrom",dateFrom)
             intent.putExtra("dateTo",dateTo)
+            startActivity(intent)
+        }
+
+        binding.lnlStatisticsYear.setOnClickListener{
+            var intent = Intent(this, AdminBarChartActivity::class.java)
             startActivity(intent)
         }
     }

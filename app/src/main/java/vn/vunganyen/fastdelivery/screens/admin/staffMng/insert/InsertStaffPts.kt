@@ -9,6 +9,7 @@ import vn.vunganyen.fastdelivery.data.api.ApiStaffService
 import vn.vunganyen.fastdelivery.data.api.ApiWarehouseService
 import vn.vunganyen.fastdelivery.data.model.auth.AuthRegisterReq
 import vn.vunganyen.fastdelivery.data.model.auth.AuthRegisterRes
+import vn.vunganyen.fastdelivery.data.model.classSupport.MD5Hash
 import vn.vunganyen.fastdelivery.data.model.profile.MainProfileRes
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileReq
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileRes
@@ -20,6 +21,7 @@ import java.util.*
 
 class InsertStaffPts {
     var insertStaffItf: InsertStaffItf
+    var md5 : MD5Hash = MD5Hash()
 
     constructor(insertStaffItf: InsertStaffItf) {
         this.insertStaffItf = insertStaffItf
@@ -122,7 +124,7 @@ class InsertStaffPts {
                 if(response.isSuccessful){
                     var check = response.body()!!.result
                     if(check == true){
-                        insertStaffItf.CmndExist()
+                        insertStaffItf.AccountExist()
                     }
                     else validCheckUpdate(req2)
                 }
@@ -190,6 +192,8 @@ class InsertStaffPts {
     }
 
     fun insertAccount(req1 : AuthRegisterReq, req2 : ProfileRes, req3 : InsertShipperReq){
+        req1.matkhau = md5.md5Code(req1.matkhau)
+        println("mật khẩu: "+req1.matkhau)
         ApiAuthService.Api.api.registerAccount(SplashActivity.token,req1).enqueue(object : Callback<AuthRegisterRes>{
             override fun onResponse(call: Call<AuthRegisterRes>, response: Response<AuthRegisterRes>) {
                 if(response.isSuccessful){

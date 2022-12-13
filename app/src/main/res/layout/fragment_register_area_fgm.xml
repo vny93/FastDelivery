@@ -13,8 +13,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_15sdp"
-        android:backgroundTint="@color/color7"
-        app:cardCornerRadius="@dimen/_15sdp">
+        android:backgroundTint="@color/color7">
 
         <LinearLayout
             android:id="@+id/lnl_2"

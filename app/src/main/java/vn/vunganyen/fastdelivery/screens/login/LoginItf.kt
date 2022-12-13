@@ -4,4 +4,5 @@ interface LoginItf {
     fun loginEmpty()
     fun loginFail()
     fun loginSuccess()
+    fun loginLock()
 }

@@ -4,9 +4,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import vn.vunganyen.fastdelivery.data.api.ApiDetailParcelService
+import vn.vunganyen.fastdelivery.data.api.ApiParcelService
 import vn.vunganyen.fastdelivery.data.api.ApiShopService
 import vn.vunganyen.fastdelivery.data.model.detailParcel.GetDetailParcelReq
 import vn.vunganyen.fastdelivery.data.model.detailParcel.MainGetDetailParcelRes
+import vn.vunganyen.fastdelivery.data.model.parcel.FullStatusDetailReq
+import vn.vunganyen.fastdelivery.data.model.parcel.MainStatusDetailRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.MainGetShopDetailRes
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -43,6 +46,21 @@ class StaffParcelDetailPst {
             }
 
             override fun onFailure(call: Call<MainGetDetailParcelRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun fullStatusDetail(req : FullStatusDetailReq){
+        ApiParcelService.Api.api.full_status_detail(SplashActivity.token,req).enqueue(object : Callback<MainStatusDetailRes>{
+            override fun onResponse(call: Call<MainStatusDetailRes>, response: Response<MainStatusDetailRes>) {
+                if(response.isSuccessful){
+                    staffParcelDetailItf.fullStatusDetail(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainStatusDetailRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

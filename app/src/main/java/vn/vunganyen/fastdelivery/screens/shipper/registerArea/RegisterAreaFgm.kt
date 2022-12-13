@@ -36,7 +36,7 @@ class RegisterAreaFgm : Fragment(), RegisterAreaItf {
         idShipper = SplashActivity.profile.result.manv
         getData()
         setEvent()
-        callInvokeDeleteArea()
+        callInvokeUpdateArea()
         return binding.root
     }
 
@@ -60,13 +60,9 @@ class RegisterAreaFgm : Fragment(), RegisterAreaItf {
         }
     }
 
-    fun callInvokeDeleteArea(){
-        adapter.clickRemoveArea = {
-            id -> context?.let { it1 -> dialog.showStartDialog4(getString(R.string.mess_delete_area), it1) }
-            dialog.clickOk = { ->
-                var req = InsertAreaReq(idShipper,id)
-                registerAreaPst.deleteArea(req)
-            }
+    fun callInvokeUpdateArea(){
+        adapter.clickUpdateStatusArea = {
+            data ->  registerAreaPst.updateArea(data)
         }
     }
 
@@ -98,8 +94,8 @@ class RegisterAreaFgm : Fragment(), RegisterAreaItf {
         context?.let { it1 -> dialog.showStartDialog3(getString(R.string.mess_register_area_empty), it1) }
     }
 
-    override fun deleteSuccess() {
-        context?.let { it1 -> dialog.showStartDialog3(getString(R.string.RemoveStaffSuccess), it1) }
+    override fun updateSuccess() {
+        context?.let { it1 -> dialog.showStartDialog3(getString(R.string.UpdateSucces), it1) }
         getData()
     }
 

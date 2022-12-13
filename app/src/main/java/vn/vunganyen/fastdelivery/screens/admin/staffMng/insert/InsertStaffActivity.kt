@@ -135,7 +135,7 @@ class InsertStaffActivity : AppCompatActivity(),InsertStaffItf {
             println("quyền: "+ roleId)
             println("kho: "+ WarehouseId)
             var username = binding.edtUsernameStaff.text.toString()
-            var pass = md5.md5Code(binding.edtPasswordStaff.text.toString())
+            var pass = binding.edtPasswordStaff.text.toString()
             reqAuth = AuthRegisterReq(username,pass,roleId)
             reqStaff = ProfileRes(id.toUpperCase(),cmnd,name,gender,strDate,phone,email,address,WarehouseId,username)
             reqShipper = InsertShipperReq(id.toUpperCase(),cmnd,name,gender,strDate,phone,email,address,username)

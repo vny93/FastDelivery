@@ -18,6 +18,7 @@ import vn.vunganyen.fastdelivery.data.model.detailStatus.CountRes
 import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusReq
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
+import vn.vunganyen.fastdelivery.data.model.parcel.CancelInforRes
 import vn.vunganyen.fastdelivery.data.model.parcel.StGetParcelReq
 import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.parcel.StaffGetParcelRes
@@ -28,8 +29,10 @@ import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaRes
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
+import vn.vunganyen.fastdelivery.data.model.warehouse.GetDetailWHReq
 import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
+import vn.vunganyen.fastdelivery.databinding.DialogCancelInforBinding
 import vn.vunganyen.fastdelivery.databinding.DialogChooseShipperBinding
 import vn.vunganyen.fastdelivery.databinding.FragmentStaffParceBinding
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -52,7 +55,9 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     var listDistrictName = ArrayList<String>()
     var listWardstName = ArrayList<String>()
     lateinit var dialog2: Dialog
+    lateinit var dialog3: Dialog
     lateinit var bindingDialog : DialogChooseShipperBinding
+    lateinit var bindingDialogCancel: DialogCancelInforBinding
     var m_status = ""
     companion object{
         var listParcel = ArrayList<StaffGetParcelRes>()
@@ -72,13 +77,19 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         callInvokeRadio()
         callInvokeGetCustomer()
         callInvokeConfirmSuccess()
+        callInvokeReturn()
+        callInvokeCancelInfor()
         dialog2 = context?.let { Dialog(it) }!!
+        dialog3 = context?.let { Dialog(it) }!!
         bindingDialog = DialogChooseShipperBinding.inflate(layoutInflater)
+        bindingDialogCancel = DialogCancelInforBinding.inflate(layoutInflater)
         dialog2.setContentView(bindingDialog.root)
+        dialog3.setContentView(bindingDialogCancel.root)
         return binding.root
     }
 
     fun getData() {
+        staffParcelPst.getWarehouseDetail(GetDetailWHReq(idWarehouse))
         staffParcelPst.getListStatus()
         staffParcelPst.getDistrict()
         var req = StGetParcelReq(idWarehouse, adress, status)
@@ -101,9 +112,12 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             }
             else if(data.tentrangthai.equals("Khách hàng hủy")){
                 println("xác nhận hoàn trả")
-                staffParcelPst.getIdStatus(GetIdStatusReq("Hoàn trả"), data)
+                staffParcelPst.getIdStatus(GetIdStatusReq("Đang lưu kho chờ hoàn trả"), data)
             }
-
+            else if(data.tentrangthai.equals("Hoàn trả thành công")){
+                println("xác nhận hoàn trả thành công")
+                staffParcelPst.getIdStatus(GetIdStatusReq("Hoàn tất hoàn trả"), data)
+            }
         }
     }
 
@@ -156,15 +170,28 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     fun callInvokeConfirmSuccess(){
         adapter.clickOutWarehouse = { data ->
             idShipper = data.mashipper
-            staffParcelPst.getIdStatus(GetIdStatusReq("Đang giao hàng"), data)
+            if(data.tentrangthai.equals("Đang xuất kho")){
+                staffParcelPst.getIdStatus(GetIdStatusReq("Đang giao hàng"), data)
+            }
+            else if(data.tentrangthai.equals("Đang xuất kho hoàn trả")){
+                staffParcelPst.getIdStatus(GetIdStatusReq("Đang hoàn trả"), data)
+            }
+           // idShipper = data.mashipper
+           // staffParcelPst.getIdStatus(GetIdStatusReq("Đang giao hàng"), data)
         }
     }
 
     fun callInvokeReturn() {
-        adapter.clickGetTheShop = { data ->
+        adapter.clickReturn = { data ->
             dataParcel = data
             m_status = "Chờ hoàn trả"
             staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
+        }
+    }
+
+    fun callInvokeCancelInfor(){
+        adapter.clickCancelInfor = { data ->
+            staffParcelPst.getCancelInfor(data.mabk)
         }
     }
 
@@ -185,6 +212,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             adress = adapterView.getItemAtPosition(i).toString()
             if (adress.equals("Tất cả")) {
                 adress = ""
+                wards = ""
                 val mlist = mutableListOf("")
                 mlist.clear()
                 setAdapterWards(mlist)
@@ -203,10 +231,17 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         }))
 
         binding.spinnerWards.setOnItemClickListener(({ adapterView, view, i, l ->
-            wards = adapterView.getItemAtPosition(i).toString() + ", " + adress
-            println("adress: " + wards)
-            var req = StGetParcelReq(idWarehouse, wards, status)
-            staffParcelPst.filterParcel(req)
+            if(adapterView.getItemAtPosition(i).toString().equals("Tất cả")){
+                wards = ""
+                var req = StGetParcelReq(idWarehouse, adress, status)
+                staffParcelPst.filterParcel(req)
+            }
+            else{
+                wards = adapterView.getItemAtPosition(i).toString() + ", " + adress
+                println("adress: " + wards)
+                var req = StGetParcelReq(idWarehouse, wards, status)
+                staffParcelPst.filterParcel(req)
+            }
         }))
 
         binding.spinnerStatus.setOnItemClickListener(({ adapterView, view, i, l ->
@@ -225,11 +260,41 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         }
 
         binding.refresh.setOnClickListener{
-            var req = StGetParcelReq(idWarehouse, "", "")
+            println("idWarehouse: "+idWarehouse)
+            println("adress: "+adress)
+            println("wards: "+wards)
+            println("status: "+status)
+            var s = binding.edtSearchId.text.toString()
+            if(wards.equals("")){
+                var req = StGetParcelReq(idWarehouse, adress, status)
+                if(s.equals("")){
+                    staffParcelPst.filterParcel(req)
+                }
+                else{
+                    staffParcelPst.filterParcel2(req,s)
+                }
+            }
+            else{
+                var req = StGetParcelReq(idWarehouse, wards, status)
+                if(s.equals("")){
+                    staffParcelPst.filterParcel(req)
+                }
+                else{
+                    staffParcelPst.filterParcel2(req,s)
+                }
+            }
+       /*     var req = StGetParcelReq(idWarehouse, "", "")
             staffParcelPst.filterParcel(req)
+
+//            var idParcel = binding.edtSearchId.text.toString()
+//            staffParcelPst.filterParcel2(req,idParcel)
+
             binding.spinnerDistrict.setText("",false)
             binding.spinnerStatus.setText("",false)
             binding.spinnerWards.setText("",false)
+
+//            println(binding.edtSearchId.text.toString())
+//            staffParcelPst.getFilter(binding.edtSearchId.text.toString())*/
         }
     }
 
@@ -278,6 +343,30 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         dialog2.show()
     }
 
+    fun showDialogCancelInfor(gravity : Int, res : CancelInforRes){
+        val window = dialog3.window ?: return
+        window.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+
+        val windowAttributes = window.attributes
+        windowAttributes.gravity = gravity
+        window.attributes = windowAttributes
+
+        if (Gravity.CENTER == gravity) {
+            dialog3.setCancelable(true)
+        } else {
+            dialog3.setCancelable(true)
+        }
+
+        bindingDialogCancel.tvStatus.setText(res.tentrangthai)
+        bindingDialogCancel.tvId.setText(res.mashipper)
+        bindingDialogCancel.tvName.setText(res.hoten)
+        bindingDialogCancel.tvPhone.setText(res.sdt)
+        dialog3.show()
+    }
+
     override fun getListStatus(list: List<ListStatusRes>) {
         listStatus.add("Tất cả")
         for (i in 0..list.size - 1) {
@@ -316,6 +405,10 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         setAdapterWards(listWardstName)
     }
 
+    override fun getWarehouseDetail(req: WarehouseRes) {
+        binding.tvWarehouseName.setText(req.tenkho)
+    }
+
     override fun getIdStatus(res: GetIdStatusRes, req2: StaffGetParcelRes) {
         println("mã trạng thái: " + res.matrangthai)
         staffParcelPst.addDetailStatus(
@@ -325,8 +418,40 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     }
 
     override fun addDetailStatus() {
-        var req = StGetParcelReq(idWarehouse, adress, status)
+        println("idWarehouse2: "+idWarehouse)
+        println("adress2: "+adress)
+        println("wards2: "+wards)
+        println("status2: "+status)
+        var s = binding.edtSearchId.text.toString()
+        println("s2: "+s)
+        if(wards.equals("")){
+            var req = StGetParcelReq(idWarehouse, adress, status)
+            if(s.equals("")){
+                staffParcelPst.filterParcel(req)
+            }
+            else{
+                staffParcelPst.filterParcel2(req,s)
+            }
+        }
+        else{
+            var req = StGetParcelReq(idWarehouse, wards, status)
+            if(s.equals("")){
+                staffParcelPst.filterParcel(req)
+            }
+            else{
+                staffParcelPst.filterParcel2(req,s)
+            }
+            //   staffParcelPst.filterParcel(req)
+            //   staffParcelPst.filterParcel2(req,s)
+        }
+
+     /*   var req = StGetParcelReq(idWarehouse, adress, status)
         staffParcelPst.filterParcel(req)
+      */
+//        var req = StGetParcelReq(idWarehouse, "", "")
+//        //    staffParcelPst.filterParcel(req)
+//        var idParcel = binding.edtSearchId.text.toString()
+//        staffParcelPst.filterParcel2(req,idParcel)
         idShipper = ""
     }
 
@@ -371,8 +496,12 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             staffParcelPst.getIdStatus(GetIdStatusReq("Đang lưu kho"), data)
         }
         else{
-            staffParcelPst.getIdStatus(GetIdStatusReq("Hoàn trả"), data)
+            staffParcelPst.getIdStatus(GetIdStatusReq("Đang lưu kho chờ hoàn trả"), data)
         }
+    }
+
+    override fun cancelInfor(res: CancelInforRes) {
+        showDialogCancelInfor(Gravity.CENTER,res)
     }
 
     fun getStrAdress(mstr : String): String{
@@ -393,7 +522,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     override fun getShipperArea(list: List<ShipperAreaRes>, status : String) {
         var title = ""
         if(status.equals("Đang lấy hàng")) title = "Số lượng bưu kiện đang giao lấy"
-        else title = "Số lượng bưu kiện đang giao khách"
+        else title = "Số lượng bưu kiện đang giao"
         showDialogShipper(Gravity.CENTER, list, m_status,title)
     }
 

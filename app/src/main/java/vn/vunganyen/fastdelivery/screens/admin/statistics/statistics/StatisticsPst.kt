@@ -35,22 +35,37 @@ class StatisticsPst {
     }
 
     fun getStatistics2(req : Statistics2Req){
-        ApiParcelService.Api.api.admin_statistics2(SplashActivity.token,req).enqueue(object : Callback<MainStatistics2Res>{
-            override fun onResponse(call: Call<MainStatistics2Res>, response: Response<MainStatistics2Res>) {
+        ApiParcelService.Api.api.admin_statistics2(SplashActivity.token,req).enqueue(object : Callback<MainStatistics1Res>{
+            override fun onResponse(call: Call<MainStatistics1Res>, response: Response<MainStatistics1Res>) {
                 if(response.isSuccessful){
                     if(req.trangthai.equals(tt1)){
-                        statisticItf.getTt2(response.body()!!.result)
+                        statisticItf.success(response.body()!!.result)
                     }
                     else if(req.trangthai.equals(tt2)){
-                        statisticItf.getTt3(response.body()!!.result)
+                        statisticItf.fail(response.body()!!.result)
                     }
                     else{
-                        statisticItf.getTt4(response.body()!!.result)
+                        statisticItf.toReturn(response.body()!!.result)
                     }
                 }
             }
 
-            override fun onFailure(call: Call<MainStatistics2Res>, t: Throwable) {
+            override fun onFailure(call: Call<MainStatistics1Res>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getStatistics3(req: Statistics1Req){
+        ApiParcelService.Api.api.admin_statistics3(SplashActivity.token,req).enqueue(object : Callback<MainStatistics1Res>{
+            override fun onResponse(call: Call<MainStatistics1Res>, response: Response<MainStatistics1Res>) {
+                if(response.isSuccessful){
+                    statisticItf.shipping(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainStatistics1Res>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

@@ -3,17 +3,22 @@ package vn.vunganyen.fastdelivery.screens.admin.staffMng.update
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import vn.vunganyen.fastdelivery.data.api.ApiDistrictService
-import vn.vunganyen.fastdelivery.data.api.ApiStaffService
+import vn.vunganyen.fastdelivery.data.api.*
+import vn.vunganyen.fastdelivery.data.model.auth.UpdateStatusAuthReq
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
+import vn.vunganyen.fastdelivery.data.model.parcel.MainShipperStatistics
+import vn.vunganyen.fastdelivery.data.model.parcel.ShipperStatisticsReq
+import vn.vunganyen.fastdelivery.data.model.salary.*
 import vn.vunganyen.fastdelivery.data.model.staff.*
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
+import java.text.SimpleDateFormat
 import java.util.*
 
 class UpdateStaffPst {
     var updateStaffItf : UpdateStaffItf
+    var c =  GregorianCalendar(TimeZone.getTimeZone("GMT+7"))
 
     constructor(updateStaffItf: UpdateStaffItf) {
         this.updateStaffItf = updateStaffItf
@@ -155,6 +160,118 @@ class UpdateStaffPst {
             }
 
             override fun onFailure(call: Call<DistrictRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun updateStatus(req : UpdateStatusAuthReq){
+        ApiAuthService.Api.api.updateStatusAuth(SplashActivity.token, req).enqueue(object : Callback<UpdateRes>{
+            override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
+                if(response.isSuccessful){
+                    if(req.trangthai == 0){
+                        updateStaffItf.activeAccount()
+                    }
+                    else updateStaffItf.lockAccount()
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun checkSalary(req : CheckSalaryReq){
+        ApiSalaryService.Api.api.check_salary(SplashActivity.token,req).enqueue(object : Callback<CheckSalaryRes>{
+            override fun onResponse(call: Call<CheckSalaryRes>, response: Response<CheckSalaryRes>) {
+                if(response.isSuccessful){
+                    var check = response.body()!!.result
+                    if(check == true){
+                        val formatDate = SimpleDateFormat("yyyy-MM")
+                        var mdate: Date = formatDate.parse(req.mdate)
+                        c.clear()
+                        c.time = mdate
+                        c.add(Calendar.HOUR_OF_DAY, 7)
+                        c.roll(Calendar.MONTH,-1)
+                        var strDate = formatDate.format(c.time)
+                        updateStaffItf.checkSalaryExist(strDate)
+                    }
+                    else{
+                        updateStaffItf.checkSalaryNotExist()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<CheckSalaryRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun findEndOfMonth(cal: Calendar) : Calendar {
+        cal.add(Calendar.MONTH, 1);
+        cal.add(Calendar.DATE, -1)
+        System.out.println("Start of the next month:  " + cal.getTime());
+        return cal
+    }
+
+    fun shipperStatistics(req : ShipperStatisticsReq){
+        ApiParcelService.Api.api.shipper_statistics(SplashActivity.token,req).enqueue(object : Callback<MainShipperStatistics>{
+            override fun onResponse(call: Call<MainShipperStatistics>, response: Response<MainShipperStatistics>) {
+                if(response.isSuccessful){
+                    updateStaffItf.getListSuccess(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainShipperStatistics>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun addSalaryStaff(req : AddSalaryStaffReq){
+        ApiSalaryService.Api.api.add_salary_staff(SplashActivity.token,req).enqueue(object : Callback<UpdateRes>{
+            override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
+                if(response.isSuccessful){
+                    var mdate: Date = SplashActivity.formatdate.parse(req.ngaynhan)
+                    c.clear()
+                    c.time = mdate
+                    c.add(Calendar.HOUR_OF_DAY, 7)
+                    c.roll(Calendar.MONTH,-1)
+                    val formatDate = SimpleDateFormat("yyyy-MM")
+                    var strDate = formatDate.format(c.time)
+                    updateStaffItf.addSalaryStaff(strDate)
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun addSalaryShipper(req : AddSalaryShipperReq){
+        ApiSalaryService.Api.api.add_salary_shipper(SplashActivity.token,req).enqueue(object : Callback<UpdateRes>{
+            override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
+                if(response.isSuccessful){
+                    var mdate: Date = SplashActivity.formatdate.parse(req.ngaynhan)
+                    c.clear()
+                    c.time = mdate
+                    c.add(Calendar.HOUR_OF_DAY, 7)
+                    c.roll(Calendar.MONTH,-1)
+                    val formatDate = SimpleDateFormat("yyyy-MM")
+                    var strDate = formatDate.format(c.time)
+                    updateStaffItf.addSalaryShipper(strDate)
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

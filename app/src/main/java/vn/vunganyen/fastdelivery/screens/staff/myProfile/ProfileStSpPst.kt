@@ -79,7 +79,10 @@ class ProfileStSpPst {
                         profileStSpItf.CheckSuccess()
                     }
                     else{
+                        println(ProfileStSpActivity.profileStSp.sdt)
+                        println(check)
                         if(ProfileStSpActivity.profileStSp.sdt.equals(check)){
+                            println("vô đây á ?")
                             profileStSpItf.CheckSuccess()
                         }
                         else  profileStSpItf.PhoneExist()

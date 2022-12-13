@@ -124,8 +124,13 @@ dependencies {
     //badge
     implementation 'com.nex3z:notification-badge:1.0.4'
 
-    //chart
+    //chart pie
     implementation ("androidx.multidex:multidex:2.0.1")
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    //chart bar
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    //map
+    implementation 'com.google.maps.android:android-maps-utils:0.4+'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 }

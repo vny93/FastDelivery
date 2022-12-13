@@ -3,10 +3,7 @@ package vn.vunganyen.fastdelivery.data.api
 import retrofit2.Call
 import retrofit2.http.*
 import vn.vunganyen.fastdelivery.data.model.area.MainGetListAreaRes
-import vn.vunganyen.fastdelivery.data.model.detailRegister.GetAreaShipperReq
-import vn.vunganyen.fastdelivery.data.model.detailRegister.InsertAreaReq
-import vn.vunganyen.fastdelivery.data.model.detailRegister.InsertAreaRes
-import vn.vunganyen.fastdelivery.data.model.detailRegister.MainAreaShipperRes
+import vn.vunganyen.fastdelivery.data.model.detailRegister.*
 import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusReq
 import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusRes
 import vn.vunganyen.fastdelivery.data.model.mass.MainMassRes
@@ -34,6 +31,9 @@ interface ApiDetailRegisterService {
 
     @POST("v2/detailRegister/delete")
     fun deleteAreaShipper(@Header("Authorization") BearerToken: String, @Body req: InsertAreaReq):Call<UpdateRes>
+
+    @POST("v2/detailRegister/update/status")
+    fun updateAreaShipper(@Header("Authorization") BearerToken: String, @Body req: UpdateAreaShipperReq):Call<UpdateRes>
 
 
     object Api {

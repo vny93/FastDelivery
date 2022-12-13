@@ -24,6 +24,7 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
     var clickGetCustomer: ((data : StaffGetParcelRes)->Unit)?=null
     var clickOutWarehouse: ((data : StaffGetParcelRes)->Unit)?=null
     var clickReturn: ((data : StaffGetParcelRes)->Unit)?=null
+    var clickCancelInfor : ((data : StaffGetParcelRes)->Unit)?=null
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<StaffGetParcelRes>) {
         this.listData = list
@@ -39,30 +40,33 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
         fun bindItem(data: StaffGetParcelRes) {
             binding.tvstIdPc.setText("Mã: " + data.mabk.toString())
             binding.tvstStatusPc.setText(data.tentrangthai)
-            binding.tvstNamePc.setText(data.hotennguoinhan)
-            binding.tvstPhonePc.setText(data.sdtnguoinhan)
+            binding.tvstNamePc.setText("Người nhận: "+data.hotennguoinhan)
+            binding.tvstPhonePc.setText("SDT: "+data.sdtnguoinhan)
             binding.tvstDeliveryPc.setText(data.htvanchuyen)
             var mdate: Date = SplashActivity.formatdate2.parse(data.ngaygui)
             c.time = mdate
-            c.add(Calendar.DATE, 1) // number of days to add
+            c.add(Calendar.HOUR_OF_DAY, 7)
+         //   c.add(Calendar.DATE, 1) // number of days to add
             var strDate2 = SplashActivity.formatdate4.format(c.time)
-            binding.tvstDatePc.setText(strDate2)
+            binding.tvstDatePc.setText("Ngày cửa hàng gửi: "+strDate2)
 
             if(data.idcheck == 1){
                 if(data.tentrangthai.equals("Chờ xác nhận") || data.tentrangthai.equals("Giao hàng thành công") ||
-                    data.tentrangthai.equals("Giao hàng thất bại") ||  data.tentrangthai.equals("Khách hàng hủy")){
+                    data.tentrangthai.equals("Giao hàng thất bại") ||  data.tentrangthai.equals("Khách hàng hủy") ||
+                    data.tentrangthai.equals("Hoàn trả thành công") ){
                     binding.btnstActionPc.setText("Xác nhận")
 
                 }else if(data.tentrangthai.equals("Đã xác nhận") || data.tentrangthai.equals("Từ chối lấy hàng") ||
                     data.tentrangthai.equals("Đang lưu kho") || data.tentrangthai.equals("Từ chối giao hàng") ||
-                        data.tentrangthai.equals("Hoàn trả")){
+                    data.tentrangthai.equals("Đang lưu kho chờ hoàn trả") || data.tentrangthai.equals("Từ chối hoàn trả")){
                     binding.btnstActionPc.setText("Giao")
 
                 }else if(data.tentrangthai.equals("Lấy hàng thành công") || data.tentrangthai.equals("Đã chuyển kho")){
                     if(!data.htvanchuyen.equals("Giao hàng trong 2h")){
                         binding.btnstActionPc.setText("Lưu kho")
                     }
-                }else if(data.tentrangthai.equals("Đang xuất kho")) {
+                    else binding.btnstActionPc.visibility = View.GONE
+                }else if(data.tentrangthai.equals("Đang xuất kho") || data.tentrangthai.equals("Đang xuất kho hoàn trả")) {
                     binding.btnstActionPc.setText("Xuất kho")
                 }else{
                     binding.btnstActionPc.visibility = View.GONE
@@ -109,7 +113,7 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
                 if(data.tentrangthai.equals("Đã xác nhận") || data.tentrangthai.equals("Từ chối lấy hàng")){
                     clickGetTheShop?.invoke(data)
                 }
-                else if(data.tentrangthai.equals("Hoàn trả")){
+                else if(data.tentrangthai.equals("Đang lưu kho chờ hoàn trả") || data.tentrangthai.equals("Từ chối hoàn trả")){
                     clickReturn?.invoke(data)
                 }
                 else{
@@ -121,6 +125,12 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
             }
             else if(holder.binding.btnstActionPc.text.equals("Xuất kho")){
                 clickOutWarehouse?.invoke(data)
+            }
+        }
+        holder.binding.tvstStatusPc.setOnClickListener{
+            if(data.tentrangthai.equals("Từ chối lấy hàng") || data.tentrangthai.equals("Từ chối giao hàng")
+                || data.tentrangthai.equals("Từ chối hoàn trả")){
+                clickCancelInfor?.invoke(data)
             }
         }
 

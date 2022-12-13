@@ -18,6 +18,8 @@ import vn.vunganyen.fastdelivery.databinding.ActivityLoginBinding
 import vn.vunganyen.fastdelivery.screens.admin.home.HomeAdminActivity
 import vn.vunganyen.fastdelivery.screens.forgotPassword.ForgotPasswordActivity
 import vn.vunganyen.fastdelivery.screens.shipper.home.HomeShipperActivity
+import vn.vunganyen.fastdelivery.screens.shop.homeShop.HomeShopActivity
+import vn.vunganyen.fastdelivery.screens.shop.registerShop.ShopRegisterActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import vn.vunganyen.fastdelivery.screens.staff.home.HomeStaffActivity
 import java.util.*
@@ -50,7 +52,8 @@ class LoginActivity : AppCompatActivity(), LoginItf {
         }
 
         binding.btnRegister.setOnClickListener{
-
+            var intent = Intent(this, ShopRegisterActivity::class.java)
+            startActivity(intent)
         }
 
         binding.forgotPassword.setOnClickListener{
@@ -130,6 +133,10 @@ class LoginActivity : AppCompatActivity(), LoginItf {
         dialog.showStartDialog3(getString(R.string.wrong_account), this)
     }
 
+    override fun loginLock() {
+        dialog.showStartDialog3(getString(R.string.lock_account), this)
+    }
+
     override fun loginSuccess() {
         SplashActivity.editor.commit()
         if(SplashActivity.roleId == SplashActivity.ADMIN){
@@ -145,7 +152,8 @@ class LoginActivity : AppCompatActivity(), LoginItf {
             startActivity(intent)
         }
         else{
-            //view store
+            var intent = Intent(this, HomeShopActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg7"
     android:id="@+id/lnl_home"
+    android:background="@drawable/bg7"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/_5sdp"
+        android:background="@color/color_main"
         android:orientation="horizontal">
 
         <TextView
@@ -20,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_13sdp"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:text="@string/tv_home_role_sp"/>
 
@@ -29,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="@dimen/_13sdp"
             android:text="@string/pf_name"/>
@@ -39,8 +40,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/color7"
-        app:cardElevation="@dimen/_20sdp">
+        android:backgroundTint="@color/color7">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +50,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_minus5sdp"
         android:orientation="horizontal">
 
@@ -61,7 +60,7 @@
             android:textSize="@dimen/_13sdp"
             android:enabled="false"
             android:textStyle="italic"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/black"
             android:text="@string/title_adress"/>
 
         <TextView
@@ -71,7 +70,7 @@
             android:textSize="@dimen/_13sdp"
             android:enabled="false"
             android:textStyle="italic"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/black"
             android:text="@string/title_address2"/>
 
 
@@ -131,8 +130,9 @@
         android:layout_marginBottom="@dimen/_minus15sdp"
         android:layout_marginEnd="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_minus3sdp"
         android:textStyle="italic"
-        android:textColor="@color/dark_green"
+        android:textColor="@color/black"
         android:textSize="@dimen/_12sdp"
         android:text="@string/tv_status" />
 
@@ -177,7 +177,7 @@
         android:layout_height="@dimen/_25sdp"
         android:layout_marginStart="@dimen/_280sdp"
         android:layout_marginTop="@dimen/_minus25sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
         android:background="@drawable/ic_baseline_refresh_24"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -185,7 +185,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_listParcel"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_350sdp"
+        android:layout_height="@dimen/_330sdp"
         android:layout_marginTop="@dimen/_5sdp"/>
 
 </LinearLayout>

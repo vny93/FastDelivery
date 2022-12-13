@@ -3,8 +3,10 @@ package vn.vunganyen.fastdelivery.screens.admin.shopMng.update
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import vn.vunganyen.fastdelivery.data.api.ApiAuthService
 import vn.vunganyen.fastdelivery.data.api.ApiDistrictService
 import vn.vunganyen.fastdelivery.data.api.ApiShopService
+import vn.vunganyen.fastdelivery.data.model.auth.UpdateStatusAuthReq
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
@@ -69,7 +71,7 @@ class UpdateShopMngPst {
     }
 
     fun checkPhoneExist(req : UpdateShopReq){
-        ApiShopService.Api.api.checkPhone(SplashActivity.token, CheckPhoneReq(req.sdt)).enqueue(object : Callback<CheckProfileRes>{
+        ApiShopService.Api.api.checkPhone(CheckPhoneReq(req.sdt)).enqueue(object : Callback<CheckProfileRes>{
             override fun onResponse(call: Call<CheckProfileRes>, response: Response<CheckProfileRes>) {
                 if(response.isSuccessful){
                     var check = response.body()!!.result
@@ -92,7 +94,7 @@ class UpdateShopMngPst {
     }
 
     fun checkEmailExist(req : UpdateShopReq){
-        ApiShopService.Api.api.checkEmail(SplashActivity.token, CheckEmailReq(req.email)).enqueue(object : Callback<CheckProfileRes>{
+        ApiShopService.Api.api.checkEmail(CheckEmailReq(req.email)).enqueue(object : Callback<CheckProfileRes>{
             override fun onResponse(call: Call<CheckProfileRes>, response: Response<CheckProfileRes>) {
                 if(response.isSuccessful){
                     var check = response.body()!!.result
@@ -119,6 +121,24 @@ class UpdateShopMngPst {
             override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
                 if(response.isSuccessful){
                     updateShopMngItf.UpdateSucces()
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun updateStatus(req : UpdateStatusAuthReq){
+        ApiAuthService.Api.api.updateStatusAuth(SplashActivity.token, req).enqueue(object : Callback<UpdateRes>{
+            override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
+                if(response.isSuccessful){
+                    if(req.trangthai == 0){
+                        updateShopMngItf.activeAccount()
+                    }
+                    else updateShopMngItf.lockAccount()
                 }
             }
 

@@ -9,7 +9,7 @@
         android:id="@+id/lnl_custom_staff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/image3"
+        android:background="@drawable/bg7"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
@@ -28,16 +28,16 @@
 
             <androidx.cardview.widget.CardView
                 style="@style/style_cardview_itemProductType2"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_2sdp"
                 app:cardElevation="@dimen/_20sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/color_blue"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -153,15 +153,15 @@
 
             <androidx.cardview.widget.CardView
                 style="@style/style_cardview_itemProductType2"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_2sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/color_blue"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -207,7 +207,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/tv_name_pc"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
 
                             </LinearLayout>
@@ -234,7 +234,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/tv_phone_pc"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
 
                             </LinearLayout>
@@ -262,7 +262,7 @@
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:text="@string/title_address3"
-                                    android:textColor="@color/dark_green"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_13sdp" />
                             </LinearLayout>
 
@@ -277,15 +277,15 @@
 
             <androidx.cardview.widget.CardView
                 style="@style/style_cardview_itemProductType2"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_10sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/color_blue"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -295,7 +295,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:text="@string/information"
-                        android:textColor="@color/dark_green"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -468,15 +468,15 @@
 
             <androidx.cardview.widget.CardView
                 style="@style/style_cardview_itemProductType2"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/green2"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -485,16 +485,16 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="@string/list_product"
-                        android:textColor="@color/dark_green"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcv_listDetailParcel"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_200sdp"
-                        android:background="@color/white"
-                        android:layout_marginTop="@dimen/_5sdp"/>
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@color/white" />
 
                 </LinearLayout>
 
@@ -504,14 +504,14 @@
             <androidx.cardview.widget.CardView
                 style="@style/style_cardview_itemProductType2"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_20sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/green2"
+                    android:background="@color/color7"
                     android:orientation="vertical">
 
                     <TextView
@@ -520,7 +520,7 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:text="@string/deltai_status"
-                        android:textColor="@color/dark_green"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 

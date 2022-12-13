@@ -8,5 +8,5 @@ interface RegisterAreaItf {
     fun addSuccess()
     fun registerExist()
     fun Empty()
-    fun deleteSuccess()
+    fun updateSuccess()
 }

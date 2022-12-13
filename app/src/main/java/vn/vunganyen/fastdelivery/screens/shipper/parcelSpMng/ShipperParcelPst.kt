@@ -3,16 +3,14 @@ package vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import vn.vunganyen.fastdelivery.data.api.ApiDistrictService
-import vn.vunganyen.fastdelivery.data.api.ApiParcelService
-import vn.vunganyen.fastdelivery.data.api.ApiStatusService
-import vn.vunganyen.fastdelivery.data.api.ApiWayService
+import vn.vunganyen.fastdelivery.data.api.*
 import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusReq
 import vn.vunganyen.fastdelivery.data.model.detailStatus.DetailStatusRes
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
 import vn.vunganyen.fastdelivery.data.model.parcel.*
+import vn.vunganyen.fastdelivery.data.model.petshop.UpdateCartStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.MainGetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.MainListStatusRes
@@ -185,10 +183,53 @@ class ShipperParcelPst {
         })
     }
 
+    fun updateStatus(req: UpdateCartStatusReq){
+        ApiCartPetShopSevice.Api.api.updateCartStatus(req).enqueue(object : Callback<UpdateRes>{
+            override fun onResponse(call: Call<UpdateRes>, response: Response<UpdateRes>) {
+                if(response.isSuccessful){
+                   // shipperParcelItf.updateCartStatus()
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
     fun getFilter(s: String){
         ShipperParcelFgm.listFilter = ArrayList<SpGetParcelRes>()
         for(list in ShipperParcelFgm.listParcel){
             if(list.mabk.toString().toUpperCase().contains(s.toUpperCase())){
+                ShipperParcelFgm.listFilter.add(list)
+            }
+        }
+        shipperParcelItf.getListParcel(ShipperParcelFgm.listFilter)
+    }
+
+    fun filterParcel2(req : SpGetParcelReq, s : String){
+        println("vô")
+        ApiParcelService.Api.api.shipper_get_parcel(SplashActivity.token,req).enqueue(object : Callback<MainSpGetParcelRes>{
+            override fun onResponse(call: Call<MainSpGetParcelRes>, response: Response<MainSpGetParcelRes>) {
+                if(response.isSuccessful){
+                    println("????")
+                    ShipperParcelFgm.listParcel = response.body()!!.result as ArrayList<SpGetParcelRes>
+                    getFilter2(s)
+                }
+            }
+
+            override fun onFailure(call: Call<MainSpGetParcelRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getFilter2(s: String){
+        ShipperParcelFgm.listFilter = ArrayList<SpGetParcelRes>()
+        for(list in ShipperParcelFgm.listParcel){
+            if(list.mabk.toString().equals(s)){
                 ShipperParcelFgm.listFilter.add(list)
             }
         }

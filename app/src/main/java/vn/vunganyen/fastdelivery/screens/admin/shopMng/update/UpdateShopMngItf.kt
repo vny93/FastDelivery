@@ -12,4 +12,6 @@ interface UpdateShopMngItf {
     fun PhoneExist()
     fun EmailExist()
     fun UpdateSucces()
+    fun lockAccount()
+    fun activeAccount()
 }
