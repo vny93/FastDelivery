@@ -32,7 +32,7 @@ class StartAlertDialog {
             .setTitle("")
             .setMessage(str)
             .setCancelable(false)
-            .setPositiveButton("Cancel", DialogInterface.OnClickListener {
+            .setPositiveButton("Đóng", DialogInterface.OnClickListener {
                     dialog, id -> dialog.dismiss()
             })
             .create().show()
@@ -43,10 +43,10 @@ class StartAlertDialog {
             .setTitle("")
             .setMessage(str)
             .setCancelable(false)
-            .setPositiveButton("OK", DialogInterface.OnClickListener {
+            .setPositiveButton("Xác nhận", DialogInterface.OnClickListener {
                     dialog, id -> clickOk?.invoke()
             })
-            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
+            .setNegativeButton("Hủy", DialogInterface.OnClickListener {
                     dialog, id -> dialog.cancel()
             })
             .create().show()

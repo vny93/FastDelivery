@@ -94,7 +94,7 @@ class AdminBarChartActivity : AppCompatActivity(), AdminBarChartItf {
         var barData = BarData(barDataSet)
         binding.barChart.setFitBars(true)
         binding.barChart.data = barData
-        binding.barChart.description.text = "Bar Chart Example"
+        binding.barChart.description.text = "Biểu đồ cột"
      //   binding.barChart.animateY(2000)
     }
 

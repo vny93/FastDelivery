@@ -97,8 +97,8 @@ class LoginActivity : AppCompatActivity(), LoginItf {
     fun getListData(): List<Photo>{
         var list = ArrayList<Photo>()
         list.add(Photo(R.drawable.pn1))
-        list.add(Photo(R.drawable.pn2))
-        list.add(Photo(R.drawable.pn3))
+        list.add(Photo(R.drawable.pn5))
+        list.add(Photo(R.drawable.pn6))
         list.add(Photo(R.drawable.pn4))
         return list
     }

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".screens.admin.parcelMng.assignment.AssignmentMngActivity">
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+
+    <LinearLayout
+        android:id="@+id/lnl_custom_staff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
 
@@ -194,6 +199,84 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/tv_collection_shop"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:gravity="center"
+            android:textStyle="italic" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:text="@string/tv_id"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textStyle="italic" />
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:text="@string/tv_shopId"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textStyle="italic" />
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:text="@string/pf_shop_name"
+                android:textColor="@color/black"
+                android:textStyle="italic" />
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:text="@string/tv_price_collection"
+                android:textColor="@color/black"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_list_collection"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_10sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                style="@style/style_textview_login2"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/tv_sum_collection"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/sum_money"
+                style="@style/style_textview_login2"
+                android:layout_marginStart="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_weight="1.5"
+                android:gravity="right"
+                android:text="@string/sum_price"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_15sdp" />
+
+        </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

@@ -68,6 +68,7 @@
         <entry key="app/src/main/res/layout/activity_price.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile_shop.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile_st_sp.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_shipper_collection.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_shipper_mng.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_shipper_statistics.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_shop_change_pw.xml" value="0.246875" />
@@ -107,6 +108,8 @@
         <entry key="app/src/main/res/layout/item_admin_turnover.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/item_area.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/item_checkbox_warehouse.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_collection.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/item_collection2.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/item_detail_parcel.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/item_distance.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_mass.xml" value="0.25" />

@@ -32,6 +32,7 @@ import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 class ShipperParcelFgm : Fragment(), ShipperParcelItf {
     lateinit var binding : FragmentShipperParcelFgmBinding
     lateinit var shipperParcelPst: ShipperParcelPst
+    var alertDialog: StartAlertDialog = StartAlertDialog()
     var adapter : AdapterShipperParcelMng  = AdapterShipperParcelMng()
     var dialog : StartAlertDialog = StartAlertDialog()
     var idStaff = ""
@@ -343,6 +344,9 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
                 if(data.ptthanhtoan.equals("COD")){ //nếu paypal thì k cần cập nhật "Đã thanh toán"
                     //update cái bưu kiện thành "Đã thanh toán"
                     println("COD -> Đã thanh toán")
+                    val sotien = SplashActivity.formatterPrice.format(data.sotien).toString() + " đ"
+                    val phigiao = SplashActivity.formatterPrice.format(data.phigiao).toString() + " đ"
+                    context?.let { it1 -> alertDialog.showStartDialog3(getString(R.string.tv_shipper_collection1,sotien,phigiao), it1) }
                     var req = UpdatePaymentStatusReq("Đã thanh toán",data.mabk)
                     shipperParcelPst.updatePaymentStatus(req,data)
                     dialog2.dismiss()
@@ -361,6 +365,8 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
                 if(data.ptthanhtoan.equals("COD")){ //nếu paypal thì k cần cập nhật "Đã thanh toán"
                     //update cái bưu kiện thành "Đã thanh toán"
                     println("COD -> Đã thanh toán")
+                    val phigiao = SplashActivity.formatterPrice.format(data.phigiao).toString() + " đ"
+                    context?.let { it1 -> alertDialog.showStartDialog3(getString(R.string.tv_shipper_collection2,phigiao), it1) }
                     var req = UpdatePaymentStatusReq("Đã thanh toán",data.mabk)
                     shipperParcelPst.updatePaymentStatus(req,data)
                     dialog2.dismiss()

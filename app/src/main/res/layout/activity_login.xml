@@ -23,17 +23,18 @@
 
         <androidx.cardview.widget.CardView
             style="@style/style_cardview_userlogin2"
-            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
             android:backgroundTint="@color/color7"
             app:cardCornerRadius="@dimen/_15sdp">
 
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                android:layout_marginTop="@dimen/_minus5sdp"
+                android:layout_height="@dimen/_130sdp"
+                android:layout_marginTop="@dimen/_minus15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp">
             </androidx.viewpager.widget.ViewPager>
@@ -43,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_60sdp"/>
+                android:layout_marginTop="@dimen/_52sdp"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -103,6 +104,9 @@
             style="@style/style_cardview_userlogin2"
             android:layout_marginTop="@dimen/_60sdp"
             android:layout_marginBottom="@dimen/_5sdp"
+
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
             android:backgroundTint="@color/white">
 
             <ImageView
@@ -124,6 +128,8 @@
             style="@style/style_cardview_userlogin2"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
             android:backgroundTint="@color/white">
 
             <ImageView

@@ -92,6 +92,8 @@
     <string name="tv_activi_success">Kích hoạt tài khoản thành công</string>
     <string name="AddProfileSucces">Cập nhật hồ sơ thành công</string>
     <string name="tv_salary_exist">Nhân viên này đã được phát tiền lương tháng %1$s năm %2$s</string>
+    <string name="tv_shipper_collection1">Số tiền đã thu hộ: %1$s và Phí giao hàng đã thu: %2$s</string>
+    <string name="tv_shipper_collection2">Phí giao hàng đã thu: %1$s</string>
     <string name="tv_salary_staff">Phát tiền lương tháng %1$s năm %2$s thành công</string>
     <string name="tv_salary_shipper">Phát tiền lương và tiền hoa hồng tháng %1$s năm %2$s thành công</string>
     <string name="tv_save2">Thêm</string>
@@ -268,5 +270,9 @@
     <string name="tv_seen_salary">Bạn muốn xem lương của tháng</string>
     <string name="tv_statistics_year">Xem biểu đồ cột theo năm</string>
     <string name="tv_cancel_parcel">Từ chối lấy hàng</string>
+    <string name="tv_collection_shop">Danh sách tiền thu hộ cửa hàng</string>
+    <string name="tv_sum_collection">Tổng thu hộ:</string>
+    <string name="tv_price_collection">Số tiền</string>
+    <string name="tv_shipper_collection">Thống kê tiền thu hộ</string>
 
 </resources>

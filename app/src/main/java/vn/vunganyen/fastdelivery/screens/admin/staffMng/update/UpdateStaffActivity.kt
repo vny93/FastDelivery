@@ -153,6 +153,7 @@ class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
             if(binding.btnSave.text.toString().equals("Cập nhật")){
                 binding.btnSave.setText("Lưu")
                 binding.btnLock.visibility = View.GONE
+                binding.btnSalary.visibility = View.GONE
 
                 binding.cartStaffCmnd.setCardBackgroundColor(Color.WHITE)
                 binding.edtStaffCmnd.setBackground(resources.getDrawable(R.color.white))
@@ -335,6 +336,7 @@ class UpdateStaffActivity : AppCompatActivity(),UpdateStaffItf {
         dialog.showStartDialog3(getString(R.string.AddProfileSucces),this)
         binding.btnSave.setText(getString(R.string.tv_save))
         binding.btnLock.visibility = View.VISIBLE
+        binding.btnSalary.visibility = View.VISIBLE
 
         binding.cartStaffCmnd.setCardBackgroundColor(Color.parseColor("#EFEDED"))
         binding.edtStaffCmnd.setBackground(resources.getDrawable(R.color.gray))

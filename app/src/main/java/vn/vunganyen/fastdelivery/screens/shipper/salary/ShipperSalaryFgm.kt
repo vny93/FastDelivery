@@ -1,5 +1,6 @@
 package vn.vunganyen.fastdelivery.screens.shipper.salary
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import vn.vunganyen.fastdelivery.data.model.classSupport.MonthYearPickerDialog
 import vn.vunganyen.fastdelivery.data.model.salary.ShipperSalaryReq
 import vn.vunganyen.fastdelivery.data.model.salary.ShipperSalaryRes
 import vn.vunganyen.fastdelivery.databinding.FragmentShipperSalaryFgmBinding
+import vn.vunganyen.fastdelivery.screens.admin.statistics.barChart.AdminBarChartActivity
+import vn.vunganyen.fastdelivery.screens.shipper.collection.ShipperCollectionActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import java.util.*
 
@@ -77,6 +80,11 @@ class ShipperSalaryFgm : Fragment(), ShipperSalaryItf {
             binding.selectDate.text = getString(R.string.title_time)
             var req = ShipperSalaryReq(idshipper,dateFrom,dateTo)
             shipperSalaryPst.shipper_get_salary(req)
+        }
+
+        binding.lnlSeen.setOnClickListener{
+            var intent = Intent(context, ShipperCollectionActivity::class.java)
+            startActivity(intent)
         }
     }
 

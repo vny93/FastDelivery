@@ -4,10 +4,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import vn.vunganyen.fastdelivery.data.api.ApiParcelService
+import vn.vunganyen.fastdelivery.data.api.ApiSalaryService
 import vn.vunganyen.fastdelivery.data.model.parcel.MainStatistics1Res
 import vn.vunganyen.fastdelivery.data.model.parcel.MainStatistics2Res
 import vn.vunganyen.fastdelivery.data.model.parcel.Statistics1Req
 import vn.vunganyen.fastdelivery.data.model.parcel.Statistics2Req
+import vn.vunganyen.fastdelivery.data.model.salary.MainCollectionRes
 import vn.vunganyen.fastdelivery.screens.admin.statistics.statistics.StatisticsActivity.Companion.tt1
 import vn.vunganyen.fastdelivery.screens.admin.statistics.statistics.StatisticsActivity.Companion.tt2
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -66,6 +68,21 @@ class StatisticsPst {
             }
 
             override fun onFailure(call: Call<MainStatistics1Res>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun admin_collection(req : Statistics1Req){
+        ApiSalaryService.Api.api.admin_collection(SplashActivity.token,req).enqueue(object : Callback<MainCollectionRes>{
+            override fun onResponse(call: Call<MainCollectionRes>, response: Response<MainCollectionRes>) {
+                if(response.isSuccessful){
+                    statisticItf.get_list_collection(response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainCollectionRes>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

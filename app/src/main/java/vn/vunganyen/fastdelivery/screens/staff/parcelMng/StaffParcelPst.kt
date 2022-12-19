@@ -160,7 +160,7 @@ class StaffParcelPst {
         ApiStaffService.Api.api.getShipperArea(SplashActivity.token,req).enqueue(object : Callback<MainShipperAreaRes>{
             override fun onResponse(call: Call<MainShipperAreaRes>, response: Response<MainShipperAreaRes>) {
                 if(response.isSuccessful){
-                    staffParcelItf.getShipperArea(response.body()!!.result, req.tentrangthai)
+                    staffParcelItf.getShipperArea(response.body()!!.result, req.tenkhuvuc,req.tentrangthai)
                 }
             }
 

@@ -298,7 +298,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         }
     }
 
-    fun showDialogShipper(gravity : Int, list : List<ShipperAreaRes>, m_status : String, title : String){
+    fun showDialogShipper(gravity : Int, list : List<ShipperAreaRes>, m_status : String, maint_title : String,title : String){
         val window = dialog2.window ?: return
         window.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
@@ -320,6 +320,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         bindingDialog.rcvListShipper.layoutManager =  LinearLayoutManager(context,
             LinearLayoutManager.VERTICAL,false)
 
+        bindingDialog.tvTitleMain.setText(maint_title)
         bindingDialog.tvTitle.setText(title)
         bindingDialog.btnAccept.setOnClickListener{
             if(idShipper.isEmpty()){
@@ -519,11 +520,18 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         return adress
     }
 
-    override fun getShipperArea(list: List<ShipperAreaRes>, status : String) {
+    override fun getShipperArea(list: List<ShipperAreaRes>,adress : String, status : String) {
+        var main_title = ""
         var title = ""
-        if(status.equals("Đang lấy hàng")) title = "Số lượng bưu kiện đang giao lấy"
-        else title = "Số lượng bưu kiện đang giao"
-        showDialogShipper(Gravity.CENTER, list, m_status,title)
+        if(status.equals("Đang lấy hàng")){
+            main_title = "Lấy hàng Khu vực: "+adress
+            title = "Số lượng bưu kiện đang giao lấy"
+        }
+        else {
+            main_title = "Giao hàng Khu vực: "+adress
+            title = "Số lượng bưu kiện đang giao"
+        }
+        showDialogShipper(Gravity.CENTER, list, m_status,main_title,title)
     }
 
     fun setAdapterWards(list: List<String>) {

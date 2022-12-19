@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
-import vn.vunganyen.fastdelivery.data.model.parcel.Statistics1Req
-import vn.vunganyen.fastdelivery.data.model.parcel.Statistics1Res
-import vn.vunganyen.fastdelivery.data.model.parcel.Statistics2Req
-import vn.vunganyen.fastdelivery.data.model.parcel.Statistics2Res
+import vn.vunganyen.fastdelivery.data.adapter.AdapterAdminCollection
+import vn.vunganyen.fastdelivery.data.model.parcel.*
+import vn.vunganyen.fastdelivery.data.model.salary.CollectionRes
 import vn.vunganyen.fastdelivery.databinding.ActivityStatisticsBinding
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import java.util.*
@@ -18,6 +18,7 @@ import java.util.*
 class StatisticsActivity : AppCompatActivity(), StatisticItf {
     lateinit var binding : ActivityStatisticsBinding
     lateinit var statisticsPst: StatisticsPst
+    var adapter : AdapterAdminCollection = AdapterAdminCollection()
     var listChart = ArrayList<Int>()
     var listNameChart = listOf("Vận chuyễn","Thành công","Thất bại","Hoàn trả")
     companion object{
@@ -60,6 +61,9 @@ class StatisticsActivity : AppCompatActivity(), StatisticItf {
         statisticsPst.getStatistics2(req3)
         //hoàn trả
         statisticsPst.getStatistics2(req4)
+
+        //ds tiền thu hộ
+        statisticsPst.admin_collection(req1)
     }
 
     fun setToolbar() {
@@ -137,5 +141,22 @@ class StatisticsActivity : AppCompatActivity(), StatisticItf {
         pie.data(dataPieChart)
 //        pie.title("Biểu đồ tròn")
         binding.pieChart.setChart(pie)
+    }
+
+    override fun get_list_collection(list: List<CollectionRes>) {
+        setAdapter(list)
+    }
+
+    fun setAdapter(list : List<CollectionRes>){
+        var sum = 0.0f
+        for(i in 0..list.size-1){
+            sum = sum + list.get(i).sotien
+        }
+        adapter.setData(list)
+        binding.rcvListCollection.adapter = adapter
+        binding.rcvListCollection.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        val sumCollection = SplashActivity.formatterPrice.format(sum).toString() + " đ"
+        binding.sumMoney.setText(sumCollection)
     }
 }

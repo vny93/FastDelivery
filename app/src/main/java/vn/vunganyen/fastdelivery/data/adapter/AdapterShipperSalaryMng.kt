@@ -75,9 +75,11 @@ class AdapterShipperSalaryMng : RecyclerView.Adapter<AdapterShipperSalaryMng.Mai
         val data = listData[position]
         holder.bindItem(data)
         holder.itemView.setOnClickListener{
-            var intent = Intent(holder.itemView.context, ShipperStatisticsActivity::class.java)
-            intent.putExtra("date",data.ngaynhan)
-            holder.itemView.context.startActivity(intent)
+            if(SplashActivity.profile.result.makho == 0){
+                var intent = Intent(holder.itemView.context, ShipperStatisticsActivity::class.java)
+                intent.putExtra("date",data.ngaynhan)
+                holder.itemView.context.startActivity(intent)
+            }
         }
     }
 }
