@@ -13,8 +13,7 @@ import vn.vunganyen.fastdelivery.data.model.district.MainGetDistrictRes
 import vn.vunganyen.fastdelivery.data.model.parcel.*
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.MainGetShopDetailRes
-import vn.vunganyen.fastdelivery.data.model.staff.MainShipperAreaRes
-import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaReq
+import vn.vunganyen.fastdelivery.data.model.staff.*
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.MainGetIdStatusRes
 import vn.vunganyen.fastdelivery.data.model.status.MainListStatusRes
@@ -56,7 +55,7 @@ class StaffParcelPst {
             }
 
             override fun onFailure(call: Call<MainGetDistrictRes>, t: Throwable) {
-                TODO("Not yet implemented")
+                println("Lỗi lấy dữ liệu District")
             }
 
         })
@@ -71,7 +70,7 @@ class StaffParcelPst {
             }
 
             override fun onFailure(call: Call<DistrictRes>, t: Throwable) {
-                TODO("Not yet implemented")
+                println("Lỗi lấy dữ liệu Wards")
             }
 
         })
@@ -261,4 +260,62 @@ class StaffParcelPst {
         })
     }
 
+    //new code --------
+    fun getShipperArea2(id : Int, status : String , req : ShipperAreaReq2){
+        ApiStaffService.Api.api.getShipperArea2(SplashActivity.token,req).enqueue(object : Callback<MainShipperAreaRes>{
+            override fun onResponse(call: Call<MainShipperAreaRes>, response: Response<MainShipperAreaRes>) {
+                if(response.isSuccessful){
+                    getListCancel(response.body()!!.result,GetListCancelReq(id,status))
+                }
+            }
+
+            override fun onFailure(call: Call<MainShipperAreaRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getListCancel(list : List<ShipperAreaRes>, req : GetListCancelReq){
+        ApiStaffService.Api.api.get_list_cancel(SplashActivity.token,req).enqueue(object : Callback<MainCancelInforRes>{
+            override fun onResponse(call: Call<MainCancelInforRes>, response: Response<MainCancelInforRes>) {
+                if(response.isSuccessful){
+                    handelAutoShipper(list,response.body()!!.result)
+                }
+            }
+
+            override fun onFailure(call: Call<MainCancelInforRes>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun handelAutoShipper(list1 : List<ShipperAreaRes>, list2 : List<CancelInforRes>){
+        var check = 0
+        for(l1 in list1){
+            check = 0
+            for(l2 in list2){
+                if(l1.manv.equals(l2.mashipper)){
+                    println("Từ chối: "+l1.manv)
+                    check++
+                }
+            }
+            if(check == 0){
+                if(l1.sl == 20){
+                    println("Hôm nay các shipper đã được giao đủ số lượng theo chính sách là 20 đơn")
+                    staffParcelItf.enoughOrder()
+                    return
+                }
+                else{
+                    println("Chọn người này: "+l1.manv)
+                    staffParcelItf.autoShipper(l1)
+                    return
+                }
+            }
+        }
+        if(check == 1){
+            staffParcelItf.notFindShipper()
+        }
+    }
 }

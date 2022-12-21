@@ -187,6 +187,7 @@
         </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lnl_btn_accept"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -212,6 +213,37 @@
 <!--                        android:text="@string/btn_route_pc"-->
 <!--                        android:textColor="@color/black"-->
 <!--                        android:textSize="@dimen/_11sdp" />-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnl_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_auto_share"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:textColor="@color/black"
+                        android:background="@drawable/custom_button6"
+                        android:text="@string/tv_auto_share" />
+
+                    <Button
+                        android:id="@+id/btn_share"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/tv_share"
+                        android:background="@drawable/custom_button6"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp" />
 
                 </LinearLayout>
 

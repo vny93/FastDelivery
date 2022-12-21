@@ -274,5 +274,9 @@
     <string name="tv_sum_collection">Tổng thu hộ:</string>
     <string name="tv_price_collection">Số tiền</string>
     <string name="tv_shipper_collection">Thống kê tiền thu hộ</string>
-
+    <string name="tv_share">giao</string>
+    <string name="tv_auto_share">tự động giao</string>
+    <string name="tv_enoughOrder">Hiện tại số lượng đơn hàng của mỗi nhân viên giao hàng đã đủ 20 đơn</string>
+    <string name="tv_autoShipperSuccess">Đơn hàng đã được giao cho nhân viên giao hàng có mã: %1$s - họ tên: %2$s </string>
+    <string name="tv_notFindShipper">Chưa tìm được nhân viên giao hàng phù hợp</string>
 </resources>

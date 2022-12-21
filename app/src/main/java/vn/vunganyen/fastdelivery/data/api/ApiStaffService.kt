@@ -3,6 +3,8 @@ package vn.vunganyen.fastdelivery.data.api
 import retrofit2.Call
 import retrofit2.http.*
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
+import vn.vunganyen.fastdelivery.data.model.parcel.FullStatusDetailReq
+import vn.vunganyen.fastdelivery.data.model.parcel.MainCancelInforRes
 import vn.vunganyen.fastdelivery.data.model.profile.MainProfileRes
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileReq
 import vn.vunganyen.fastdelivery.data.model.profile.ProfileRes
@@ -55,6 +57,12 @@ interface ApiStaffService {
 
     @POST("v2/staff/get/shipper/area")
     fun getShipperArea(@Header("Authorization") BearerToken: String, @Body req: ShipperAreaReq): Call<MainShipperAreaRes>
+
+    @POST("v2/staff/get/shipper/area2")
+    fun getShipperArea2(@Header("Authorization") BearerToken: String, @Body req: ShipperAreaReq2): Call<MainShipperAreaRes>
+
+    @POST("v2/staff/get/list/cancel")
+    fun get_list_cancel(@Header("Authorization") BearerToken: String,@Body req: GetListCancelReq):Call<MainCancelInforRes>
 
     object Api {
         val api: ApiStaffService by lazy { RetrofitSetting().retrofit.create(ApiStaffService::class.java) }

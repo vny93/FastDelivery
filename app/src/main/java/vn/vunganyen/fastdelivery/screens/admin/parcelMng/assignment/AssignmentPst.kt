@@ -60,7 +60,7 @@ class AssignmentPst {
             }
 
             override fun onFailure(call: Call<MainGetDistrictRes>, t: Throwable) {
-                TODO("Not yet implemented")
+                println("Lỗi lấy dữ liệu District")
             }
 
         })
@@ -75,7 +75,7 @@ class AssignmentPst {
             }
 
             override fun onFailure(call: Call<DistrictRes>, t: Throwable) {
-                TODO("Not yet implemented")
+                println("Lỗi lấy dữ liệu Wards")
             }
 
         })

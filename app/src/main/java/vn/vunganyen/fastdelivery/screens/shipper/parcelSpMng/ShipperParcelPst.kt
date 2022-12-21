@@ -52,7 +52,7 @@ class ShipperParcelPst {
             }
 
             override fun onFailure(call: Call<MainGetDistrictRes>, t: Throwable) {
-                TODO("Not yet implemented")
+                println("Lỗi lấy dữ liệu District")
             }
 
         })
@@ -67,7 +67,7 @@ class ShipperParcelPst {
             }
 
             override fun onFailure(call: Call<DistrictRes>, t: Throwable) {
-                TODO("Not yet implemented")
+                println("Lỗi lấy dữ liệu Wards")
             }
 
         })

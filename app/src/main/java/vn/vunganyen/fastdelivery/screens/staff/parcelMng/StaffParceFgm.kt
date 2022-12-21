@@ -25,6 +25,7 @@ import vn.vunganyen.fastdelivery.data.model.parcel.StaffGetParcelRes
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailReq
 import vn.vunganyen.fastdelivery.data.model.shop.GetShopDetailRes
 import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaReq
+import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaReq2
 import vn.vunganyen.fastdelivery.data.model.staff.ShipperAreaRes
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusReq
 import vn.vunganyen.fastdelivery.data.model.status.GetIdStatusRes
@@ -59,6 +60,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     lateinit var bindingDialog : DialogChooseShipperBinding
     lateinit var bindingDialogCancel: DialogCancelInforBinding
     var m_status = ""
+    var checkAuto = 0
     companion object{
         var listParcel = ArrayList<StaffGetParcelRes>()
         lateinit var listFilter : ArrayList<StaffGetParcelRes>
@@ -79,6 +81,11 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         callInvokeConfirmSuccess()
         callInvokeReturn()
         callInvokeCancelInfor()
+
+        //new code
+        callInvokeAutoGetTheShop()
+        callInvokeAutoReturn()
+        callInvokeAutoCustomer()
         dialog2 = context?.let { Dialog(it) }!!
         dialog3 = context?.let { Dialog(it) }!!
         bindingDialog = DialogChooseShipperBinding.inflate(layoutInflater)
@@ -123,6 +130,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
 
     fun callInvokeGetTheShop() {
         adapter.clickGetTheShop = { data ->
+            checkAuto = 0
             dataParcel = data
           //  m_status = "Đang lấy hàng"
             m_status = "Chờ lấy hàng"
@@ -144,6 +152,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
 
     fun callInvokeGetCustomer() {
         adapter.clickGetCustomer = { data ->
+            checkAuto = 0
             dataParcel = data
         //    m_status = "Đang xuất kho"
 
@@ -183,6 +192,7 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
 
     fun callInvokeReturn() {
         adapter.clickReturn = { data ->
+            checkAuto = 0
             dataParcel = data
             m_status = "Chờ hoàn trả"
             staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
@@ -192,6 +202,35 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     fun callInvokeCancelInfor(){
         adapter.clickCancelInfor = { data ->
             staffParcelPst.getCancelInfor(data.mabk)
+        }
+    }
+
+    //new code
+    fun callInvokeAutoGetTheShop(){
+        adapter.AutoGetTheShop = { data ->
+            checkAuto = 1
+            dataParcel = data
+            m_status = "Chờ lấy hàng"
+            staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
+        }
+    }
+
+    fun callInvokeAutoCustomer() {
+        adapter.AutoCustomer = { data ->
+            checkAuto = 1
+            dataParcel = data
+            //check coi table đường đi còn kh, nếu còn phải lấy địa chỉ kho đó để tìm ra shipper gần kho đó
+            //ngược lại thì lấy địa chỉ người nhận
+            staffParcelPst.checkWayExist(CheckWayExistReq(data.mabk, 0), data)
+        }
+    }
+
+    fun callInvokeAutoReturn(){
+        adapter.AutoReturn = { data ->
+            checkAuto = 1
+            dataParcel = data
+            m_status = "Chờ hoàn trả"
+            staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
         }
     }
 
@@ -457,39 +496,75 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     }
 
     override fun getShopDetail(res: GetShopDetailRes) {
-        if(m_status.equals("Chờ lấy hàng")){
-            var adress = getStrAdress(res.diachi)
-            var status = "Đang lấy hàng"
-            println(adress)
-            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        println("checkAuto: "+checkAuto)
+        if(checkAuto == 0){
+            if(m_status.equals("Chờ lấy hàng")){
+                var adress = getStrAdress(res.diachi)
+                var status = "Đang lấy hàng"
+                println(adress)
+                staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+            }
+            else if(m_status.equals("Chờ hoàn trả")){
+                var adress = getStrAdress(res.diachi)
+                var status = "Đang giao hàng"
+                println(adress)
+                staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+            }
         }
-        else if(m_status.equals("Chờ hoàn trả")){
-            var adress = getStrAdress(res.diachi)
-            var status = "Đang giao hàng"
-            println(adress)
-            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        else{
+            if(m_status.equals("Chờ lấy hàng")){
+                var adress = getStrAdress(res.diachi)
+                var statusGetListCancel = "Từ chối lấy hàng"
+                println(adress)
+                staffParcelPst.getShipperArea2(dataParcel.mabk,statusGetListCancel, ShipperAreaReq2(adress))
+            }
+            else if(m_status.equals("Chờ hoàn trả")){
+                var adress = getStrAdress(res.diachi)
+                var statusGetListCancel = "Từ chối hoàn trả"
+                println(adress)
+                staffParcelPst.getShipperArea2(dataParcel.mabk,statusGetListCancel, ShipperAreaReq2(adress))
+            }
         }
+
 
     }
 
     override fun wayExist(res: WarehouseRes, data: StaffGetParcelRes) {
-        //truyền địa chỉ kho vào nếu còn phải đi qua kho tiếp theo
-        var adress = getStrAdress(res.diachi)
-       // m_status = "Đang xuất kho"
-        m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
-        var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
-        println(adress)
-        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        if(checkAuto == 0){
+            //truyền địa chỉ kho vào nếu còn phải đi qua kho tiếp theo
+            var adress = getStrAdress(res.diachi)
+            // m_status = "Đang xuất kho"
+            m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
+            var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
+            println(adress)
+            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        }
+        else{
+            var adress = getStrAdress(res.diachi)
+            m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
+            var statusGetListCancel = "Từ chối giao hàng"
+            println(adress)
+            staffParcelPst.getShipperArea2(dataParcel.mabk,statusGetListCancel, ShipperAreaReq2(adress))
+        }
     }
 
     override fun wayNotExist(data: StaffGetParcelRes) {
-        //truyền địa chỉ người nhận vào nếu hết kho và giao luôn cho khách hàng
-        var adress = getStrAdress(data.diachinguoinhan)
-    //    m_status = "Đang xuất kho"
-        m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
-        var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
-        println(adress)
-        staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        if(checkAuto == 0){
+            //truyền địa chỉ người nhận vào nếu hết kho và giao luôn cho khách hàng
+            var adress = getStrAdress(data.diachinguoinhan)
+            //    m_status = "Đang xuất kho"
+            m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
+            var status = "Đang giao hàng" //lấy ra shipper và số lượng bk shipper đang giao hàng
+            println(adress)
+            staffParcelPst.getShipperArea(ShipperAreaReq(adress,status))
+        }
+        else{
+            var adress = getStrAdress(data.diachinguoinhan)
+            m_status = "Chờ xuất kho" //để cập nhật trạng thái của bưu kiện
+            var statusGetListCancel = "Từ chối giao hàng"
+            println(adress)
+            staffParcelPst.getShipperArea2(dataParcel.mabk,statusGetListCancel, ShipperAreaReq2(adress))
+        }
     }
 
     override fun count(res: CountRes,data : StaffGetParcelRes) {
@@ -503,6 +578,20 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
 
     override fun cancelInfor(res: CancelInforRes) {
         showDialogCancelInfor(Gravity.CENTER,res)
+    }
+
+    override fun enoughOrder() {
+        context?.let { it1 -> dialog.showStartDialog3(getString(R.string.tv_enoughOrder), it1)}
+    }
+
+    override fun autoShipper(res: ShipperAreaRes) {
+        idShipper = res.manv
+        context?.let { it1 -> dialog.showStartDialog3(getString(R.string.tv_autoShipperSuccess,res.manv,res.hoten), it1)}
+        staffParcelPst.getIdStatus(GetIdStatusReq(m_status), dataParcel)
+    }
+
+    override fun notFindShipper() {
+        context?.let { it1 -> dialog.showStartDialog3(getString(R.string.tv_notFindShipper), it1)}
     }
 
     fun getStrAdress(mstr : String): String{

@@ -27,4 +27,9 @@ interface StaffParcelItf {
     fun wayNotExist(data: StaffGetParcelRes)
     fun count(res : CountRes, data : StaffGetParcelRes)
     fun cancelInfor(res : CancelInforRes)
+
+    //new code
+    fun enoughOrder()
+    fun autoShipper(res : ShipperAreaRes)
+    fun notFindShipper()
 }
