@@ -29,6 +29,7 @@ class AdapterShipperParcelMng : RecyclerView.Adapter<AdapterShipperParcelMng.Mai
     var clickComfirmReturn : ((data: SpGetParcelRes) -> Unit)? = null
     var clickCancelReturn : ((data: SpGetParcelRes) -> Unit)? = null
     var clickReturn : ((data: SpGetParcelRes) -> Unit)? = null
+    var generateBarcode : ((id: Int) -> Unit)? = null
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<SpGetParcelRes>) {
         this.listData = list
@@ -167,6 +168,12 @@ class AdapterShipperParcelMng : RecyclerView.Adapter<AdapterShipperParcelMng.Mai
 //            }
 
         }
-
+        //---------
+        holder.binding.tvspIdPc.setOnClickListener{
+            if(!data.tentrangthai.equals("Chờ lấy hàng") && !data.tentrangthai.equals("Từ chối lấy hàng") &&
+                !data.tentrangthai.equals("Đang lấy hàng") && !data.tentrangthai.equals("Lấy hàng thành công")){
+                generateBarcode?.invoke(data.mabk)
+            }
+        }
     }
 }

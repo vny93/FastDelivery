@@ -1,5 +1,6 @@
 package vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng
 
+import android.graphics.Bitmap
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.SpGetParcelRes
@@ -19,4 +20,5 @@ interface ShipperParcelItf {
     fun updateWay(data: SpGetParcelRes)
     fun updatePaymentStatus(data: SpGetParcelRes)
    // fun updateCartStatus()
+   fun bitmap(bitmap: Bitmap)
 }

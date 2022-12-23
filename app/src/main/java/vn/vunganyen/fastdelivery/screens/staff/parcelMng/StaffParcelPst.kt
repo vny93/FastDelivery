@@ -1,5 +1,12 @@
 package vn.vunganyen.fastdelivery.screens.staff.parcelMng
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.view.inputmethod.InputMethodManager
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
+import com.journeyapps.barcodescanner.BarcodeEncoder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -316,6 +323,20 @@ class StaffParcelPst {
         }
         if(check == 1){
             staffParcelItf.notFindShipper()
+        }
+    }
+
+    fun generateBarcode(str : String){
+        var userInput = str.trim()
+        var write : MultiFormatWriter = MultiFormatWriter()
+        try{
+            var matrix = write.encode(userInput, BarcodeFormat.CODE_128,400,100)
+            var encoder : BarcodeEncoder = BarcodeEncoder()
+            var bitmap : Bitmap = encoder.createBitmap(matrix)
+            staffParcelItf.bitmap(bitmap)
+        }
+        catch (e : WriterException){
+            e.printStackTrace()
         }
     }
 }

@@ -1,5 +1,6 @@
 package vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment
 
+import android.graphics.Bitmap
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
 import vn.vunganyen.fastdelivery.data.model.parcel.AdGetParcelRes
@@ -16,4 +17,5 @@ interface AssignmentItf {
     fun getShopDetail(res : GetShopDetailRes)
     fun addWaySuccess()
     fun getParcelWh(list : List<GetParcelWhRes>)
+    fun bitmap(bitmap: Bitmap)
 }

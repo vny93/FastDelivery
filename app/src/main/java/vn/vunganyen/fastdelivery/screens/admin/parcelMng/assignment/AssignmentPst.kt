@@ -1,8 +1,13 @@
 package vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment
 
+import android.graphics.Bitmap
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
+import com.journeyapps.barcodescanner.BarcodeEncoder
 import demo.kotlin.model.dijkstra.Vert
 import retrofit2.Call
 import retrofit2.Callback
@@ -256,4 +261,17 @@ class AssignmentPst {
         assignmentItf.getListParcel(AssignmentMngActivity.listFilter)
     }
 
+    fun generateBarcode(str : String){
+        var userInput = str.trim()
+        var write : MultiFormatWriter = MultiFormatWriter()
+        try{
+            var matrix = write.encode(userInput, BarcodeFormat.CODE_128,400,100)
+            var encoder : BarcodeEncoder = BarcodeEncoder()
+            var bitmap : Bitmap = encoder.createBitmap(matrix)
+            assignmentItf.bitmap(bitmap)
+        }
+        catch (e : WriterException){
+            e.printStackTrace()
+        }
+    }
 }

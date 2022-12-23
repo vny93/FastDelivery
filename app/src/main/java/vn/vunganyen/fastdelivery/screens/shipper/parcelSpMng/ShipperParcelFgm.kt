@@ -2,6 +2,7 @@ package vn.vunganyen.fastdelivery.screens.shipper.parcelSpMng
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -24,6 +25,7 @@ import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
 import vn.vunganyen.fastdelivery.data.model.way.UpdateWayReq
+import vn.vunganyen.fastdelivery.databinding.DialogBarcodeBinding
 import vn.vunganyen.fastdelivery.databinding.DialogUpdateStatusPcBinding
 import vn.vunganyen.fastdelivery.databinding.FragmentShipperParcelFgmBinding
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
@@ -35,6 +37,8 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
     var alertDialog: StartAlertDialog = StartAlertDialog()
     var adapter : AdapterShipperParcelMng  = AdapterShipperParcelMng()
     var dialog : StartAlertDialog = StartAlertDialog()
+    lateinit var dialogBarcode : Dialog
+    lateinit var bindingBarcode: DialogBarcodeBinding
     var idStaff = ""
     var idShipper = ""
     var status = ""
@@ -62,7 +66,9 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         bindingDialog = DialogUpdateStatusPcBinding.inflate(layoutInflater)
         dialog2.setContentView(bindingDialog.root)
         binding.tvHomeName.setText(SplashActivity.profile.result.hoten)
-
+        dialogBarcode = context?.let { Dialog(it) }!!
+        bindingBarcode = DialogBarcodeBinding.inflate(layoutInflater)
+        dialogBarcode.setContentView(bindingBarcode.root)
         getData()
         setEvent()
 //        callInvokeGetShopDone()
@@ -83,6 +89,7 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         callInvokeCancelReturn()
         callInvokeReturn()
 
+        callInvokeGenerateBarcode()
         return binding.root
     }
 
@@ -200,6 +207,11 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         }
     }
 
+    fun callInvokeGenerateBarcode(){
+        adapter.generateBarcode = { id ->
+            shipperParcelPst.generateBarcode(id.toString())
+        }
+    }
 
     fun setEvent(){
         binding.edtSearchId.addTextChangedListener(object : TextWatcher {
@@ -516,6 +528,33 @@ class ShipperParcelFgm : Fragment(), ShipperParcelItf {
         shipperParcelPst.getIdStatus(GetIdStatusReq(updateNameStatus),data)
         updateNameStatus = ""
         bindingDialog.dialogSpinnerStatus.setText("",false)
+    }
+
+    override fun bitmap(bitmap: Bitmap) {
+        showDialogBarcode(Gravity.CENTER,bitmap)
+    }
+
+    fun showDialogBarcode(gravity : Int, bitmap: Bitmap){
+        val window = dialogBarcode.window ?: return
+        window.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+
+        val windowAttributes = window.attributes
+        windowAttributes.gravity = gravity
+        window.attributes = windowAttributes
+
+        if (Gravity.CENTER == gravity) {
+            dialogBarcode.setCancelable(true)
+        } else {
+            dialogBarcode.setCancelable(true)
+        }
+
+        bindingBarcode.barcodeImv.setImageBitmap(bitmap)
+        var manager : InputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        // manager.hideSoftInputFromWindow(binding.edtText.applicationWindowToken,0)
+        dialogBarcode.show()
     }
 
     fun View.hideKeyboard(): Boolean {

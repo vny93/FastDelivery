@@ -2,6 +2,7 @@ package vn.vunganyen.fastdelivery.screens.staff.parcelMng
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -33,6 +34,7 @@ import vn.vunganyen.fastdelivery.data.model.status.ListStatusRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.GetDetailWHReq
 import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.CheckWayExistReq
+import vn.vunganyen.fastdelivery.databinding.DialogBarcodeBinding
 import vn.vunganyen.fastdelivery.databinding.DialogCancelInforBinding
 import vn.vunganyen.fastdelivery.databinding.DialogChooseShipperBinding
 import vn.vunganyen.fastdelivery.databinding.FragmentStaffParceBinding
@@ -57,8 +59,10 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     var listWardstName = ArrayList<String>()
     lateinit var dialog2: Dialog
     lateinit var dialog3: Dialog
+    lateinit var dialogBarcode : Dialog
     lateinit var bindingDialog : DialogChooseShipperBinding
     lateinit var bindingDialogCancel: DialogCancelInforBinding
+    lateinit var bindingBarcode: DialogBarcodeBinding
     var m_status = ""
     var checkAuto = 0
     companion object{
@@ -86,12 +90,16 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
         callInvokeAutoGetTheShop()
         callInvokeAutoReturn()
         callInvokeAutoCustomer()
+        callInvokeGenerateBarcode()
         dialog2 = context?.let { Dialog(it) }!!
         dialog3 = context?.let { Dialog(it) }!!
+        dialogBarcode = context?.let { Dialog(it) }!!
         bindingDialog = DialogChooseShipperBinding.inflate(layoutInflater)
         bindingDialogCancel = DialogCancelInforBinding.inflate(layoutInflater)
+        bindingBarcode = DialogBarcodeBinding.inflate(layoutInflater)
         dialog2.setContentView(bindingDialog.root)
         dialog3.setContentView(bindingDialogCancel.root)
+        dialogBarcode.setContentView(bindingBarcode.root)
         return binding.root
     }
 
@@ -231,6 +239,12 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
             dataParcel = data
             m_status = "Chờ hoàn trả"
             staffParcelPst.getShopDetail(GetShopDetailReq(data.mach))
+        }
+    }
+
+    fun callInvokeGenerateBarcode(){
+        adapter.generateBarcode = { id ->
+            staffParcelPst.generateBarcode(id.toString())
         }
     }
 
@@ -593,6 +607,34 @@ class StaffParceFgm : Fragment(), StaffParcelItf {
     override fun notFindShipper() {
         context?.let { it1 -> dialog.showStartDialog3(getString(R.string.tv_notFindShipper), it1)}
     }
+
+    override fun bitmap(bitmap: Bitmap) {
+        showDialogBarcode(Gravity.CENTER,bitmap)
+    }
+
+    fun showDialogBarcode(gravity : Int, bitmap: Bitmap){
+        val window = dialogBarcode.window ?: return
+        window.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+
+        val windowAttributes = window.attributes
+        windowAttributes.gravity = gravity
+        window.attributes = windowAttributes
+
+        if (Gravity.CENTER == gravity) {
+            dialogBarcode.setCancelable(true)
+        } else {
+            dialogBarcode.setCancelable(true)
+        }
+
+        bindingBarcode.barcodeImv.setImageBitmap(bitmap)
+        var manager : InputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+       // manager.hideSoftInputFromWindow(binding.edtText.applicationWindowToken,0)
+        dialogBarcode.show()
+    }
+
 
     fun getStrAdress(mstr : String): String{
         var str = mstr.trim()

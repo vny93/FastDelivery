@@ -1,5 +1,6 @@
 package vn.vunganyen.fastdelivery.screens.staff.parcelMng
 
+import android.graphics.Bitmap
 import vn.vunganyen.fastdelivery.data.model.detailStatus.CountRes
 import vn.vunganyen.fastdelivery.data.model.district.DistrictRes
 import vn.vunganyen.fastdelivery.data.model.district.WardsRes
@@ -32,4 +33,5 @@ interface StaffParcelItf {
     fun enoughOrder()
     fun autoShipper(res : ShipperAreaRes)
     fun notFindShipper()
+    fun bitmap(bitmap: Bitmap)
 }

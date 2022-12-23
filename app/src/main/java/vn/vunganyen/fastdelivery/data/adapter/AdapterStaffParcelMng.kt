@@ -30,6 +30,7 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
     var AutoGetTheShop: ((data: StaffGetParcelRes) -> Unit)? = null
     var AutoReturn: ((data: StaffGetParcelRes) -> Unit)? = null
     var AutoCustomer: ((data: StaffGetParcelRes) -> Unit)? = null
+    var generateBarcode : ((id: Int) -> Unit)? = null
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<StaffGetParcelRes>) {
         this.listData = list
@@ -149,7 +150,6 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
         }
         //new code ---------
         holder.binding.btnShare.setOnClickListener {
-            println("BTH mà")
             if (data.tentrangthai.equals("Đã xác nhận") || data.tentrangthai.equals("Từ chối lấy hàng")) {
                 clickGetTheShop?.invoke(data)
             } else if (data.tentrangthai.equals("Đang lưu kho chờ hoàn trả") || data.tentrangthai.equals("Từ chối hoàn trả")) {
@@ -159,7 +159,6 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
             }
         }
         holder.binding.btnAutoShare.setOnClickListener{
-            println("Auto mà")
             if (data.tentrangthai.equals("Đã xác nhận") || data.tentrangthai.equals("Từ chối lấy hàng")) {
                 AutoGetTheShop?.invoke(data)
             } else if (data.tentrangthai.equals("Đang lưu kho chờ hoàn trả") || data.tentrangthai.equals("Từ chối hoàn trả")) {
@@ -169,5 +168,12 @@ class AdapterStaffParcelMng : RecyclerView.Adapter<AdapterStaffParcelMng.MainVie
             }
         }
         //---------
+        holder.binding.tvstIdPc.setOnClickListener{
+            if(!data.tentrangthai.equals("Chờ xác nhận") && !data.tentrangthai.equals("Đã xác nhận") &&
+                    !data.tentrangthai.equals("Chờ lấy hàng") && !data.tentrangthai.equals("Từ chối lấy hàng") &&
+                !data.tentrangthai.equals("Đang lấy hàng") && !data.tentrangthai.equals("Lấy hàng thành công")){
+                generateBarcode?.invoke(data.mabk)
+            }
+        }
     }
 }

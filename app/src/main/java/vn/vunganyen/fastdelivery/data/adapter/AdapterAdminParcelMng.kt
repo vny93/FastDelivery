@@ -19,6 +19,7 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
     var c = GregorianCalendar(TimeZone.getTimeZone("GMT+7"))
     var clickDijkstra: ((data : AdGetParcelRes)->Unit)?=null
     var clickSetting: ((data : AdGetParcelRes)->Unit)?=null
+    var generateBarcode : ((id: Int) -> Unit)? = null
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<AdGetParcelRes>) {
         this.listData = list
@@ -78,6 +79,14 @@ class AdapterAdminParcelMng : RecyclerView.Adapter<AdapterAdminParcelMng.MainVie
 
         holder.binding.btnSetting.setOnClickListener{
             clickSetting?.invoke(data)
+        }
+
+        holder.binding.tvadIdPc.setOnClickListener{
+            if(!data.tentrangthai.equals("Chờ xác nhận") && !data.tentrangthai.equals("Đã xác nhận") &&
+                !data.tentrangthai.equals("Chờ lấy hàng") && !data.tentrangthai.equals("Từ chối lấy hàng") &&
+                !data.tentrangthai.equals("Đang lấy hàng") && !data.tentrangthai.equals("Lấy hàng thành công")){
+                generateBarcode?.invoke(data.mabk)
+            }
         }
     }
 }

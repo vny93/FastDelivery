@@ -2,6 +2,7 @@ package vn.vunganyen.fastdelivery.screens.admin.parcelMng.assignment
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ import vn.vunganyen.fastdelivery.data.model.warehouse.GetParcelWhRes
 import vn.vunganyen.fastdelivery.data.model.warehouse.WarehouseRes
 import vn.vunganyen.fastdelivery.data.model.way.WayReq
 import vn.vunganyen.fastdelivery.databinding.ActivityAssignmentMngBinding
+import vn.vunganyen.fastdelivery.databinding.DialogBarcodeBinding
 import vn.vunganyen.fastdelivery.databinding.DialogSettingWarehouseBinding
 import kotlin.collections.ArrayList
 
@@ -43,6 +45,8 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
     lateinit var assignmentPst: AssignmentPst
     var adapter : AdapterAdminParcelMng = AdapterAdminParcelMng()
     var dialog: StartAlertDialog = StartAlertDialog()
+    lateinit var dialogBarcode : Dialog
+    lateinit var bindingBarcode: DialogBarcodeBinding
     var status = ""
     var adress = ""
     var wards = ""
@@ -83,7 +87,9 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         dialog2 = Dialog(this@AssignmentMngActivity)
         bindingDialog = DialogSettingWarehouseBinding.inflate(layoutInflater)
         dialog2.setContentView(bindingDialog.root)
-
+        dialogBarcode = Dialog(this@AssignmentMngActivity)
+        bindingBarcode = DialogBarcodeBinding.inflate(layoutInflater)
+        dialogBarcode.setContentView(bindingBarcode.root)
         //phân bưu kiện về kho có đường đi ngắn nhất
         assignmentWarehouse()
         setData()
@@ -93,6 +99,8 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         callInvokeSetting()
         callInvokeCheckBoxTrue()
         callInvokeCheckBoxFalse()
+
+        callInvokeGenerateBarcode()
     }
 
     fun setData(){
@@ -308,6 +316,12 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
         }
     }
 
+    fun callInvokeGenerateBarcode(){
+        adapter.generateBarcode = { id ->
+            assignmentPst.generateBarcode(id.toString())
+        }
+    }
+
     fun showDialogSetting(gravity : Int, list : List<GetParcelWhRes>){
         val window = dialog2.window ?: return
         window.setLayout(
@@ -380,6 +394,33 @@ class AssignmentMngActivity : AppCompatActivity(),AssignmentItf {
 
     override fun getParcelWh(list: List<GetParcelWhRes>) {
         showDialogSetting(Gravity.CENTER, list)
+    }
+
+    override fun bitmap(bitmap: Bitmap) {
+        showDialogBarcode(Gravity.CENTER,bitmap)
+    }
+
+    fun showDialogBarcode(gravity : Int, bitmap: Bitmap){
+        val window = dialogBarcode.window ?: return
+        window.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+
+        val windowAttributes = window.attributes
+        windowAttributes.gravity = gravity
+        window.attributes = windowAttributes
+
+        if (Gravity.CENTER == gravity) {
+            dialogBarcode.setCancelable(true)
+        } else {
+            dialogBarcode.setCancelable(true)
+        }
+
+        bindingBarcode.barcodeImv.setImageBitmap(bitmap)
+        var manager : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        // manager.hideSoftInputFromWindow(binding.edtText.applicationWindowToken,0)
+        dialogBarcode.show()
     }
 
     override fun getListWarehouse() {
