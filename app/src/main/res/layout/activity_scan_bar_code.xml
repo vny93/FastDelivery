@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".screens.shipper.barcode.ScanBarCodeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout style="@style/style_appBarLayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_admin_parcel"
+            style="@style/style_toolbar"
+            app:titleTextColor="@color/white"
+            app:title="Quét mã" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/imvScan"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:background="@drawable/avtscan2"/>
+
+</LinearLayout>

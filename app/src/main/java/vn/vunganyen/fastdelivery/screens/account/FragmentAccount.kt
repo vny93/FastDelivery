@@ -11,6 +11,7 @@ import vn.vunganyen.fastdelivery.data.model.classSupport.StartAlertDialog
 import vn.vunganyen.fastdelivery.databinding.FragmentAccountBinding
 import vn.vunganyen.fastdelivery.screens.login.LoginActivity
 import vn.vunganyen.fastdelivery.screens.myAccount.AdminMyAccountActivity
+import vn.vunganyen.fastdelivery.screens.shipper.barcode.ScanBarCodeActivity
 import vn.vunganyen.fastdelivery.screens.splash.SplashActivity
 import vn.vunganyen.fastdelivery.screens.staff.myProfile.ProfileStSpActivity
 
@@ -33,6 +34,10 @@ class FragmentAccount : Fragment() {
         if (!SplashActivity.token.equals("")) {
             binding.tvHeaderName.text = SplashActivity.profile.result.hoten
             binding.tvHeaderUser.text = SplashActivity.profile.result.tendangnhap
+        }
+        if(SplashActivity.profile.result.makho != 0){
+            binding.lnlScan.visibility = View.GONE
+            binding.tvScan.visibility = View.GONE
         }
     }
 
@@ -65,6 +70,10 @@ class FragmentAccount : Fragment() {
 //                var intent = Intent(context, LoginActivity::class.java)
 //                startActivity(intent)
             }
+        }
+        binding.imvScanImv.setOnClickListener{
+            var intent = Intent(context, ScanBarCodeActivity::class.java)
+            startActivity(intent)
         }
 
     }

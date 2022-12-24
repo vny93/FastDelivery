@@ -2,6 +2,7 @@ package vn.vunganyen.fastdelivery.data.api
 
 import retrofit2.Call
 import retrofit2.http.*
+import vn.vunganyen.fastdelivery.data.model.detailParcel.GetDetailParcelReq
 import vn.vunganyen.fastdelivery.data.model.graphhopper.ListPointsReq
 import vn.vunganyen.fastdelivery.data.model.graphhopper.ListPointsRes
 import vn.vunganyen.fastdelivery.data.model.mass.UpdateRes
@@ -14,6 +15,9 @@ interface ApiParcelService {
 
     @POST("v2/parcel/admin/get")
     fun admin_get_parcel(@Header("Authorization") BearerToken: String,@Body req: AdGetParcelReq):Call<MainAdGetParcelRes>
+
+    @POST("v2/parcel/get/detail")
+    fun get_detail_parcel(@Header("Authorization") BearerToken: String,@Body req: GetDetailParcelReq):Call<MainGetDetailParcelRes>
 
     @POST("v2/parcel/staff/get")
     fun staff_get_parcel(@Header("Authorization") BearerToken: String,@Body req: StGetParcelReq):Call<MainStaffParcelRes>

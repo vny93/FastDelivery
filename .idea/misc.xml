@@ -68,6 +68,7 @@
         <entry key="app/src/main/res/layout/activity_price.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile_shop.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile_st_sp.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_scan_bar_code.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_shipper_collection.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_shipper_mng.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/activity_shipper_statistics.xml" value="0.246875" />

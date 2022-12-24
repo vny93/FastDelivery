@@ -279,4 +279,5 @@
     <string name="tv_enoughOrder">Hiện tại số lượng đơn hàng của mỗi nhân viên giao hàng đã đủ 20 đơn</string>
     <string name="tv_autoShipperSuccess">Đơn hàng đã được giao cho nhân viên giao hàng có mã: %1$s - họ tên: %2$s </string>
     <string name="tv_notFindShipper">Chưa tìm được nhân viên giao hàng phù hợp</string>
+    <string name="scan_barcode">Quét mã</string>
 </resources>

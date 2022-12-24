@@ -28,6 +28,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".screens.shipper.barcode.ScanBarCodeActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.shipper.collection.ShipperCollectionActivity"
             android:exported="false" />
         <activity
