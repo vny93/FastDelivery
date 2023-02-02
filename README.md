@@ -32,6 +32,8 @@
 
 <img width="331" alt="Screen Shot 2023-02-02 at 17 37 14" src="https://user-images.githubusercontent.com/80116131/216302117-9a28606a-a266-4568-bca1-635f994eb6a9.png">
 
+<img width="258" alt="Screen Shot 2023-02-02 at 17 42 46" src="https://user-images.githubusercontent.com/80116131/216303390-40d51cf1-0a99-44c7-b666-2caa30d0b5de.png">
+
 <img width="331" alt="Screen Shot 2023-02-02 at 17 37 40" src="https://user-images.githubusercontent.com/80116131/216302197-42132dae-dcd5-43d8-b88f-338cbaffe4f2.png">
 
 <img width="331" alt="Screen Shot 2023-02-02 at 17 37 59" src="https://user-images.githubusercontent.com/80116131/216302264-ae6d0dec-c128-469d-ab65-3b59f6caa62c.png">
